@@ -46,3 +46,15 @@ postgres db. For example, you can print out the database metadata:
 ```
 docker-compose exec manage python3 print_schema.py
 ```
+
+# Use the python package
+For development purposes, you can install this python package using pip, from the repo root directory:
+```
+pip install .
+```
+Note: Do not use development mode (i.e. `pip install -e .`) as it does not resolve the namespace correctly and you will get errors like `ModuleNotFoundError: No module named 'virtual_coach_db'`.
+
+Alternatively, if you just want to use it (e.g. in a Dockerfile) then add it to your requirements.txt:
+```
+git+https://github.com/PerfectFit-project/virtual-coach-db
+```
