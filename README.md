@@ -48,6 +48,9 @@ postgres db. For example, you can print out the database metadata:
 docker-compose exec manage python3 print_schema.py
 ```
 
+# Adding new users to the db
+Currently this is handled by running a script in the [onboarding/ dir of the virtual-coach-server repo](https://github.com/PerfectFit-project/virtual-coach-server/tree/main/onboarding). See the README there for instructions on using it.
+
 # Backup and restore the db
 Important: The database docker-compose must be up and running with all migrations applied, as described above, BEFORE running any of the following steps.
 
