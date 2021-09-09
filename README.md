@@ -22,6 +22,7 @@ First make sure that all current migrations have been applied:
 ```
 docker-compose exec manage alembic upgrade head
 ```
+(You can alternatively just run the `./utils/apply_migrations.sh` script which does the same thing)
 
 Then generate the revision to upgrade to the new schema defined in `models.py`:
 ```
