@@ -48,7 +48,7 @@ docker-compose exec manage python3 print_schema.py
 ```
 
 # Backup and restore the db
-Important: The database docker-compose must be up and running (as described above) before running any of the following steps.
+Important: The database docker-compose must be up and running with all migrations applied, as described above, BEFORE running any of the following steps.
 
 ## Backup
 In this repo you will find the `dump_db.sh` and `restore_db.sh` utility scripts. To create a backup of the currently running db,
