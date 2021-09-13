@@ -5,7 +5,8 @@ from sqlalchemy.orm import sessionmaker
 
 DB_USER = 'root'
 DB_PASSWORD = 'root' # noqa
-DB_URL = 'localhost:5432/perfectfit'
+#DB_URL = 'localhost:5432/perfectfit'
+DB_URL = 'host.docker.internal:5432/perfectfit'
 
 
 def get_db_session():
