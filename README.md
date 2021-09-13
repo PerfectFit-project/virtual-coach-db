@@ -83,3 +83,5 @@ Alternatively, if you just want to use it (e.g. in a Dockerfile) then add it to 
 ```
 git+https://github.com/PerfectFit-project/virtual-coach-db
 ```
+
+Note that when installing it in a Dockerfile on Windows, you may need to install further requirements to be able to install the required psycopg2 package in the Dockerfile (e.g. libpq-dev). Also note that if your database runs on localhost, the database cannot be reached via localhost from inside a Docker container on Windows. Use host.docker.internal from inside a Docker container to connect to the database on localhost instead.
