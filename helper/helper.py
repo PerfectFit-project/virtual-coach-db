@@ -3,14 +3,13 @@ import sys
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
 
-DB_USER = 'root'
+
 DB_PASSWORD = 'root' # noqa
-#DB_URL = 'localhost:5432/perfectfit'
-DB_URL = 'host.docker.internal:5432/perfectfit'
 
 
-def get_db_session():
-    db_loc = 'postgresql://' + DB_USER + ":" + DB_PASSWORD + "@" + DB_URL
+def get_db_session(db_host = 'localhost', db_user = 'root'):
+    db_url = db_host + ":5432/perfectfit"
+    db_loc = 'postgresql://' + db_user + ":" + DB_PASSWORD + "@" + db_url
     engine = create_engine(db_loc)
     meta = MetaData()
     meta.reflect(bind=engine)
