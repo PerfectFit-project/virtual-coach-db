@@ -13,3 +13,4 @@ class Users(Base):
     location = Column(String)
     gender = Column(String)
     dob = Column(Date)
+    paevaluation = Column(Integer)  # Temporary, will be changed with issue #125
