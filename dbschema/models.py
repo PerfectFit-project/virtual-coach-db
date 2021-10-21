@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Date, Integer, String, datetime, ForeignKey
+from sqlalchemy import Column, Date, Integer, String, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -24,4 +24,4 @@ class Closed_user_answers(Base):
     # parent = relationship("Users", back_populates="closed_user_answers")
     value = Column(Integer)
     question = Column(String)
-    datetime = Column(datetime)
+    datetime = Column(DateTime)
