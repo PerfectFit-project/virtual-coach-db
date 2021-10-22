@@ -21,7 +21,6 @@ class Closed_user_answers(Base):
     __tablename__ = 'closed_user_answers'
     id = Column(Integer, primary_key=True)
     users_id = Column(Integer, ForeignKey('users.id'))
-    # parent = relationship("Users", back_populates="closed_user_answers")
     value = Column(Integer)
     question = Column(String)
     datetime = Column(DateTime)
