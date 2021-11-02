@@ -17,7 +17,7 @@ class Users(Base):
     dob = Column(Date)
 
 
-class Closed_user_answers(Base):
+class ClosedUserAnswers(Base):
     __tablename__ = 'closed_user_answers'
     id = Column(Integer, primary_key=True)
     users_id = Column(Integer, ForeignKey('users.id'))
