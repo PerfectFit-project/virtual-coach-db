@@ -51,26 +51,27 @@ docker-compose exec manage python3 print_schema.py
 # Adding new users to the db
 Currently this is handled by running a script in the [onboarding/ dir of the virtual-coach-server repo](https://github.com/PerfectFit-project/virtual-coach-server/tree/main/onboarding). See the README there for instructions on using it.
 
-# Backup and restore the db
-Important: The database docker-compose must be up and running with all migrations applied, as described above, BEFORE running any of the following steps.
-
-## Backup
-In this repo you will find the `dump_db.sh` and `restore_db.sh` utility scripts. To create a backup of the currently running db,
-run:
-`./utils/dump_db.sh`
-This will produce a dump of the full database contents to a file with a name of the form 'perfectfitdb-[TS]' where [TS] is the current timestamp.
-
-## Restore
-To reset the db contents to that in one of these dumps, run e.g.
-`./utils/restore_db.sh my_previous_backup.dump`
-
-## See contents of USERS table
-`./utils/print_all_users.sh` will print out all the info currently stored in the (running) db's USERS table.
+# Populate db with test data
+Important: The database docker-compose must be up and running with all migrations applied, as described above, 
+BEFORE running any of the following steps.
 
 ## Load test data
 Once the db is up and running, you can use:
-`./utils/restore_db.sh test.dump`
+`python helper/populate_db.py`
 to populate the database with sample user data.
+
+## Updating the test data
+**When you updated the db models, you must also update the `helper/populate_db.py` script 
+to match the new schema.**
+
+NB: Follow these steps to repopulate a fresh database:
+1. Stop the running containers: `docker-compose down`
+2. Run containers: `docker-compose up`
+3. Apply migrations: `./utils/apply_migrations.sh`
+4. Populate database: `python helper/populate_db.sh`
+
+## See contents of USERS table
+`./utils/print_all_users.sh` will print out all the info currently stored in the (running) db's USERS table.
 
 # Using the python package, `virtual_coach_db`
 For development purposes, you can install this python package using pip, from the repo root directory:
