@@ -31,4 +31,5 @@ jobs:
         python3 -m pip install -r requirements-dev.txt
     - name: Run unit tests
       run: |
+        export PYTHONPATH=$PYTHONPATH:$PWD
         pytest
