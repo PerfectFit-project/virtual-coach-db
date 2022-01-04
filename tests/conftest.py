@@ -1,3 +1,6 @@
+"""
+Contains fixtures that are used in the unit testing framework 'pytest'
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from dbschema.models import Base
