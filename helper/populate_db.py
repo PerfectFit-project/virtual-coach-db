@@ -14,7 +14,6 @@ def populate_db_with_test_data(session):
         Users(dob=date(2018, 1, 2), firstname='Nele', gender='FEMALE', lastname='Albers',
               location='Delft', nicedayuid=40121),
         ClosedUserAnswers(users_id=1, value=3, question='paevaluation', datetime=datetime.now())
-
     ])
     session.commit()
 

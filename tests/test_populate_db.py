@@ -13,6 +13,7 @@ def test_populate_db_with_test_data(db_session):
     # Go through all SQLAlchemy models
     for name, klass in Base._decl_class_registry.items():
         if isinstance(klass, _ModuleMarker):
+            # Not a model
             continue
         assert db_session.query(klass).count() > 0, \
             f'Class {klass} does not have any rows populated with test data'
