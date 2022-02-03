@@ -9,7 +9,6 @@ class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     closed_user_answers = relationship('ClosedUserAnswers')
-    nicedayuid = Column(Integer)
     firstname = Column(String)
     lastname = Column(String)
     location = Column(String)
