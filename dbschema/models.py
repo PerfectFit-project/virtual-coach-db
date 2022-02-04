@@ -7,7 +7,7 @@ Base = declarative_base()
 
 class Users(Base):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
+    nicedayuid = Column(Integer, primary_key=True)
     closed_user_answers = relationship('ClosedUserAnswers')
     firstname = Column(String)
     lastname = Column(String)
@@ -19,7 +19,7 @@ class Users(Base):
 class ClosedUserAnswers(Base):
     __tablename__ = 'closed_user_answers'
     id = Column(Integer, primary_key=True)
-    users_id = Column(Integer, ForeignKey('users.id'))
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     value = Column(Integer)
     question = Column(String)
     datetime = Column(DateTime)
