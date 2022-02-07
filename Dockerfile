@@ -11,7 +11,8 @@ RUN python3 -m pip install wheel
 ADD requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
-RUN mkdir /dbschema
-WORKDIR /dbschema
+COPY . /app
+ENV PYTHONPATH "${PYTHONPATH}:/app"
 
-ENV PYTHONPATH "${PYTHONPATH}:/dbschema"
+# Use dbschema as working directory, because we want alembic to be used from there
+WORKDIR /app/dbschema
