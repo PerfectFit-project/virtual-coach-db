@@ -10,10 +10,8 @@ def test_populate_db_with_test_data(db_session):
     We enforce that for each Model some test data must be added.
     """
     populate_db_with_test_data(db_session)
-    # Go through all SQLAlchemy models
-    for name, klass in Base._decl_class_registry.items():
-        if isinstance(klass, _ModuleMarker):
-            # Not a model
-            continue
+
+    for mapper in Base.registry.mappers:
+        klass = mapper.class_
         assert db_session.query(klass).count() > 0, \
             f'Class {klass} does not have any rows populated with test data'
