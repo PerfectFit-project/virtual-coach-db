@@ -1,4 +1,4 @@
-from sqlalchemy.ext.declarative.clsregistry import _ModuleMarker
+from sqlalchemy.orm.clsregistry import _ModuleMarker
 
 from dbschema.models import Base
 from helper.populate_db import populate_db_with_test_data
