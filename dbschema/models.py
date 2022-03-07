@@ -16,7 +16,7 @@ class Users(Base):
 
     # Refer to children tables
     closed_user_answers = relationship('ClosedUserAnswers')
-    future_self_dialog_answers = relationship('DialogAnswers', backref="users", uselist=False)
+    dialog_answers = relationship('DialogAnswers')
 
 
 class ClosedUserAnswers(Base):
@@ -35,6 +35,7 @@ class DialogAnswers(Base):
     answer = Column(String)
     question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
     datetime = Column(DateTime)
+    dialog_questions = relationship('DialogQuestions')
 
 
 class DialogQuestions(Base):
