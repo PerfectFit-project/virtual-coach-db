@@ -17,3 +17,5 @@ services:
     tty: true
     depends_on:
       - db
+    volumes:
+      - ./dbschema:/app/dbschema
