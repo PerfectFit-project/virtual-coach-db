@@ -16,7 +16,7 @@ class Users(Base):
 
     # Refer to children tables
     closed_user_answers = relationship('ClosedUserAnswers')
-    future_self_dialog_answers = relationship('FutureSelfDialogAnswers', backeref="users", uselist=False)
+    future_self_dialog_answers = relationship('DialogAnswers', backref="users", uselist=False)
 
 
 class ClosedUserAnswers(Base):
@@ -28,10 +28,16 @@ class ClosedUserAnswers(Base):
     datetime = Column(DateTime)
 
 
-class FutureSelfDialogAnswers(Base):
-    __tablename__ = 'future_self_dialog_answers'
-    nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'), primary_key=True)
-    smoker_words = Column(String)
-    why_smoker_words = Column(String)
-    mover_words = Column(String)
-    why_mover_words = Column(String)
+class DialogAnswers(Base):
+    __tablename__ = 'dialog_answers'
+    answer_id = Column(Integer, primary_key=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    answer = Column(String)
+    question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
+    datetime = Column(DateTime)
+
+
+class DialogQuestions(Base):
+    __tablename__ = 'dialog_questions'
+    question_id = Column(Integer, primary_key=True)
+    question_description = Column(String)
