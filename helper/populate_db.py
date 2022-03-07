@@ -26,6 +26,6 @@ def populate_db_with_test_data(session):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    session = get_db_session(db_host='localhost:5432')
+    session = get_db_session()
     populate_db_with_test_data(session)
     logging.info('Succesfully populated database with test data')
