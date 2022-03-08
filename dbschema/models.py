@@ -14,7 +14,7 @@ class Users(Base):
     gender = Column(String)
     dob = Column(Date)
 
-    # Refer to children tables
+    # Refer to relationships
     closed_user_answers = relationship('ClosedUserAnswers')
     dialog_answers = relationship('DialogAnswers')
 
@@ -35,6 +35,8 @@ class DialogAnswers(Base):
     answer = Column(String)
     question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
     datetime = Column(DateTime)
+
+    # Refer relationship
     dialog_questions = relationship('DialogQuestions')
 
 
