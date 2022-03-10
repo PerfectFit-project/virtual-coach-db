@@ -29,7 +29,7 @@ class ClosedUserAnswers(Base):
 
 class UserInterventionState(Base):
     __tablename__ = 'user_intervention_state'
-    id = Column(Integer, primary_key=True)
-    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'), 
+                              primary_key = True)
     futureselfdialogdatetime = Column(DateTime)
-    futureselfdialogpart = Column(String)
+    futureselfdialogstep = Column(String)
