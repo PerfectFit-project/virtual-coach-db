@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime, date
 
-from dbschema.models import Users, ClosedUserAnswers, DialogAnswers, DialogQuestions
+from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions
 from helper import get_db_session
 
 
@@ -23,6 +23,8 @@ def populate_db_with_test_data(session):
         ClosedUserAnswers(id=5, users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now()),
         DialogAnswers(answer_id=1, users_nicedayuid=38527, answer='lekker stoer eng', question_id=1,
                       datetime=datetime.now())
+        UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now(), last_part=1),
+
     ]
     [session.merge(obj) for obj in objects]
 

@@ -68,7 +68,7 @@ NB: Follow these steps to repopulate a fresh database:
 1. Stop the running containers: `docker-compose down`
 2. Run containers: `docker-compose up`
 3. Apply migrations: `./utils/apply_migrations.sh`
-4. Populate database: `python helper/populate_db.sh`
+4. Populate database: `python helper/populate_db.py`
 
 ## See contents of USERS table
 `./utils/print_all_users.sh` will print out all the info currently stored in the (running) db's USERS table.
@@ -80,9 +80,12 @@ pip install .
 ```
 Note: Do not use development mode (i.e. `pip install -e .`) as it does not resolve the namespace correctly and you will get errors like `ModuleNotFoundError: No module named 'virtual_coach_db'`.
 
-Alternatively, if you just want to use it (e.g. in a Dockerfile) then add it to your requirements.txt:
+Alternatively, if you just want to use it (e.g. in a Dockerfile) then add it to your requirements.txt using the most updated version:
 ```
-git+https://github.com/PerfectFit-project/virtual-coach-db
+git+https://github.com/PerfectFit-project/virtual-coach-db#v0.1.0
 ```
 
 Note that when installing it in a Dockerfile on Windows, you may need to install further requirements to be able to install the required psycopg2 package in the Dockerfile (e.g. libpq-dev). Also note that if your database runs on localhost, the database cannot be reached via localhost from inside a Docker container on Windows. Use host.docker.internal from inside a Docker container to connect to the database on localhost instead.
+
+# New versions release
+When a new version of the niceday_client package is ready and tested, a [new relase has to be created together with release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). The release name has to follow the semantic versioning convention.

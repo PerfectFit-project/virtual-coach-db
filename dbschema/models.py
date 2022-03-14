@@ -17,6 +17,7 @@ class Users(Base):
     # Refer to relationships
     closed_user_answers = relationship('ClosedUserAnswers')
     dialog_answers = relationship('DialogAnswers')
+    user_intervention_state = relationship("UserInterventionState")
 
 
 class ClosedUserAnswers(Base):
@@ -44,3 +45,12 @@ class DialogQuestions(Base):
     __tablename__ = 'dialog_questions'
     question_id = Column(Integer, primary_key=True)
     question_description = Column(String)
+
+
+class UserInterventionState(Base):
+    __tablename__ = 'user_intervention_state'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    intervention_component = Column(String)             
+    last_time = Column(DateTime)
+    last_part = Column(Integer)
