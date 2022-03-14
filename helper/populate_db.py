@@ -33,9 +33,10 @@ def populate_db_with_test_data(session):
         DialogQuestions(question_id=3, question_description='future self dialog - mover words'),
         DialogQuestions(question_id=4, question_description='future self dialog - mover why')
     ]
-
     [session.merge(obj) for obj in objects_questions]
+
     session.commit()
+
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
