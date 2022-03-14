@@ -33,4 +33,4 @@ class UserInterventionState(Base):
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     intervention_component = Column(String)             
     last_time = Column(DateTime)
-    last_part = Column(String)
+    last_part = Column(Integer)
