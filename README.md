@@ -68,7 +68,7 @@ NB: Follow these steps to repopulate a fresh database:
 1. Stop the running containers: `docker-compose down`
 2. Run containers: `docker-compose up`
 3. Apply migrations: `./utils/apply_migrations.sh`
-4. Populate database: `python helper/populate_db.sh`
+4. Populate database: `python helper/populate_db.py`
 
 ## See contents of USERS table
 `./utils/print_all_users.sh` will print out all the info currently stored in the (running) db's USERS table.

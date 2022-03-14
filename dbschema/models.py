@@ -14,6 +14,8 @@ class Users(Base):
     location = Column(String)
     gender = Column(String)
     dob = Column(Date)
+    
+    user_intervention_state = relationship("UserInterventionState")
 
 
 class ClosedUserAnswers(Base):
@@ -23,3 +25,12 @@ class ClosedUserAnswers(Base):
     value = Column(Integer)
     question = Column(String)
     datetime = Column(DateTime)
+    
+
+class UserInterventionState(Base):
+    __tablename__ = 'user_intervention_state'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    intervention_component = Column(String)             
+    last_time = Column(DateTime)
+    last_part = Column(Integer)
