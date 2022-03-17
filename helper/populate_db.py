@@ -25,12 +25,12 @@ def populate_db_with_test_data(session):
               location='Delft', nicedayuid=40121),
         Users(dob=date(2000, 1, 2), firstname='Bouke', gender='MALE', lastname='RRD',
               location='Eanske', nicedayuid=41215),
-        ClosedUserAnswers(id=1, users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(id=2, users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(id=3, users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(id=4, users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(id=5, users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now()),
-        DialogAnswers(answer_id=1, users_nicedayuid=38527, answer='lekker stoer eng', question_id=1,
+        ClosedUserAnswers(users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now()),
+        ClosedUserAnswers(users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now()),
+        ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now()),
+        ClosedUserAnswers(users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now()),
+        ClosedUserAnswers(users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now()),
+        DialogAnswers(users_nicedayuid=38527, answer='lekker stoer eng', question_id=1,
                       datetime=datetime.now()),
         UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now(), last_part=1)
     ]
