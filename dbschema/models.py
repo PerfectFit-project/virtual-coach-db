@@ -17,7 +17,7 @@ class Users(Base):
     # Refer to relationships
     closed_user_answers = relationship('ClosedUserAnswers')
     dialog_answers = relationship('DialogAnswers')
-    user_intervention_state = relationship("UserInterventionState")
+    user_intervention_state = relationship("UserInterventionState", back_populates="user")
 
 
 class ClosedUserAnswers(Base):
@@ -54,3 +54,4 @@ class UserInterventionState(Base):
     intervention_component = Column(String)             
     last_time = Column(DateTime)
     last_part = Column(Integer)
+    user = relationship("Users", back_populates="user_intervention_state")
