@@ -25,6 +25,8 @@ def populate_db_with_test_data(session):
               location='Delft', nicedayuid=40121),
         Users(dob=date(2000, 1, 2), firstname='Bouke', gender='MALE', lastname='RRD',
               location='Eanske', nicedayuid=41215),
+        Users(dob=date(2000, 1, 2), firstname='User', gender='MALE', lastname='Test',
+              location='Eanske', nicedayuid=41538),
         ClosedUserAnswers(users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now()),
         ClosedUserAnswers(users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now()),
         ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now()),
