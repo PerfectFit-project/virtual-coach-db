@@ -19,6 +19,5 @@ services:
       - db
     volumes:
       - ./dbschema:/app/dbschema
-    command: [ "/app/utils/init-db.sh" ]
     environment:
       - DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
