@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime, date
+import pytz
 
 from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers
 from helper import get_db_session
@@ -27,14 +28,14 @@ def populate_db_with_test_data(session):
               location='Eanske', nicedayuid=41215),
         Users(dob=date(2000, 1, 2), firstname='User', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=41538),
-        ClosedUserAnswers(users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now()),
-        ClosedUserAnswers(users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now()),
+        ClosedUserAnswers(users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now(pytz.timezone('Europe/Amsterdam'))),
+        ClosedUserAnswers(users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now(pytz.timezone('Europe/Amsterdam'))),
+        ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now(pytz.timezone('Europe/Amsterdam'))),
+        ClosedUserAnswers(users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now(pytz.timezone('Europe/Amsterdam'))),
+        ClosedUserAnswers(users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now(pytz.timezone('Europe/Amsterdam'))),
         DialogAnswers(users_nicedayuid=38527, answer='lekker stoer eng', question_id=1,
-                      datetime=datetime.now()),
-        UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now(), last_part=1)
+                      datetime=datetime.now(pytz.timezone('Europe/Amsterdam'))),
+        UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now(pytz.timezone('Europe/Amsterdam')), last_part=1)
     ]
     [session.merge(obj) for obj in objects]
 
