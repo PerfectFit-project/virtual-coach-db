@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 from logging.config import fileConfig
@@ -15,6 +16,7 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
+logger = logging.getLogger(__name__)
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
@@ -24,6 +26,8 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 target_metadata = Base.metadata
 print(target_metadata.tables)
+
+
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
@@ -42,7 +46,8 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    logging.info('Running migrations in offline mode')
+    url = get_db_url()
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -54,6 +59,13 @@ def run_migrations_offline():
         context.run_migrations()
 
 
+def get_db_url():
+    """
+    Retrieves db url from environment variable `DATABASE_URL`
+    """
+    return os.environ['DATABASE_URL']
+
+
 def run_migrations_online():
     """Run migrations in 'online' mode.
 
@@ -61,11 +73,12 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+    logging.info('Running migrations in online mode')
+    engine_config = {'sqlalchemy.url': get_db_url()}
+    connectable = engine_from_config(engine_config,
+                                     prefix="sqlalchemy.",
+                                     poolclass=pool.NullPool,
+                                     )
 
     with connectable.connect() as connection:
         context.configure(
