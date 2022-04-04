@@ -1,8 +1,15 @@
 import logging
+import os
 from datetime import datetime, date
+
+from dotenv import load_dotenv
 
 from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers
 from helper import get_db_session
+
+# load .env-file and get db_host and niceday_api_endopint variables
+load_dotenv()
+DB_HOST = os.getenv('DB_HOST', default='db:5432')
 
 
 def populate_db_with_test_data(session):
@@ -43,6 +50,6 @@ def populate_db_with_test_data(session):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    session = get_db_session()
+    session = get_db_session(db_host=DB_HOST)
     populate_db_with_test_data(session)
     logging.info('Succesfully populated database with test data')

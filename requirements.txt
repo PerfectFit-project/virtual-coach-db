@@ -1,4 +1,6 @@
+alembic
 databases[postgresql]
 SQLAlchemy
 psycopg2
-alembic
+python-dotenv
+
