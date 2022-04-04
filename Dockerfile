@@ -8,13 +8,6 @@ RUN apt-get install -y libpq-dev
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install wheel
 
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/Amsterdam
-RUN apt-get install -y tzdata
-RUN echo "Europe/Amsterdam" > /etc/timezone
-RUN dpkg-reconfigure tzdata
-RUN date
-
 ADD requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
