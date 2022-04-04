@@ -1,6 +1,6 @@
-from dateutil import tz
 from datetime import datetime
-from sqlalchemy import Column, Date, Integer, String, DateTime, ForeignKey, TIMESTAMP
+from dateutil import tz
+from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, String, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
