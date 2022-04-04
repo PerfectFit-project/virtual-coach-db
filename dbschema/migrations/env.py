@@ -61,9 +61,12 @@ def run_migrations_offline():
 
 def get_db_url():
     """
-    Retrieves db url from environment variable `DATABASE_URL`
+    Retrieves db url from environment variable `SQLALCHEMY_DATABASE_URL`
+    The environment variable DATABASE_URL is automatically filled in by Heroku. Unfortunately it
+    has the prefix "postgres" instead of "postgresql". SQLAlchemy cannot handle the "postgres"
+    prefix so we need to put the correct variable under a different name.
     """
-    return os.environ['DATABASE_URL']
+    return os.environ['SQLALCHEMY_DATABASE_URL']
 
 
 def run_migrations_online():

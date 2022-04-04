@@ -3,14 +3,11 @@ import sys
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
 
+DB_URL = 'postgresql://root:root@db:5432/perfectfit'
 
-DB_PASSWORD = 'root' # noqa
 
-
-def get_db_session(db_host='db:5432', db_user='root'):
-    db_url = db_host + "/perfectfit"
-    db_loc = 'postgresql://' + db_user + ":" + DB_PASSWORD + "@" + db_url
-    engine = create_engine(db_loc)
+def get_db_session(db_url=DB_URL):
+    engine = create_engine(db_url)
     meta = MetaData()
     meta.reflect(bind=engine)
 
