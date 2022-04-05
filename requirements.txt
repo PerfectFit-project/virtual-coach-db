@@ -3,3 +3,4 @@ databases[postgresql]
 SQLAlchemy
 pypandoc
 alembic
+python-dotenv
