@@ -50,6 +50,14 @@ def populate_db_with_test_data(session):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    session = get_db_session(db_host=DB_HOST)
+
+    # Heroku and docker-compose will provide the db url as environment variable. If this variable
+    # cant be found, the defaults from the helper module will be used.
+    try:
+        db_url = os.environ['SQLALCHEMY_DATABASE_URL']
+        session = get_db_session(db_url)
+    except KeyError:
+        session = get_db_session()
+
     populate_db_with_test_data(session)
     logging.info('Succesfully populated database with test data')

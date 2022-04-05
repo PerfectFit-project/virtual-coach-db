@@ -16,3 +16,4 @@ ENV PYTHONPATH "${PYTHONPATH}:/app"
 
 # Use dbschema as working directory, because we want alembic to be used from there
 WORKDIR /app/dbschema
+CMD [ "/app/utils/init-db.sh" ]

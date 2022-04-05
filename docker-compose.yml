@@ -19,5 +19,5 @@ services:
       - db
     volumes:
       - ./dbschema:/app/dbschema
-    command: [ "/app/utils/init-db.sh" ]
-
+    environment:
+      - SQLALCHEMY_DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
