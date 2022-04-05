@@ -20,4 +20,4 @@ services:
     volumes:
       - ./dbschema:/app/dbschema
     environment:
-      - SQLALCHEMY_DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
+      - DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
