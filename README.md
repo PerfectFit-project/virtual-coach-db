@@ -55,6 +55,10 @@ Currently this is handled by running a script in the [onboarding/ dir of the vir
 Important: The database docker-compose must be up and running with all migrations applied, as described above, 
 BEFORE running any of the following steps.
 
+In addition, create a `.env` file in the root of this repo with an environment variable called `DB_HOST`
+that refers to the endpoint of the database (usually `localhost:5432` if you're running things locally). 
+See also the `.env-example` file.
+
 ## Load test data
 Once the db is up and running, you can use:
 `python helper/populate_db.py`
