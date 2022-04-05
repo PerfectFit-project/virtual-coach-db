@@ -2,15 +2,8 @@ import logging
 import os
 from datetime import datetime, date
 
-from dotenv import load_dotenv
-
 from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers
 from helper import get_db_session
-
-# load .env-file and get db_host and niceday_api_endopint variables
-load_dotenv()
-DB_HOST = os.getenv('DB_HOST', default='db:5432')
-
 
 def populate_db_with_test_data(session):
     """
@@ -54,7 +47,7 @@ if __name__ == '__main__':
     # Heroku and docker-compose will provide the db url as environment variable. If this variable
     # cant be found, the defaults from the helper module will be used.
     try:
-        db_url = os.environ['SQLALCHEMY_DATABASE_URL']
+        db_url = os.environ['DATABASE_URL']
         session = get_db_session(db_url)
     except KeyError:
         session = get_db_session()
