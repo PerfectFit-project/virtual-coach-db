@@ -21,7 +21,9 @@ def populate_db_with_test_data(session):
         DialogQuestions(question_id=1, question_description='future self dialog - smoker words'),
         DialogQuestions(question_id=2, question_description='future self dialog - smoker why'),
         DialogQuestions(question_id=3, question_description='future self dialog - mover words'),
-        DialogQuestions(question_id=4, question_description='future self dialog - mover why')
+        DialogQuestions(question_id=4, question_description='future self dialog - mover why'),
+        DialogQuestions(question_id=5, question_description='future self dialog - smoker identity'),
+        DialogQuestions(question_id=6, question_description='future self dialog - mover identity')
     ]
     [session.merge(obj) for obj in objects_questions]
 
