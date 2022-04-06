@@ -55,8 +55,8 @@ Currently this is handled by running a script in the [onboarding/ dir of the vir
 Important: The database docker-compose must be up and running with all migrations applied, as described above, 
 BEFORE running any of the following steps.
 
-In addition, create a `.env` file in the root of this repo with an environment variable called `DB_HOST`
-that refers to the endpoint of the database (usually `localhost:5432` if you're running things locally). 
+In addition, create a `.env` file in the root of this repo with an environment variable called `DATABASE_URL`
+that refers to the endpoint of the database (usually `postgresql://root:root@db:5432/perfectfit` if you're running things locally using the docker-compose yaml). 
 See also the `.env-example` file.
 
 ## Load test data

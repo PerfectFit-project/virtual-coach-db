@@ -12,12 +12,10 @@ services:
     ports:
       - "5432:5432"
 
-  manage:
+  manage_db:
     build: .
     tty: true
-    depends_on:
-      - db
-    volumes:
-      - ./dbschema:/app/dbschema
+    restart: on-failure
+    command: ["/app/utils/init-db.sh"]
     environment:
-      - SQLALCHEMY_DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
+      - DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
