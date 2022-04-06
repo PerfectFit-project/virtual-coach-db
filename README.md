@@ -56,7 +56,7 @@ Important: The database docker-compose must be up and running with all migration
 BEFORE running any of the following steps.
 
 In addition, create a `.env` file in the root of this repo with an environment variable called `DATABASE_URL`
-that refers to the endpoint of the database (usually `localhost:5432` if you're running things locally). 
+that refers to the endpoint of the database (usually `postgresql://root:root@db:5432/perfectfit` if you're running things locally using the docker-compose yaml). 
 See also the `.env-example` file.
 
 ## Load test data
