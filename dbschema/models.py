@@ -1,6 +1,9 @@
-from sqlalchemy import Column, Date, Integer, String, DateTime, ForeignKey
+from datetime import datetime
+from dateutil import tz
+from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, String, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+
 
 Base = declarative_base()
 
@@ -26,7 +29,7 @@ class ClosedUserAnswers(Base):
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     value = Column(Integer)
     question = Column(String)
-    datetime = Column(DateTime)
+    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
 
 
 class DialogAnswers(Base):
@@ -35,7 +38,7 @@ class DialogAnswers(Base):
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     answer = Column(String)
     question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
-    datetime = Column(DateTime)
+    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
 
     # Refer relationship
     dialog_questions = relationship('DialogQuestions')
@@ -52,6 +55,6 @@ class UserInterventionState(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     intervention_component = Column(String)             
-    last_time = Column(DateTime)
+    last_time = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     last_part = Column(Integer)
     user = relationship("Users", back_populates="user_intervention_state")
