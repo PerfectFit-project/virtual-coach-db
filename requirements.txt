@@ -1,5 +1,7 @@
+psycopg2
 databases[postgresql]
 python-dateutil
 SQLAlchemy
-psycopg2
+pypandoc
 alembic
+python-dotenv
