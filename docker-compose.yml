@@ -16,6 +16,7 @@ services:
     build: .
     tty: true
     restart: on-failure
-    command: ["/app/utils/init-db.sh"]
     environment:
       - DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
+    volumes:
+      - ./dbschema:/app/dbschema
