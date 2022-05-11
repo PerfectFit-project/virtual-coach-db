@@ -3,7 +3,7 @@ import os
 from datetime import datetime, date
 from dateutil import tz
 
-from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers
+from dbschema.models import Users, UserInterventionState, DialogQuestions, DialogAnswers
 from helper import get_db_session
 
 def populate_db_with_test_data(session):
@@ -32,11 +32,6 @@ def populate_db_with_test_data(session):
               location='Eanske', nicedayuid=41215),
         Users(dob=date(2000, 1, 2), firstname='User', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=41538),
-        ClosedUserAnswers(users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
         DialogAnswers(users_nicedayuid=38527, answer='lekker stoer eng', question_id=1,
                       datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now().astimezone(tz_nl), last_part=1)
