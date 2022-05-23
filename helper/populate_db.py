@@ -3,7 +3,7 @@ import os
 from datetime import datetime, date
 from dateutil import tz
 
-from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers
+from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers, FirstAidKit
 from helper import get_db_session
 
 def populate_db_with_test_data(session):
