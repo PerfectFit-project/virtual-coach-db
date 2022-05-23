@@ -1,6 +1,6 @@
 from datetime import datetime
 from dateutil import tz
-from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, String, TIMESTAMP
+from sqlalchemy import Column, Date, ForeignKey, Integer, String, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -21,6 +21,7 @@ class Users(Base):
     closed_user_answers = relationship('ClosedUserAnswers')
     dialog_answers = relationship('DialogAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
+    first_aid_kit = relationship("FirstAidKit", back_populates="user")
 
 
 class ClosedUserAnswers(Base):
@@ -48,6 +49,16 @@ class DialogQuestions(Base):
     __tablename__ = 'dialog_questions'
     question_id = Column(Integer, primary_key=True)
     question_description = Column(String)
+    
+    
+class FirstAidKit(Base):
+    __tablename__ = 'first_aid_kit'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    activity_description = Column(String)
+    
+    # Refer to relationships
+    user = relationship("Users", back_populates="first_aid_kit")
 
 
 class UserInterventionState(Base):
