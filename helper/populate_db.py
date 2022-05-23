@@ -34,6 +34,10 @@ def populate_db_with_test_data(session):
               location='Eanske', nicedayuid=41538),
         DialogAnswers(users_nicedayuid=38527, answer='lekker stoer eng', question_id=1,
                       datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=40121, answer='lekker leuk eng', question_id=1,
+                      datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=40121, answer='eng leuk stoer', question_id=3,
+                      datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now().astimezone(tz_nl), last_part=1)
     ]
     [session.merge(obj) for obj in objects]
