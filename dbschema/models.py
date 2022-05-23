@@ -56,6 +56,7 @@ class FirstAidKit(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     activity_description = Column(String)
+    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     
     # Refer to relationships
     user = relationship("Users", back_populates="first_aid_kit")
