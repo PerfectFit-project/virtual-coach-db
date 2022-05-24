@@ -3,6 +3,7 @@ from dateutil import tz
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.schema import CheckConstraint
 
 
 Base = declarative_base()
@@ -52,14 +53,30 @@ class DialogQuestions(Base):
     
     
 class FirstAidKit(Base):
-    __tablename__ = 'first_aid_kit'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    # Need to define either the intervention_activity_id or the user_activity_title.
+    # The user_acitivty_description may be set both for intervention activities and for user activities.
+    __tablename__ = "first_aid_kit"
+    __table_args__ = (
+        (CheckConstraint('(intervention_activity_id::text IS NULL) <> (user_activity_title IS NULL)', name='first_aid_kit_constraint')),
+    )
+    first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    activity_description = Column(String)
+    intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
+    user_activity_title = Column(String(100))
+    user_activity_description = Column(String)
     datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     
     # Refer to relationships
     user = relationship("Users", back_populates="first_aid_kit")
+    activity = relationship("InterventionActivity")
+    
+    
+class InterventionActivity(Base):
+    __tablename__ = 'intervention_activity'
+    intervention_activity_id = Column(Integer, primary_key=True)
+    intervention_activity_title = Column(String(100))
+    intervention_activity_description = Column(String)
+    intervention_activity_full_instructions = Column(String)
 
 
 class UserInterventionState(Base):
