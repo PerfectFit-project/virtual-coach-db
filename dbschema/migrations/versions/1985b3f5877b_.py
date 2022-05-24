@@ -32,7 +32,6 @@ def upgrade():
     sa.Column('user_activity_title', sa.String(length=100), nullable=True),
     sa.Column('user_activity_description', sa.String(), nullable=True),
     sa.Column('datetime', sa.TIMESTAMP(timezone=True), nullable=True),
-    sa.CheckConstraint('(intervention_activity_id::text IS NULL) <> (user_activity_title IS NULL)', name='first_aid_kit_constraint'),
     sa.ForeignKeyConstraint(['intervention_activity_id'], ['intervention_activity.intervention_activity_id'], ),
     sa.ForeignKeyConstraint(['users_nicedayuid'], ['users.nicedayuid'], ),
     sa.PrimaryKeyConstraint('first_aid_kit_id')

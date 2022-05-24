@@ -3,7 +3,6 @@ from dateutil import tz
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy.schema import CheckConstraint
 
 
 Base = declarative_base()
@@ -53,12 +52,7 @@ class DialogQuestions(Base):
     
     
 class FirstAidKit(Base):
-    # Need to define either the intervention_activity_id or the user_activity_title.
-    # The user_acitivty_description may be set both for intervention activities and for user activities.
     __tablename__ = "first_aid_kit"
-    __table_args__ = (
-        (CheckConstraint('(intervention_activity_id::text IS NULL) <> (user_activity_title IS NULL)', name='first_aid_kit_constraint')),
-    )
     first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
