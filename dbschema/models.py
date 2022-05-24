@@ -49,8 +49,8 @@ class DialogQuestions(Base):
     __tablename__ = 'dialog_questions'
     question_id = Column(Integer, primary_key=True)
     question_description = Column(String)
-    
-    
+
+ 
 class FirstAidKit(Base):
     __tablename__ = "first_aid_kit"
     first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
@@ -62,7 +62,7 @@ class FirstAidKit(Base):
     
     # Refer to relationships
     user = relationship("Users", back_populates="first_aid_kit")
-    activity = relationship("InterventionActivity")
+    intervention_activity = relationship("InterventionActivity")
     
     
 class InterventionActivity(Base):
