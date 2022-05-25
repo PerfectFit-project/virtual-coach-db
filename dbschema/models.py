@@ -55,9 +55,12 @@ class FirstAidKit(Base):
     __tablename__ = "first_aid_kit"
     first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    
+    # We either provide the ID of one of our own activities, or we store an activity title and description as provided by a user.
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
     user_activity_title = Column(String(100))
     user_activity_description = Column(String)
+    
     datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     
     # Refer to relationships
