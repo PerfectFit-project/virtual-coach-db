@@ -81,7 +81,7 @@ def populate_db_with_test_data(session):
                       datetime=datetime.now().astimezone(tz_nl)),
         DialogAnswers(users_nicedayuid=40121, answer='eng leuk stoer', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        UserInterventionState(users_nicedayuid=40121, intervention_phase=1, intervention_component=1, completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1)
+        UserInterventionState(users_nicedayuid=40121, intervention_phase_id=1, intervention_component_id=1, completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1)
     ]
     [session.merge(obj) for obj in objects]
 
