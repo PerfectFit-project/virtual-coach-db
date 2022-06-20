@@ -1,6 +1,6 @@
 from datetime import datetime
 from dateutil import tz
-from sqlalchemy import Column, Date, ForeignKey, Integer, String, TIMESTAMP
+from sqlalchemy import Column, Date, ForeignKey, Integer, String, Boolean, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -76,11 +76,27 @@ class InterventionActivity(Base):
     intervention_activity_full_instructions = Column(String)
 
 
+class InterventionPhases(Base):
+    __tablename__ = 'intervention_phases'
+    phase_id = Column(Integer, primary_key=True, autoincrement=True)
+    phase_name = Column(String(100))
+
+
+class InterventionComponents(Base):
+    __tablename__ = 'intervention_components'
+    intervention_component_id = Column(Integer, primary_key=True, autoincrement=True)
+    intervention_component_name = Column(String(100))
+
 class UserInterventionState(Base):
     __tablename__ = 'user_intervention_state'
     id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    intervention_component = Column(String)             
+    intervention_phase = Column(Integer, ForeignKey('intervention_phases.phase_id'))
+    intervention_component = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
+    completed = Column(Boolean)
     last_time = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     last_part = Column(Integer)
+
     user = relationship("Users", back_populates="user_intervention_state")
+    phases = relationship("InterventionPhases")
+    intervention_components = relationship("InterventionComponents")

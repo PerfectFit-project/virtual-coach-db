@@ -3,8 +3,9 @@ import os
 from datetime import datetime, date
 from dateutil import tz
 
-from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers, FirstAidKit, InterventionActivity
+from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers, FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases
 from helper import get_db_session
+from definitions import Phases, PreparationDialogs
 
 def populate_db_with_test_data(session):
     """
@@ -38,6 +39,12 @@ def populate_db_with_test_data(session):
                              intervention_activity_full_instructions="Now here are very detailed step-by-step instructions on reasons for PA.")    
     ]
     [session.merge(obj) for obj in objects_intervention_activities]
+
+    objects_intervention_components = initialize_intervention_components_table()
+    [session.merge(obj) for obj in objects_intervention_components]
+
+    objects_phases = initialize_phases_table()
+    [session.merge(obj) for obj in objects_phases]
 
     tz_nl = tz.gettz("Europe/Amsterdam")
 
@@ -74,11 +81,34 @@ def populate_db_with_test_data(session):
                       datetime=datetime.now().astimezone(tz_nl)),
         DialogAnswers(users_nicedayuid=40121, answer='eng leuk stoer', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now().astimezone(tz_nl), last_part=1)
+        UserInterventionState(users_nicedayuid=40121, intervention_phase=1, intervention_component=1, completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1)
     ]
     [session.merge(obj) for obj in objects]
 
     session.commit()
+
+
+def initialize_intervention_components_table():
+    data = [
+        InterventionComponents(intervention_component_name=PreparationDialogs.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=PreparationDialogs.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=PreparationDialogs.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=PreparationDialogs.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=PreparationDialogs.FUTURE_SELF.value),
+        InterventionComponents(intervention_component_name=PreparationDialogs.GOAL_SETTING.value)
+    ]
+
+    return data
+
+
+def initialize_phases_table():
+    data = [
+        InterventionPhases(phase_name=Phases.PREPARATION.value),
+        InterventionPhases(phase_name=Phases.EXECUTION.value),
+        InterventionPhases(phase_name=Phases.LAPSE.value)
+    ]
+
+    return data
 
 
 if __name__ == '__main__':
