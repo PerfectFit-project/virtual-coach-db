@@ -1,8 +1,9 @@
 from sqlalchemy.orm.clsregistry import _ModuleMarker
 
 from dbschema.models import Base
+import helper
 from helper.populate_db import populate_db_with_test_data
-import helper.definitions
+
 
 def test_populate_db_with_test_data(db_session):
     """
