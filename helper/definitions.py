@@ -7,7 +7,7 @@ class Phases(str, Enum):
     LAPSE = 'lapse'
 
 
-class PreparationDialogs(str, Enum):
+class PreparationInterventionComponents(str, Enum):
     PROFILE_CREATION = 'profile_creation'
     MEDICATION_TALK = 'medication_talk'
     COLD_TURKEY = 'cold_turkey'
@@ -16,7 +16,7 @@ class PreparationDialogs(str, Enum):
     GOAL_SETTING = 'goal_setting'
 
 
-class PreparationDialogsTriggers(str, Enum):
+class PreparationInterventionComponentsTriggers(str, Enum):
     PROFILE_CREATION = 'EXTERNAL_trigger_profile_creation'
     MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk'
     COLD_TURKEY = 'EXTERNAL_trigger_cold_turkey'

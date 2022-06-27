@@ -6,7 +6,7 @@ from dateutil import tz
 from dbschema.models import (Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
 from helper.helper_functions import get_db_session
-from helper.definitions import Phases, PreparationDialogs
+from helper.definitions import Phases, PreparationInterventionComponents
 
 def populate_db_with_test_data(session):
     """
@@ -91,12 +91,12 @@ def populate_db_with_test_data(session):
 
 def initialize_intervention_components_table():
     data = [
-        InterventionComponents(intervention_component_name=PreparationDialogs.PROFILE_CREATION.value),
-        InterventionComponents(intervention_component_name=PreparationDialogs.MEDICATION_TALK.value),
-        InterventionComponents(intervention_component_name=PreparationDialogs.COLD_TURKEY.value),
-        InterventionComponents(intervention_component_name=PreparationDialogs.PLAN_QUIT_START_DATE.value),
-        InterventionComponents(intervention_component_name=PreparationDialogs.FUTURE_SELF.value),
-        InterventionComponents(intervention_component_name=PreparationDialogs.GOAL_SETTING.value)
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value)
     ]
 
     return data
