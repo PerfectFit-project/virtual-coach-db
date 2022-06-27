@@ -3,8 +3,10 @@ import os
 from datetime import datetime, date
 from dateutil import tz
 
-from dbschema.models import Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers, FirstAidKit, InterventionActivity
-from helper import get_db_session
+from dbschema.models import (Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers,
+                             FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
+from helper.helper_functions import get_db_session
+from helper.definitions import Phases, PreparationInterventionComponents
 
 def populate_db_with_test_data(session):
     """
@@ -39,6 +41,12 @@ def populate_db_with_test_data(session):
     ]
     [session.merge(obj) for obj in objects_intervention_activities]
 
+    objects_intervention_components = initialize_intervention_components_table()
+    [session.merge(obj) for obj in objects_intervention_components]
+
+    objects_phases = initialize_phases_table()
+    [session.merge(obj) for obj in objects_phases]
+
     tz_nl = tz.gettz("Europe/Amsterdam")
 
     objects = [
@@ -55,10 +63,10 @@ def populate_db_with_test_data(session):
         ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
         ClosedUserAnswers(users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
         ClosedUserAnswers(users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        FirstAidKit(users_nicedayuid=40121, user_activity_title="Water my plants", 
+        FirstAidKit(users_nicedayuid=40121, user_activity_title="Water my plants",
                     user_activity_description="I want to water all the plants in my house and garden.", 
                     datetime=datetime.now().astimezone(tz_nl)),
-        FirstAidKit(users_nicedayuid=40121, user_activity_title="Go for a walk with my dog", 
+        FirstAidKit(users_nicedayuid=40121, user_activity_title="Go for a walk with my dog",
                     user_activity_description="A quick walk up to the yellow house at the corner is enough.",
                     datetime=datetime.now().astimezone(tz_nl)),
         FirstAidKit(users_nicedayuid=40121, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl)),
@@ -74,11 +82,34 @@ def populate_db_with_test_data(session):
                       datetime=datetime.now().astimezone(tz_nl)),
         DialogAnswers(users_nicedayuid=40121, answer='eng leuk stoer', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        UserInterventionState(users_nicedayuid=40121, intervention_component="future_self_dialog", last_time=datetime.now().astimezone(tz_nl), last_part=1)
+        UserInterventionState(users_nicedayuid=40121, intervention_phase_id=1, intervention_component_id=5, completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1)
     ]
     [session.merge(obj) for obj in objects]
 
     session.commit()
+
+
+def initialize_intervention_components_table():
+    data = [
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value)
+    ]
+
+    return data
+
+
+def initialize_phases_table():
+    data = [
+        InterventionPhases(phase_name=Phases.PREPARATION.value),
+        InterventionPhases(phase_name=Phases.EXECUTION.value),
+        InterventionPhases(phase_name=Phases.LAPSE.value)
+    ]
+
+    return data
 
 
 if __name__ == '__main__':
