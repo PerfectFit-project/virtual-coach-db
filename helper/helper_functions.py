@@ -2,6 +2,7 @@ import sys
 
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
+from dbschema.models import InterventionComponents
 
 DB_URL_DEFAULT = 'postgresql://root:root@db:5432/perfectfit'
 
@@ -38,3 +39,24 @@ def get_db_session(db_url=DB_URL_DEFAULT):
     session = session_maker()
 
     return session
+
+def get_intervention_component_id(intervention_component_name: str, db_url=DB_URL_DEFAULT) -> int:
+    """
+       Get the id of an intervention component as stored in the DB
+        from the intervention's name.
+
+    """
+    session = get_db_session(db_url)
+
+    selected = (
+        session.query(
+            InterventionComponents
+        )
+        .filter(
+            InterventionComponents.intervention_component_name == intervention_component_name
+        )
+        .all()
+    )
+
+    intervention_component_id = selected[0].intervention_component_id
+    return intervention_component_id
