@@ -3,7 +3,7 @@ import os
 from datetime import datetime, date
 from dateutil import tz
 
-from dbschema.models import (Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers,
+from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
 from helper.helper_functions import get_db_session
 from helper.definitions import Phases, PreparationInterventionComponents
