@@ -18,19 +18,9 @@ class Users(Base):
     dob = Column(Date)
 
     # Refer to relationships
-    closed_user_answers = relationship('ClosedUserAnswers')
     dialog_answers = relationship('DialogAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
-
-
-class ClosedUserAnswers(Base):
-    __tablename__ = 'closed_user_answers'
-    id = Column(Integer, primary_key=True)
-    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    value = Column(Integer)
-    question = Column(String)
-    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
 
 
 class DialogAnswers(Base):

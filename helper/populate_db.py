@@ -3,7 +3,7 @@ import os
 from datetime import datetime, date
 from dateutil import tz
 
-from dbschema.models import (Users, ClosedUserAnswers, UserInterventionState, DialogQuestions, DialogAnswers,
+from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
 from helper.helper_functions import get_db_session
 from helper.definitions import Phases, PreparationInterventionComponents
@@ -58,11 +58,6 @@ def populate_db_with_test_data(session):
               location='Eanske', nicedayuid=41215),
         Users(dob=date(2000, 1, 2), firstname='User', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=41538),
-        ClosedUserAnswers(users_nicedayuid=38527, value=3, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=38527, value=5, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=38527, value=4, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=40121, value=2, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
-        ClosedUserAnswers(users_nicedayuid=40121, value=1, question='paevaluation', datetime=datetime.now().astimezone(tz_nl)),
         FirstAidKit(users_nicedayuid=40121, user_activity_title="Water my plants",
                     user_activity_description="I want to water all the plants in my house and garden.", 
                     datetime=datetime.now().astimezone(tz_nl)),
