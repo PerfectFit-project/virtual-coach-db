@@ -7,7 +7,7 @@ docker-compose up
 # Applying migrations
 You must deliberately apply existing migrations:
 ```
-docker-compose exec manage alembic upgrade head
+docker-compose exec manage_db alembic upgrade head
 ```
 
 # If you want to change the database schema
@@ -20,20 +20,20 @@ describe the new database structure you want.
 
 First make sure that all current migrations have been applied:
 ```
-docker-compose exec manage alembic upgrade head
+docker-compose exec manage_db alembic upgrade head
 ```
 (You can alternatively just run the `./utils/apply_migrations.sh` script which does the same thing)
 
 Then generate the revision to upgrade to the new schema defined in `models.py`:
 ```
-docker-compose exec manage alembic revision --autogenerate
+docker-compose exec manage_db alembic revision --autogenerate
 ```
 
 ## 3. Apply the new revision
 
 Finally, apply migrations again to upgrade to the latest revision:
 ```
-docker-compose exec manage alembic upgrade head
+docker-compose exec manage_db alembic upgrade head
 ```
 
 If you want this revision to be permanent and available to others, please
@@ -42,10 +42,10 @@ directory. Use `git status` to see which files in there are new.
 
 
 # Checking the schema of the currently running database
-You can use the running `manage` container to execute other checks on the
+You can use the running `manage_db` container to execute other checks on the
 postgres db. For example, you can print out the database metadata:
 ```
-docker-compose exec manage python3 print_schema.py
+docker-compose exec manage_db python3 print_schema.py
 ```
 
 # Adding new users to the db
