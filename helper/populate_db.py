@@ -6,7 +6,8 @@ from dateutil import tz
 from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
 from helper.helper_functions import get_db_session
-from helper.definitions import Phases, PreparationInterventionComponents
+from helper.definitions import (Phases, PreparationInterventionComponents,
+                                ExecutionInterventionComponents)
 
 def populate_db_with_test_data(session):
     """
@@ -41,8 +42,11 @@ def populate_db_with_test_data(session):
     ]
     [session.merge(obj) for obj in objects_intervention_activities]
 
-    objects_intervention_components = initialize_intervention_components_table()
-    [session.merge(obj) for obj in objects_intervention_components]
+    objects_preparation_components = initialize_preparation_components_table()
+    [session.merge(obj) for obj in objects_preparation_components]
+
+    objects_execution_components = initialize_execution_components_table()
+    [session.merge(obj) for obj in objects_execution_components]
 
     objects_phases = initialize_phases_table()
     [session.merge(obj) for obj in objects_phases]
@@ -84,7 +88,7 @@ def populate_db_with_test_data(session):
     session.commit()
 
 
-def initialize_intervention_components_table():
+def initialize_preparation_components_table():
     data = [
         InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value),
         InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value),
@@ -92,6 +96,17 @@ def initialize_intervention_components_table():
         InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value),
         InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value),
         InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value)
+    ]
+
+    return data
+
+
+def initialize_execution_components_table():
+    data = [
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value)
     ]
 
     return data
