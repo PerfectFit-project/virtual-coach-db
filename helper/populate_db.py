@@ -1,10 +1,11 @@
 import logging
 import os
-from datetime import datetime, date
+from datetime import datetime, date, time
 from dateutil import tz
 
 from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
-                             FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
+                             FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
+                             UserPreferences)
 from helper.helper_functions import get_db_session
 from helper.definitions import Phases, PreparationInterventionComponents
 
@@ -77,7 +78,10 @@ def populate_db_with_test_data(session):
                       datetime=datetime.now().astimezone(tz_nl)),
         DialogAnswers(users_nicedayuid=40121, answer='eng leuk stoer', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        UserInterventionState(users_nicedayuid=40121, intervention_phase_id=1, intervention_component_id=5, completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1)
+        UserInterventionState(users_nicedayuid=40121, intervention_phase_id=1, intervention_component_id=5,
+                              completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=5,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(17, 00, 00))
     ]
     [session.merge(obj) for obj in objects]
 
@@ -119,4 +123,4 @@ if __name__ == '__main__':
         session = get_db_session()
 
     populate_db_with_test_data(session)
-    logging.info('Succesfully populated database with test data')
+    logging.info('Successfully populated database with test data')
