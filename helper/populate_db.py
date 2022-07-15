@@ -5,11 +5,10 @@ from dateutil import tz
 
 from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             PreparationInterventionComponentsTriggers, ExecutionInterventionComponentsTriggers,
-                             serPreferences)
+                             UserPreferences)
 from helper.helper_functions import get_db_session
-from helper.definitions import (Phases, PreparationInterventionComponents,
-                                ExecutionInterventionComponents)
+from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
+                                ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers)
 
 def populate_db_with_test_data(session):
     """
@@ -86,7 +85,15 @@ def populate_db_with_test_data(session):
         UserInterventionState(users_nicedayuid=40121, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
         UserPreferences(users_nicedayuid=40121, intervention_component_id=5,
-                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(17, 00, 00))
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 21, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=7,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 22, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=8,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 23, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=9,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 24, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=10,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 25, 00))
     ]
     [session.merge(obj) for obj in objects]
 
@@ -115,7 +122,7 @@ def initialize_preparation_components_table():
 def initialize_execution_components_table():
     data = [
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.GOAL_SETTING.value),
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.EXECUTION_INTRODUCTION.value),
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value,
                                intervention_component_trigger=ExecutionInterventionComponentsTriggers.GENERAL_ACTIVITY.value),
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
