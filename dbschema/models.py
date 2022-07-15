@@ -1,6 +1,7 @@
 from datetime import datetime
 from dateutil import tz
-from sqlalchemy import Column, Date, ForeignKey, Integer, String, Boolean, TIMESTAMP
+from sqlalchemy import (Column, Date, ForeignKey, Integer,
+                        String, Boolean, TIMESTAMP, Time)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -20,6 +21,7 @@ class Users(Base):
     # Refer to relationships
     dialog_answers = relationship('DialogAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
+    user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
 
 
@@ -90,4 +92,17 @@ class UserInterventionState(Base):
 
     user = relationship("Users", back_populates="user_intervention_state")
     phase = relationship("InterventionPhases")
+    intervention_component = relationship("InterventionComponents")
+
+
+class UserPreferences(Base):
+    __tablename__ = 'user_preferences'
+    user_preferences_id = Column(Integer, primary_key=True, autoincrement=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
+    recursive = Column(Boolean)
+    week_days = Column(String(13))
+    preferred_time = Column(Time(timezone=True))
+
+    user = relationship("Users", back_populates="user_preferences")
     intervention_component = relationship("InterventionComponents")
