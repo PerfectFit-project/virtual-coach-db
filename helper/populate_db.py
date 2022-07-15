@@ -7,7 +7,8 @@ from dbschema.models import (Users, UserInterventionState, DialogQuestions, Dial
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
                              UserPreferences)
 from helper.helper_functions import get_db_session
-from helper.definitions import Phases, PreparationInterventionComponents
+from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
+                                ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers)
 
 def populate_db_with_test_data(session):
     """
@@ -42,8 +43,11 @@ def populate_db_with_test_data(session):
     ]
     [session.merge(obj) for obj in objects_intervention_activities]
 
-    objects_intervention_components = initialize_intervention_components_table()
-    [session.merge(obj) for obj in objects_intervention_components]
+    objects_preparation_components = initialize_preparation_components_table()
+    [session.merge(obj) for obj in objects_preparation_components]
+
+    objects_execution_components = initialize_execution_components_table()
+    [session.merge(obj) for obj in objects_execution_components]
 
     objects_phases = initialize_phases_table()
     [session.merge(obj) for obj in objects_phases]
@@ -81,21 +85,50 @@ def populate_db_with_test_data(session):
         UserInterventionState(users_nicedayuid=40121, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
         UserPreferences(users_nicedayuid=40121, intervention_component_id=5,
-                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(17, 00, 00))
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 21, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=7,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 22, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=8,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 23, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=9,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 24, 00)),
+        UserPreferences(users_nicedayuid=40121, intervention_component_id=10,
+                        recursive=True, week_days='1,2,3,4,5,6,7', preferred_time=time(14, 25, 00))
     ]
     [session.merge(obj) for obj in objects]
 
     session.commit()
 
 
-def initialize_intervention_components_table():
+def initialize_preparation_components_table():
     data = [
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value)
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.FUTURE_SELF.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.GOAL_SETTING.value)
+    ]
+
+    return data
+
+
+def initialize_execution_components_table():
+    data = [
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.EXECUTION_INTRODUCTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.GENERAL_ACTIVITY.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.WEEKLY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value)
     ]
 
     return data

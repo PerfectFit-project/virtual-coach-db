@@ -1,7 +1,7 @@
 from datetime import datetime
 from dateutil import tz
 from sqlalchemy import (Column, Date, ForeignKey, Integer,
-                        String, Boolean, TIMESTAMP, Time)
+                        String, Boolean, TIMESTAMP, Time, DateTime)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -42,24 +42,24 @@ class DialogQuestions(Base):
     question_id = Column(Integer, primary_key=True)
     question_description = Column(String)
 
- 
+
 class FirstAidKit(Base):
     __tablename__ = "first_aid_kit"
     first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    
+
     # We either provide the ID of one of our own activities, or we store an activity title and description as provided by a user.
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
     user_activity_title = Column(String(100))
     user_activity_description = Column(String)
-    
+
     datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
-    
+
     # Refer to relationships
     user = relationship("Users", back_populates="first_aid_kit")
     intervention_activity = relationship("InterventionActivity")
-    
-    
+
+
 class InterventionActivity(Base):
     __tablename__ = 'intervention_activity'
     intervention_activity_id = Column(Integer, primary_key=True)
@@ -78,6 +78,7 @@ class InterventionComponents(Base):
     __tablename__ = 'intervention_components'
     intervention_component_id = Column(Integer, primary_key=True, autoincrement=True)
     intervention_component_name = Column(String(100))
+    intervention_component_trigger = Column(String(100))
 
 
 class UserInterventionState(Base):
@@ -89,6 +90,8 @@ class UserInterventionState(Base):
     completed = Column(Boolean)
     last_time = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     last_part = Column(Integer)
+    next_planned_date = Column(DateTime(timezone=True), nullable=True)
+    task_uuid = Column(String(36), nullable=True)
 
     user = relationship("Users", back_populates="user_intervention_state")
     phase = relationship("InterventionPhases")

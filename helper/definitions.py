@@ -23,3 +23,17 @@ class PreparationInterventionComponentsTriggers(str, Enum):
     PLAN_QUIT_START_DATE = 'EXTERNAL_trigger_plan_quit_start'
     FUTURE_SELF = 'EXTERNAL_trigger_mental_contrasting'
     GOAL_SETTING = 'EXTERNAL_trigger_goal_setting'
+
+
+class ExecutionInterventionComponents(str, Enum):
+    EXECUTION_INTRODUCTION = 'execution_introduction'
+    GENERAL_ACTIVITY = 'general_activity'
+    WEEKLY_REFLECTION = 'weekly_reflection'
+    DAILY_REFLECTION = 'daily_reflection'
+
+
+class ExecutionInterventionComponentsTriggers(str, Enum):
+    EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction'
+    GENERAL_ACTIVITY = 'EXTERNAL_trigger_general_activity'
+    WEEKLY_REFLECTION = 'EXTERNAL_weekly_reflection'
+    DAILY_REFLECTION = 'EXTERNAL_daily_reflection'
