@@ -4,7 +4,8 @@ from datetime import datetime, date
 from dateutil import tz
 
 from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
-                             FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases)
+                             FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
+                             PreparationInterventionComponentsTriggers, ExecutionInterventionComponentsTriggers)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents,
                                 ExecutionInterventionComponents)
@@ -90,12 +91,18 @@ def populate_db_with_test_data(session):
 
 def initialize_preparation_components_table():
     data = [
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value)
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.FUTURE_SELF.value),
+        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value,
+                               intervention_component_trigger=PreparationInterventionComponentsTriggers.GOAL_SETTING.value)
     ]
 
     return data
@@ -103,10 +110,14 @@ def initialize_preparation_components_table():
 
 def initialize_execution_components_table():
     data = [
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value)
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.GOAL_SETTING.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.GENERAL_ACTIVITY.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.WEEKLY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value)
     ]
 
     return data
