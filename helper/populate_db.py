@@ -14,7 +14,7 @@ from helper.definitions import (Phases, PreparationInterventionComponents, Prepa
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session):
+def populate_db_with_test_data(session, test_user_id):
     """
     Populate the database with test data. Update data if it already exists.
     """
@@ -175,5 +175,5 @@ if __name__ == '__main__':
     except KeyError:
         session = get_db_session()
 
-    populate_db_with_test_data(session)
+    populate_db_with_test_data(session,test_user_id)
     logging.info('Successfully populated database with test data')
