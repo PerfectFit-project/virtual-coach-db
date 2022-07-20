@@ -105,7 +105,7 @@ class UserPreferences(Base):
     intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
     recursive = Column(Boolean)
     week_days = Column(String(13))
-    preferred_time = Column(Time(timezone=True))
+    preferred_time = Column(TIMESTAMP(timezone=True))
 
     user = relationship("Users", back_populates="user_preferences")
     intervention_component = relationship("InterventionComponents")
