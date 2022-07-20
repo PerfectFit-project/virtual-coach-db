@@ -4,12 +4,12 @@ from dbschema.models import Base
 from helper.populate_db import populate_db_with_test_data
 
 
-def test_populate_db_with_test_data(db_session):
+def test_populate_db_with_test_data(db_session, test_user_id):
     """
     Test populating the database with test data.
     We enforce that for each Model some test data must be added.
     """
-    populate_db_with_test_data(db_session)
+    populate_db_with_test_data(db_session, test_user_id)
 
     for mapper in Base.registry.mappers:
         klass = mapper.class_
