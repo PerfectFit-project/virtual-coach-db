@@ -35,3 +35,9 @@ def db_session(engine, tables):
     transaction.rollback()
     # put back the connection to the connection pool
     connection.close()
+
+
+@pytest.fixture
+def test_user_id():
+    test_user_id = 41538
+    return test_user_id

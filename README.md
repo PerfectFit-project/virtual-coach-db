@@ -55,14 +55,13 @@ Currently this is handled by running a script in the [onboarding/ dir of the vir
 Important: The database docker-compose must be up and running with all migrations applied, as described above, 
 BEFORE running any of the following steps.
 
-In addition, create a `.env` file in the root of this repo with an environment variable called `DATABASE_URL`
-that refers to the endpoint of the database (usually `postgresql://root:root@db:5432/perfectfit` if you're running things locally using the docker-compose yaml). 
-See also the `.env-example` file.
-
-## Load test data
 Once the db is up and running, you can use:
 `python helper/populate_db.py`
 to populate the database with sample user data.
+
+NB: The database will use the environment variable specified in the docker-compose file:
+- DATABASE_URL = the endpoint of the database (default: postgresql+psycopg2://root:root@db/perfectfit)
+- TEST_USER_ID = the user id that will be used to populate the data (default: 41482)
 
 ## Updating the test data
 **When you updated the db models, you must also update the `helper/populate_db.py` script 

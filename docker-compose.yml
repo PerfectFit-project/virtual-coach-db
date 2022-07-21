@@ -21,4 +21,5 @@ services:
       - ./dbschema:/app/dbschema
     environment:
       - DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
+      - TEST_USER_ID=41482
  
