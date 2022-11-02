@@ -25,7 +25,6 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 target_metadata = Base.metadata
-print(target_metadata.tables)
 
 
 # other values from the config, defined by the needs of env.py,
@@ -85,11 +84,15 @@ def run_migrations_online():
 
     """
     logging.info('Running migrations in online mode')
-    engine_config = {'sqlalchemy.url': get_db_url()}
-    connectable = engine_from_config(engine_config,
-                                     prefix="sqlalchemy.",
-                                     poolclass=pool.NullPool,
-                                     )
+    connectable = context.config.attributes.get("connection", None)
+
+    if connectable is None:
+        engine_config = {'sqlalchemy.url': get_db_url()}
+        connectable = engine_from_config(engine_config,
+                                         prefix="sqlalchemy.",
+                                         poolclass=pool.NullPool,
+                                         )
+
 
     with connectable.connect() as connection:
         context.configure(
