@@ -15,7 +15,7 @@ from helper.definitions import (Phases, PreparationInterventionComponents, Prepa
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session, test_user_id):
+def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv'):
     """
     Populate the database with test data. Update data if it already exists.
     """
@@ -24,7 +24,7 @@ def populate_db_with_test_data(session, test_user_id):
     [session.merge(obj) for obj in objects_questions]
     
     # Fill in intervention activities (placeholder activities for now)
-    objects_intervention_activities = initialize_activities()
+    objects_intervention_activities = initialize_activities(activities_file_path)
     [session.merge(obj) for obj in objects_intervention_activities]
 
     objects_preparation_components = initialize_preparation_components_table()
@@ -55,8 +55,8 @@ def initialize_questions():
     return data
 
 
-def initialize_activities():
-    with open('../utils/activities.csv', newline='') as csvfile:
+def initialize_activities(activities_file_path):
+    with open(activities_file_path, newline='') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         data = [InterventionActivity(intervention_activity_id=int(row['activity_id']),
                                      intervention_activity_title=row['activity_title'],
