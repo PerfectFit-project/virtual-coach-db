@@ -1,3 +1,4 @@
+import csv
 import logging
 import os
 from datetime import datetime, date, time, timedelta
@@ -55,20 +56,15 @@ def initialize_questions():
 
 
 def initialize_activities():
-    data = [
-        InterventionActivity(intervention_activity_id=1,
-                             intervention_activity_title="Relaxation exercise",
-                             intervention_activity_description="Go to this link to listen to the instructions for the relaxation exercise: ... .",
-                             intervention_activity_full_instructions='Now here are very detailed instructions for the relaxation exercise.'),
-        InterventionActivity(intervention_activity_id=2,
-                             intervention_activity_title="Reasons to quit",
-                             intervention_activity_description="Think back about the reasons why you want to quit smoking.",
-                             intervention_activity_full_instructions="These are very detailed instructions for reasons for quitting."),
-        InterventionActivity(intervention_activity_id=3,
-                             intervention_activity_title="Reasons to be physically active",
-                             intervention_activity_description="Think again about why you want to be physically active. Maybe you still have the list on your fridge.",
-                             intervention_activity_full_instructions="Now here are very detailed step-by-step instructions on reasons for PA.")
-    ]
+    data = []
+    with open('../utils/activities.csv', newline='') as csvfile:
+        cvs_reader = csv.DictReader(csvfile)
+        for row in cvs_reader:
+            activity = InterventionActivity(intervention_activity_id=int(row['activity_id']),
+                                            intervention_activity_title=row['activity_title'],
+                                            intervention_activity_description=row['activity_description'],
+                                            intervention_activity_full_instructions=row['activity_instructions'])
+            data.append(activity)
 
     return data
 
@@ -119,7 +115,7 @@ def initialize_phases_table():
 
 def create_test_data(user_id: int):
     data = [
-        Users(dob=date(2000, 1, 2), firstname='User', gender='MALE', lastname='Test',
+        Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=user_id),
 
         FirstAidKit(users_nicedayuid=user_id, user_activity_title="Water my plants",
@@ -135,29 +131,43 @@ def create_test_data(user_id: int):
                     user_activity_description="Eat as many carrots as I can.",
                     datetime=datetime.now().astimezone(tz_nl)),
 
-        DialogAnswers(users_nicedayuid=user_id, answer='lekker leuk eng', question_id=1,
+        DialogAnswers(users_nicedayuid=user_id, answer='Fijn plezierig helpt mij ', question_id=1, #0.93
                       datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='eng leuk stoer', question_id=3,
+        DialogAnswers(users_nicedayuid=user_id, answer='Fijn plezierig prettig', question_id=1, #0.898
                       datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=user_id, answer='gezellig sexy duur', question_id=1, #0.576
+                      datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=user_id, answer='onderdeel van mijn leven verslavend niet zo heel erg', question_id=1,#-0.592
+                      datetime=datetime.now().astimezone(tz_nl)),
+        # ongezond duur gevaarlijk -0.92
 
+        DialogAnswers(users_nicedayuid=user_id, answer='stressvol straf lastig ', question_id=3, #-0.926
+                      datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=user_id, answer='lastig', question_id=3, #-0.546
+                      datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=user_id, answer='moet voor mijn gezondheid prettig', question_id=3, #0.446
+                      datetime=datetime.now().astimezone(tz_nl)),
+        DialogAnswers(users_nicedayuid=user_id, answer='moet voor mijn gezondheid goed', question_id=3, #0.562
+                      datetime=datetime.now().astimezone(tz_nl)),
+        #cool gezellig prettig 0.726
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
 
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=5,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=datetime.now().astimezone(tz_nl)+timedelta(minutes=3)),
+                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=7,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=datetime.now().astimezone(tz_nl)+timedelta(minutes=4)),
+                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=4))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=8,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=datetime.now().astimezone(tz_nl)+timedelta(minutes=5)),
+                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=5))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=9,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=datetime.now().astimezone(tz_nl)+timedelta(minutes=6)),
+                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=6))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=10,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=datetime.now().astimezone(tz_nl)+timedelta(minutes=7))
+                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7)))
     ]
 
     return data
