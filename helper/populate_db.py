@@ -56,15 +56,12 @@ def initialize_questions():
 
 
 def initialize_activities():
-    data = []
     with open('../utils/activities.csv', newline='') as csvfile:
-        cvs_reader = csv.DictReader(csvfile)
-        for row in cvs_reader:
-            activity = InterventionActivity(intervention_activity_id=int(row['activity_id']),
-                                            intervention_activity_title=row['activity_title'],
-                                            intervention_activity_description=row['activity_description'],
-                                            intervention_activity_full_instructions=row['activity_instructions'])
-            data.append(activity)
+        csv_reader = csv.DictReader(csvfile)
+        data = [InterventionActivity(intervention_activity_id=int(row['activity_id']),
+                                     intervention_activity_title=row['activity_title'],
+                                     intervention_activity_description=row['activity_description'],
+                                     intervention_activity_full_instructions=row['activity_instructions']) for row in csv_reader]
 
     return data
 
