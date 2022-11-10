@@ -23,6 +23,7 @@ class Users(Base):
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
+    intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
 
 
 class DialogAnswers(Base):
@@ -69,6 +70,17 @@ class InterventionActivity(Base):
     intervention_activity_full_instructions = Column(String)
     user_input_required = Column(Boolean)
 
+
+class InterventionActivitiesPerformed(Base):
+    __tablename__ = 'intervention_activities_performed'
+    intervention_activities_performed_id = Column(Integer, primary_key=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
+    completed_datetime = Column(DateTime(timezone=True),
+                                default=datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+
+    user = relationship("Users", back_populates="intervention_activities_performed")
+    intervention_activity = relationship("InterventionActivity")
 
 class InterventionPhases(Base):
     __tablename__ = 'intervention_phases'
