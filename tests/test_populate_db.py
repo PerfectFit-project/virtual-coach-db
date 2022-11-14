@@ -9,8 +9,8 @@ def test_populate_db_with_test_data(db_session, test_user_id):
     Test populating the database with test data.
     We enforce that for each Model some test data must be added.
     """
-    populate_db_with_test_data(db_session, test_user_id)
 
+    populate_db_with_test_data(db_session, test_user_id, './utils/activities.csv')
     for mapper in Base.registry.mappers:
         klass = mapper.class_
         assert db_session.query(klass).count() > 0, \

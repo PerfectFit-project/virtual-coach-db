@@ -52,6 +52,7 @@ class FirstAidKit(Base):
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
     user_activity_title = Column(String(100))
     user_activity_description = Column(String)
+    activity_rating = Column(Integer)
 
     datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
 
@@ -66,6 +67,7 @@ class InterventionActivity(Base):
     intervention_activity_title = Column(String(100))
     intervention_activity_description = Column(String)
     intervention_activity_full_instructions = Column(String)
+    user_input_required = Column(Boolean)
 
 
 class InterventionPhases(Base):

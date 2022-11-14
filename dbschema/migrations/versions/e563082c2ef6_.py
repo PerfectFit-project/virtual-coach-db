@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c90effb6e6d8
+Revision ID: e563082c2ef6
 Revises: 
-Create Date: 2022-07-20 12:57:37.637851
+Create Date: 2022-11-09 13:15:22.182673
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c90effb6e6d8'
+revision = 'e563082c2ef6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,7 @@ def upgrade():
     sa.Column('intervention_activity_title', sa.String(length=100), nullable=True),
     sa.Column('intervention_activity_description', sa.String(), nullable=True),
     sa.Column('intervention_activity_full_instructions', sa.String(), nullable=True),
+    sa.Column('user_input_required', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('intervention_activity_id')
     )
     op.create_table('intervention_components',
@@ -66,6 +67,7 @@ def upgrade():
     sa.Column('intervention_activity_id', sa.Integer(), nullable=True),
     sa.Column('user_activity_title', sa.String(length=100), nullable=True),
     sa.Column('user_activity_description', sa.String(), nullable=True),
+    sa.Column('activity_rating', sa.Integer(), nullable=True),
     sa.Column('datetime', sa.TIMESTAMP(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['intervention_activity_id'], ['intervention_activity.intervention_activity_id'], ),
     sa.ForeignKeyConstraint(['users_nicedayuid'], ['users.nicedayuid'], ),
