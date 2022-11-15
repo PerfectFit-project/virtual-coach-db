@@ -78,6 +78,7 @@ class InterventionActivitiesPerformed(Base):
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
     completed_datetime = Column(DateTime(timezone=True),
                                 default=datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    user_input = Column(String)
 
     user = relationship("Users", back_populates="intervention_activities_performed")
     intervention_activity = relationship("InterventionActivity")
