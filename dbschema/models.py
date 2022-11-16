@@ -1,7 +1,5 @@
-from datetime import datetime
-from dateutil import tz
 from sqlalchemy import (Column, Date, ForeignKey, Integer,
-                        String, Boolean, TIMESTAMP, Time, DateTime, func)
+                        String, Boolean, TIMESTAMP, DateTime, func)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -32,7 +30,7 @@ class DialogAnswers(Base):
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     answer = Column(String)
     question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
-    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     # Refer relationship
     dialog_questions = relationship('DialogQuestions')
@@ -55,7 +53,7 @@ class FirstAidKit(Base):
     user_activity_description = Column(String)
     activity_rating = Column(Integer)
 
-    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     # Refer to relationships
     user = relationship("Users", back_populates="first_aid_kit")
@@ -103,7 +101,7 @@ class UserInterventionState(Base):
     intervention_phase_id = Column(Integer, ForeignKey('intervention_phases.phase_id'))
     intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
     completed = Column(Boolean)
-    last_time = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    last_time = Column(TIMESTAMP(timezone=True), default=func.now())
     last_part = Column(Integer)
     next_planned_date = Column(DateTime(timezone=True), nullable=True)
     task_uuid = Column(String(36), nullable=True)
