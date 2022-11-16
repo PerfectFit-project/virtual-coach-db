@@ -76,7 +76,7 @@ class InterventionActivitiesPerformed(Base):
     intervention_activities_performed_id = Column(Integer, primary_key=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
-    completed_datetime = Column(DateTime(timezone=True),
+    completed_datetime = Column(TIMESTAMP(timezone=True),
                                 default=datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
     user_input = Column(String)
 
