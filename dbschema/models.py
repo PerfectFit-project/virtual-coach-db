@@ -1,7 +1,7 @@
 from datetime import datetime
 from dateutil import tz
 from sqlalchemy import (Column, Date, ForeignKey, Integer,
-                        String, Boolean, TIMESTAMP, Time, DateTime)
+                        String, Boolean, TIMESTAMP, Time, DateTime, func)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -76,8 +76,8 @@ class InterventionActivitiesPerformed(Base):
     intervention_activities_performed_id = Column(Integer, primary_key=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
-    completed_datetime = Column(TIMESTAMP(timezone=True),
-                                default=datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    completed_datetime = Column(DateTime(timezone=True),
+                                default=func.now())
     user_input = Column(String)
 
     user = relationship("Users", back_populates="intervention_activities_performed")
