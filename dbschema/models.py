@@ -1,7 +1,5 @@
-from datetime import datetime
-from dateutil import tz
 from sqlalchemy import (Column, Date, ForeignKey, Integer,
-                        String, Boolean, TIMESTAMP, Time, DateTime)
+                        String, Boolean, TIMESTAMP, DateTime, func)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -23,6 +21,7 @@ class Users(Base):
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
+    intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
 
 
 class DialogAnswers(Base):
@@ -31,7 +30,7 @@ class DialogAnswers(Base):
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
     answer = Column(String)
     question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
-    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     # Refer relationship
     dialog_questions = relationship('DialogQuestions')
@@ -54,7 +53,7 @@ class FirstAidKit(Base):
     user_activity_description = Column(String)
     activity_rating = Column(Integer)
 
-    datetime = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     # Refer to relationships
     user = relationship("Users", back_populates="first_aid_kit")
@@ -69,6 +68,18 @@ class InterventionActivity(Base):
     intervention_activity_full_instructions = Column(String)
     user_input_required = Column(Boolean)
 
+
+class InterventionActivitiesPerformed(Base):
+    __tablename__ = 'intervention_activities_performed'
+    intervention_activities_performed_id = Column(Integer, primary_key=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
+    completed_datetime = Column(DateTime(timezone=True),
+                                default=func.now())
+    user_input = Column(String)
+
+    user = relationship("Users", back_populates="intervention_activities_performed")
+    intervention_activity = relationship("InterventionActivity")
 
 class InterventionPhases(Base):
     __tablename__ = 'intervention_phases'
@@ -90,7 +101,7 @@ class UserInterventionState(Base):
     intervention_phase_id = Column(Integer, ForeignKey('intervention_phases.phase_id'))
     intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
     completed = Column(Boolean)
-    last_time = Column(TIMESTAMP(timezone=True), default = datetime.now().astimezone(tz.gettz("Europe/Amsterdam")))
+    last_time = Column(TIMESTAMP(timezone=True), default=func.now())
     last_part = Column(Integer)
     next_planned_date = Column(DateTime(timezone=True), nullable=True)
     task_uuid = Column(String(36), nullable=True)
