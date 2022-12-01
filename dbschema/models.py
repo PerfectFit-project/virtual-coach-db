@@ -45,7 +45,7 @@ class DialogOpenAnswers(Base):
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     # Refer relationship
-    dialog_questions = relationship('DialogQuestions')
+    dialog_questions = relationship("DialogQuestions", back_populates="dialog_open_answers")
 
 
 class ClosedAnswers(Base):
@@ -56,13 +56,17 @@ class ClosedAnswers(Base):
     answer_description = Column(String)
 
     # Refer relationship
-    dialog_questions = relationship('DialogQuestions')
+    dialog_questions = relationship("DialogQuestions", back_populates="closed_answers")
 
 
 class DialogQuestions(Base):
     __tablename__ = 'dialog_questions'
     question_id = Column(Integer, primary_key=True)
     question_description = Column(String)
+
+    # Refer relationships
+    dialog_open_answers = relationship("DialogOpenAnswers", back_populates="dialog_questions")
+    closed_answers = relationship("ClosedAnswers", back_populates="dialog_questions")
 
 
 class FirstAidKit(Base):
