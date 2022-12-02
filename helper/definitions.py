@@ -30,6 +30,7 @@ class ExecutionInterventionComponents(str, Enum):
     GENERAL_ACTIVITY = 'general_activity'
     WEEKLY_REFLECTION = 'weekly_reflection'
     DAILY_REFLECTION = 'daily_reflection'
+    RELAPSE_DIALOG = 'relapse_dialog'
 
 
 class ExecutionInterventionComponentsTriggers(str, Enum):
@@ -37,6 +38,7 @@ class ExecutionInterventionComponentsTriggers(str, Enum):
     GENERAL_ACTIVITY = 'EXTERNAL_trigger_general_activity'
     WEEKLY_REFLECTION = 'EXTERNAL_weekly_reflection'
     DAILY_REFLECTION = 'EXTERNAL_daily_reflection'
+    RELAPSE_DIALOG = 'EXTERNAL_relapse_dialog'
 
 
 class DialogQuestionsEnum(Enum):
