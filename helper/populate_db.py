@@ -4,12 +4,13 @@ import os
 from datetime import datetime, date, time, timedelta
 from dateutil import tz
 
-from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogAnswers,
+from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogOpenAnswers, DialogClosedAnswers,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             UserPreferences, InterventionActivitiesPerformed)
+                             UserPreferences, InterventionActivitiesPerformed, ClosedAnswers)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
-                                ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers)
+                                ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
+                                DialogQuestionsEnum)
 
 
 tz_nl = tz.gettz("Europe/Amsterdam")
@@ -22,6 +23,10 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
     # Fill question table
     objects_questions = initialize_questions()
     [session.merge(obj) for obj in objects_questions]
+
+    # Fill closed answers table
+    objects_closed_answers = initialize_closed_anwers()
+    [session.merge(obj) for obj in objects_closed_answers]
     
     # Fill in intervention activities (placeholder activities for now)
     objects_intervention_activities = initialize_activities(activities_file_path)
@@ -44,14 +49,69 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
 
 def initialize_questions():
     data = [
-        DialogQuestions(question_id=1, question_description='future self dialog - smoker words'),
-        DialogQuestions(question_id=2, question_description='future self dialog - smoker why'),
-        DialogQuestions(question_id=3, question_description='future self dialog - mover words'),
-        DialogQuestions(question_id=4, question_description='future self dialog - mover why'),
-        DialogQuestions(question_id=5, question_description='future self dialog - smoker identity'),
-        DialogQuestions(question_id=6, question_description='future self dialog - mover identity')
+        DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_SMOKER_WORDS.value,
+                        question_description='future self dialog - smoker words'),
+        DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_SMOKER_WHY.value,
+                        question_description='future self dialog - smoker why'),
+        DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_MOVER_WORDS.value,
+                        question_description='future self dialog - mover words'),
+        DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_MOVER_WHY.value,
+                        question_description='future self dialog - mover why'),
+        DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_I_SEE_MYSELF_AS_SMOKER.value,
+                        question_description='future self dialog - smoker identity'),
+        DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_I_SEE_MYSELF_AS_MOVER.value,
+                        question_description='future self dialog - mover identity'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value,
+                        question_description='relapse dialog - craving - what doing'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value,
+                        question_description='relapse dialog - craving - how feel'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_WITH_WHOM.value,
+                        question_description='relapse dialog - craving - with whom'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_HAPPENED_SPECIAL.value,
+                        question_description='relapse dialog - craving - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value,
+                        question_description='relapse dialog - smoke lapse - type cigarettes'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_NUMBER_CIGARETTES.value,
+                        question_description='relapse dialog - smoke lapse - number cigarettes'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_WHAT_DOING.value,
+                        question_description='relapse dialog - smoke lapse - what doing'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value,
+                        question_description='relapse dialog - smoke lapse - how feel'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_WITH_WHOM.value,
+                        question_description='relapse dialog - smoke lapse - with whom'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_HAPPENED_SPECIAL.value,
+                        question_description='relapse dialog - smoke lapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value,
+                        question_description='relapse dialog - smoke relapse - type cigarettes'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_NUMBER_CIGARETTES.value,
+                        question_description='relapse dialog - smoke relapse - number cigarettes'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_WHAT_DOING.value,
+                        question_description='relapse dialog - smoke relapse - what doing'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value,
+                        question_description='relapse dialog - smoke relapse - how feel'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_WITH_WHOM.value,
+                        question_description='relapse dialog - smoke relapse - with whom'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_HAPPENED_SPECIAL.value,
+                        question_description='relapse dialog - smoke relapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value,
+                        question_description='relapse dialog - pa - together'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value,
+                        question_description='relapse dialog - pa - why fail'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_DOING_TODAY.value,
+                        question_description='relapse dialog - pa - doing today'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_HAPPENED_SPECIAL.value,
+                        question_description='relapse dialog - pa - happened special'),
     ]
 
+    return data
+
+def initialize_closed_anwers():
+    data = [
+        ClosedAnswers(closed_answers_id=11, question_id=DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value,
+                      answer_value=1, answer_description='Aan het werk'),
+        ClosedAnswers(closed_answers_id=12, question_id=DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value,
+                      answer_value=2, answer_description='Thuis bezig met klusjes of huishouden')
+    ]
     return data
 
 
@@ -132,25 +192,20 @@ def create_test_data(user_id: int):
                     user_activity_description="Eat as many carrots as I can.",
                     datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
 
-        DialogAnswers(users_nicedayuid=user_id, answer='Fijn plezierig helpt mij ', question_id=1, #0.93
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ', question_id=1,
                       datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='Fijn plezierig prettig', question_id=1, #0.898
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='onderdeel van mijn leven verslavend niet zo heel erg',
+                          question_id=1, datetime=datetime.now().astimezone(tz_nl)),
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='stressvol straf lastig ', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='gezellig sexy duur', question_id=1, #0.576
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='lastig', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='onderdeel van mijn leven verslavend niet zo heel erg', question_id=1,#-0.592
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid prettig', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        # ongezond duur gevaarlijk -0.92
-
-        DialogAnswers(users_nicedayuid=user_id, answer='stressvol straf lastig ', question_id=3, #-0.926
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed', question_id=3,
                       datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='lastig', question_id=3, #-0.546
-                      datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='moet voor mijn gezondheid prettig', question_id=3, #0.446
-                      datetime=datetime.now().astimezone(tz_nl)),
-        DialogAnswers(users_nicedayuid=user_id, answer='moet voor mijn gezondheid goed', question_id=3, #0.562
-                      datetime=datetime.now().astimezone(tz_nl)),
-        #cool gezellig prettig 0.726
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=11, datetime=datetime.now().astimezone(tz_nl)),
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=12, datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
 
