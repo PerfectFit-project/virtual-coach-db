@@ -105,11 +105,14 @@ def initialize_questions():
 
     return data
 
+
 def initialize_closed_anwers():
     answer_descriptions = {}
     answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value] = ['Aan het werk',
-                                                                                 'Thuis bezig met klusjes of huishouden',
-                                                                                 'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                                 'Thuis bezig met klusjes of'
+                                                                                 ' huishouden',
+                                                                                 'Iets voor jezelf (hobby, met iemand'
+                                                                                 ' afspreken)',
                                                                                  'Aan het eten of drinken',
                                                                                  'Net alcohol of koffie gedronken',
                                                                                  'Net wakker geworden',
@@ -125,29 +128,34 @@ def initialize_closed_anwers():
                                                                                'iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WHAT_DOING.value] = ['Aan het werk',
                                                                                'Thuis bezig met klusjes of huishouden',
-                                                                               'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                               'Iets voor jezelf (hobby, met iemand'
+                                                                               ' afspreken)',
                                                                                'Aan het eten of drinken',
                                                                                'Net alcohol of koffie gedronken',
                                                                                'Net wakker geworden',
                                                                                'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig'
-                                                                             'Je had het gevoel dat het niet zou lukken om te stoppen met roken',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig',
+                                                                             'Je had het gevoel dat het niet zou lukken'
+                                                                             ' om te stoppen met roken',
                                                                              'Opgelucht']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WITH_WHOM.value] = ['Met partner', 'Alleen',
                                                                               'Met vrienden of famillie',
                                                                               'Met kenissen', 'Met collega`s',
                                                                               'Met andere rokers']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags'
-                                                                               'iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags',
+                                                                                 'iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WHAT_DOING.value] = ['Aan het werk',
-                                                                                 'Thuis bezig met klusjes of huishouden',
-                                                                                 'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                                 'Thuis bezig met klusjes of'
+                                                                                 ' huishouden',
+                                                                                 'Iets voor jezelf (hobby, met iemand'
+                                                                                 ' afspreken)',
                                                                                  'Aan het eten of drinken',
                                                                                  'Net alcohol of koffie gedronken',
                                                                                  'Net wakker geworden',
                                                                                  'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig'
-                                                                               'Je had het gevoel dat het niet zou lukken om te stoppen met roken',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig',
+                                                                               'Je had het gevoel dat het niet zou'
+                                                                               ' lukken om te stoppen met roken',
                                                                                'Opgelucht']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WITH_WHOM.value] = ['Met partner', 'Alleen',
                                                                                 'Met vrienden of famillie',
@@ -160,15 +168,17 @@ def initialize_closed_anwers():
                                                                           'Iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_DOING_TODAY.value] = ['Aan het werk',
                                                                              'Thuis bezig met klusjes of huishouden',
-                                                                             'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                             'Iets voor jezelf (hobby, met iemand'
+                                                                             ' afspreken)',
                                                                              'Al lichamelijk actief geweest',
                                                                              'Iets anders']
 
-    data = []
-    for q in answer_descriptions:
-        for i, a in enumerate(answer_descriptions[q], start=1):
-            entry = ClosedAnswers(closed_answers_id=q*100+i, question_id=q, answer_value=i, answer_description=a)
-            data.append(entry)
+    data = [ClosedAnswers(closed_answers_id=q*100+i,
+                          question_id=q,
+                          answer_value=i,
+                          answer_description=a)
+            for q in answer_descriptions
+            for i, a in enumerate(answer_descriptions[q], start=1)]
     return data
 
 
@@ -250,19 +260,19 @@ def create_test_data(user_id: int):
                     datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
 
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ', question_id=1,
-                      datetime=datetime.now().astimezone(tz_nl)),
+                          datetime=datetime.now().astimezone(tz_nl)),
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='onderdeel van mijn leven verslavend niet zo heel erg',
                           question_id=1, datetime=datetime.now().astimezone(tz_nl)),
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='stressvol straf lastig ', question_id=3,
-                      datetime=datetime.now().astimezone(tz_nl)),
+                          datetime=datetime.now().astimezone(tz_nl)),
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='lastig', question_id=3,
-                      datetime=datetime.now().astimezone(tz_nl)),
+                          datetime=datetime.now().astimezone(tz_nl)),
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid prettig', question_id=3,
-                      datetime=datetime.now().astimezone(tz_nl)),
+                          datetime=datetime.now().astimezone(tz_nl)),
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed', question_id=3,
-                      datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=11, datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=12, datetime=datetime.now().astimezone(tz_nl)),
+                          datetime=datetime.now().astimezone(tz_nl)),
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=803, datetime=datetime.now().astimezone(tz_nl)),
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401, datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
 
