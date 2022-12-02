@@ -108,9 +108,61 @@ def initialize_questions():
 def initialize_closed_anwers():
     answer_descriptions = {}
     answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value] = ['Aan het werk',
-                                                                                 'Thuis bezig met klusjes of huishouden']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Gewelding',
-                                                                                'Matig a']
+                                                                                 'Thuis bezig met klusjes of huishouden',
+                                                                                 'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                                 'Aan het eten of drinken',
+                                                                                 'Net alcohol of koffie gedronken',
+                                                                                 'Net wakker geworden',
+                                                                                 'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Stress', 'Verdrietig', 'Boos',
+                                                                               'Verveeld', 'Honger', 'Bang of angstig',
+                                                                               'Blij', 'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WITH_WHOM.value] = ['Met partner', 'Alleen',
+                                                                                'Met vrienden of famillie',
+                                                                                'Met kenissen', 'Met collega`s',
+                                                                                'Met andere rokers']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags'
+                                                                               'iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WHAT_DOING.value] = ['Aan het werk',
+                                                                               'Thuis bezig met klusjes of huishouden',
+                                                                               'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                               'Aan het eten of drinken',
+                                                                               'Net alcohol of koffie gedronken',
+                                                                               'Net wakker geworden',
+                                                                               'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig'
+                                                                             'Je had het gevoel dat het niet zou lukken om te stoppen met roken',
+                                                                             'Opgelucht']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WITH_WHOM.value] = ['Met partner', 'Alleen',
+                                                                              'Met vrienden of famillie',
+                                                                              'Met kenissen', 'Met collega`s',
+                                                                              'Met andere rokers']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags'
+                                                                               'iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WHAT_DOING.value] = ['Aan het werk',
+                                                                                 'Thuis bezig met klusjes of huishouden',
+                                                                                 'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                                 'Aan het eten of drinken',
+                                                                                 'Net alcohol of koffie gedronken',
+                                                                                 'Net wakker geworden',
+                                                                                 'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig'
+                                                                               'Je had het gevoel dat het niet zou lukken om te stoppen met roken',
+                                                                               'Opgelucht']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WITH_WHOM.value] = ['Met partner', 'Alleen',
+                                                                                'Met vrienden of famillie',
+                                                                                'Met kenissen', 'Met collega`s',
+                                                                                'Met andere rokers']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value] = ['Ja', 'Nee']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin', 'Moe en geen energie',
+                                                                          'Geen tijd', 'Er is iets tussen gekomen',
+                                                                          'Ligt aan het weer', 'Ziek of geblesseerd',
+                                                                          'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_DOING_TODAY.value] = ['Aan het werk',
+                                                                             'Thuis bezig met klusjes of huishouden',
+                                                                             'Iets voor jezelf (hobby, met iemand afspreken)',
+                                                                             'Al lichamelijk actief geweest',
+                                                                             'Iets anders']
 
     data = []
     for q in answer_descriptions:
