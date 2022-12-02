@@ -106,12 +106,17 @@ def initialize_questions():
     return data
 
 def initialize_closed_anwers():
-    data = [
-        ClosedAnswers(closed_answers_id=11, question_id=DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value,
-                      answer_value=1, answer_description='Aan het werk'),
-        ClosedAnswers(closed_answers_id=12, question_id=DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value,
-                      answer_value=2, answer_description='Thuis bezig met klusjes of huishouden')
-    ]
+    answer_descriptions = {}
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value] = ['Aan het werk',
+                                                                                 'Thuis bezig met klusjes of huishouden']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Gewelding',
+                                                                                'Matig a']
+
+    data = []
+    for q in answer_descriptions:
+        for i, a in enumerate(answer_descriptions[q], start=1):
+            entry = ClosedAnswers(closed_answers_id=q*100+i, question_id=q, answer_value=i, answer_description=a)
+            data.append(entry)
     return data
 
 
