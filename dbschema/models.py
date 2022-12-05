@@ -17,8 +17,8 @@ class Users(Base):
     dob = Column(Date)
 
     # Refer to relationships
-    dialog_answers = relationship('DialogClosedAnswers')
-    dialog_answers = relationship('DialogOpenAnswers')
+    dialog_closed_answers = relationship('DialogClosedAnswers')
+    dialog_open_answers = relationship('DialogOpenAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
