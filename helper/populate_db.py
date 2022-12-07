@@ -124,7 +124,7 @@ def initialize_closed_anwers():
                                                                                 'Met vrienden of famillie',
                                                                                 'Met kenissen', 'Met collega`s',
                                                                                 'Met andere rokers']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags'
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags',
                                                                                'iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WHAT_DOING.value] = ['Aan het werk',
                                                                                'Thuis bezig met klusjes of huishouden',
