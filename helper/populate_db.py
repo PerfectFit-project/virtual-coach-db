@@ -189,7 +189,8 @@ def initialize_activities(activities_file_path):
                                      intervention_activity_title=row['activity_title'],
                                      intervention_activity_description=row['activity_description'],
                                      intervention_activity_full_instructions=row['activity_instructions'],
-                                     user_input_required=bool(int(row['input_needed']))) for row in csv_reader]
+                                     user_input_required=bool(int(row['input_needed'])),
+                                     intervention_activity_benefit=row['activity_benefit']) for row in csv_reader]
 
     return data
 
