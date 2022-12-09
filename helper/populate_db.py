@@ -95,6 +95,8 @@ def initialize_questions():
                         question_description='relapse dialog - smoke relapse - happened special'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value,
                         question_description='relapse dialog - pa - specify pa'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TYPE.value,
+                        question_description='relapse dialog - pa - type'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value,
                         question_description='relapse dialog - pa - together'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value,
