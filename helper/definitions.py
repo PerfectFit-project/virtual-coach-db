@@ -31,6 +31,10 @@ class ExecutionInterventionComponents(str, Enum):
     WEEKLY_REFLECTION = 'weekly_reflection'
     DAILY_REFLECTION = 'daily_reflection'
     RELAPSE_DIALOG = 'relapse_dialog'
+    RELAPSE_DIALOG_HRS = 'relapse_dialog_hrs'
+    RELAPSE_DIALOG_LAPSE = 'relapse_dialog_lapse'
+    RELAPSE_DIALOG_RELAPSE = 'relapse_dialog_relapse'
+    RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
 
 
 class ExecutionInterventionComponentsTriggers(str, Enum):
@@ -39,6 +43,10 @@ class ExecutionInterventionComponentsTriggers(str, Enum):
     WEEKLY_REFLECTION = 'EXTERNAL_weekly_reflection'
     DAILY_REFLECTION = 'EXTERNAL_daily_reflection'
     RELAPSE_DIALOG = 'EXTERNAL_relapse_dialog'
+    RELAPSE_DIALOG_HRS = 'EXTERNAL_relapse_dialog_hrs'
+    RELAPSE_DIALOG_LAPSE = 'EXTERNAL_relapse_dialog_lapse'
+    RELAPSE_DIALOG_RELAPSE = 'EXTERNAL_relapse_dialog_relapse'
+    RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
 
 
 class DialogQuestionsEnum(Enum):
@@ -64,7 +72,10 @@ class DialogQuestionsEnum(Enum):
     RELAPSE_RELAPSE_HOW_FEEL = 20
     RELAPSE_RELAPSE_WITH_WHOM = 21
     RELAPSE_RELAPSE_HAPPENED_SPECIAL = 22
-    RELAPSE_PA_TOGETHER = 23
-    RELAPSE_PA_WHY_FAIL = 24
-    RELAPSE_PA_DOING_TODAY = 25
-    RELAPSE_PA_HAPPENED_SPECIAL = 26
+    RELAPSE_PA_SPECIFY_PA = 23  # Kun je mij vertellen wat er aan de hand is?
+    RELAPSE_PA_TYPE = 24  # Kun je mij vertellen wat voor lichamelijke activiteit je had gepland om te doen?
+    RELAPSE_PA_TOGETHER = 25  # Zou je dit met iemand samen doen?
+    RELAPSE_PA_WHY_FAIL = 26  # Kun je aangeven wat de reden is dat dat je nu niet lukt?
+    RELAPSE_PA_DOING_TODAY = 27  # Wat heb je vandaag verder gedaan?
+    RELAPSE_PA_HAPPENED_SPECIAL = 28  # Gebeurde er vandaag iets bijzonders?
+    RELAPSE_PA_REFLECT_BARCHART = 29  # Hoe vind je het om dit zo te zien?

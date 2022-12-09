@@ -93,6 +93,8 @@ def initialize_questions():
                         question_description='relapse dialog - smoke relapse - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - smoke relapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value,
+                        question_description='relapse dialog - pa - specify pa'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value,
                         question_description='relapse dialog - pa - together'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value,
@@ -161,6 +163,8 @@ def initialize_closed_anwers():
                                                                                 'Met vrienden of famillie',
                                                                                 'Met kenissen', 'Met collega`s',
                                                                                 'Met andere rokers']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = ['je gepland had om te bewegen, maar dit nu niet lukt',
+                                                                            'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value] = ['Ja', 'Nee']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin', 'Moe en geen energie',
                                                                           'Geen tijd', 'Er is iets tussen gekomen',
