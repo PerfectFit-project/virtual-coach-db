@@ -179,19 +179,19 @@ def initialize_closed_anwers():
                                                                              'Al lichamelijk actief geweest',
                                                                              'Iets anders']
     answer_descriptions[DialogQuestionsEnum.PERSUASION_PROMPTS.value] = ["Helemaal mee oneens",
-                                                                         "Me oneens",
+                                                                         "Mee oneens",
                                                                          "Niet mee eens, niet mee oneens",
-                                                                         "Me eens",
+                                                                         "Mee eens",
                                                                          "Helemaal mee eens"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_WANT.value] = ["Helemaal mee oneens",
-                                                                      "Me oneens",
+                                                                      "Mee oneens",
                                                                       "Niet mee eens, niet mee oneens",
-                                                                      "Me eens",
+                                                                      "Mee eens",
                                                                       "Helemaal mee eens"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_NEED.value] = ["Helemaal mee oneens",
-                                                                      "Me oneens",
+                                                                      "Mee oneens",
                                                                       "Niet mee eens, niet mee oneens",
-                                                                      "Me eens",
+                                                                      "Mee eens",
                                                                       "Helemaal mee eens"]
 
     data = [ClosedAnswers(closed_answers_id=q*100+i,
