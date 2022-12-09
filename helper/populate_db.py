@@ -103,6 +103,8 @@ def initialize_questions():
                         question_description='relapse dialog - pa - doing today'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - pa - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - pa - reflect on barchart'),
     ]
 
     return data
