@@ -94,6 +94,7 @@ class InterventionActivity(Base):
     intervention_activity_description = Column(String)
     intervention_activity_full_instructions = Column(String)
     user_input_required = Column(Boolean)
+    intervention_activity_benefit = Column(String)
 
 
 class InterventionActivitiesPerformed(Base):

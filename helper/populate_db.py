@@ -107,6 +107,12 @@ def initialize_questions():
                         question_description='relapse dialog - pa - happened special'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_REFLECT_BARCHART.value,
                         question_description='relapse dialog - pa - reflect on barchart'),
+        DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_PROMPTS.value,
+                        question_description='persuasion - activity - prompts'),
+        DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_WANT.value,
+                        question_description='persuasion - activity - want'),
+        DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_NEED.value,
+                        question_description='persuasion - activity - need')
     ]
 
     return data
@@ -180,6 +186,21 @@ def initialize_closed_anwers():
                                                                              ' afspreken)',
                                                                              'Al lichamelijk actief geweest',
                                                                              'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_PROMPTS.value] = ["Helemaal mee oneens",
+                                                                         "Mee oneens",
+                                                                         "Niet mee eens, niet mee oneens",
+                                                                         "Mee eens",
+                                                                         "Helemaal mee eens"]
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_WANT.value] = ["Helemaal mee oneens",
+                                                                      "Mee oneens",
+                                                                      "Niet mee eens, niet mee oneens",
+                                                                      "Mee eens",
+                                                                      "Helemaal mee eens"]
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_NEED.value] = ["Helemaal mee oneens",
+                                                                      "Mee oneens",
+                                                                      "Niet mee eens, niet mee oneens",
+                                                                      "Mee eens",
+                                                                      "Helemaal mee eens"]
 
     data = [ClosedAnswers(closed_answers_id=q*100+i,
                           question_id=q,
@@ -197,7 +218,8 @@ def initialize_activities(activities_file_path):
                                      intervention_activity_title=row['activity_title'],
                                      intervention_activity_description=row['activity_description'],
                                      intervention_activity_full_instructions=row['activity_instructions'],
-                                     user_input_required=bool(int(row['input_needed']))) for row in csv_reader]
+                                     user_input_required=bool(int(row['input_needed'])),
+                                     intervention_activity_benefit=row['activity_benefit']) for row in csv_reader]
 
     return data
 

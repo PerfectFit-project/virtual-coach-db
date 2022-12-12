@@ -79,3 +79,6 @@ class DialogQuestionsEnum(Enum):
     RELAPSE_PA_DOING_TODAY = 27  # Wat heb je vandaag verder gedaan?
     RELAPSE_PA_HAPPENED_SPECIAL = 28  # Gebeurde er vandaag iets bijzonders?
     RELAPSE_PA_REFLECT_BARCHART = 29  # Hoe vind je het om dit zo te zien?
+    PERSUASION_PROMPTS = 30  # Whether people have prompts/triggers to remind them to do an activity
+    PERSUASION_WANT = 31  # Whether people feel like they want to to do the activity
+    PERSUASION_NEED = 32  # Whether people feel like they need to do the activity
