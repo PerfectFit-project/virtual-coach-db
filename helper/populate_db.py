@@ -106,7 +106,11 @@ def initialize_questions():
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_WANT.value,
                         question_description='persuasion - activity - want'),
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_NEED.value,
-                        question_description='persuasion - activity - need')
+                        question_description='persuasion - activity - need'),
+        DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_EFFORT.value,
+                        question_description='persuasion - activity - effort'),
+        DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_TYPE.value,
+                        question_description='persuasion - activity - chosen persuasion type')
     ]
 
     return data
@@ -193,6 +197,11 @@ def initialize_closed_anwers():
                                                                       "Niet mee eens, niet mee oneens",
                                                                       "Mee eens",
                                                                       "Helemaal mee eens"]
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_EFFORT.value] = ["0", "1", "2", "3", "4", "5",
+                                                                        "6", "7", "8", "9", "10"]
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_TYPE.value] = ["Commitment",
+                                                                      "Consensus",
+                                                                      "No persuasion"]
 
     data = [ClosedAnswers(closed_answers_id=q*100+i,
                           question_id=q,

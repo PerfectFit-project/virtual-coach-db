@@ -71,4 +71,5 @@ class DialogQuestionsEnum(Enum):
     PERSUASION_PROMPTS = 27  # Whether people have prompts/triggers to remind them to do an activity
     PERSUASION_WANT = 28  # Whether people feel like they want to to do the activity
     PERSUASION_NEED = 29  # Whether people feel like they need to do the activity
-    
+    PERSUASION_EFFORT = 30  # How much effort people spent on on activity
+    PERSUASION_TYPE = 31  # The persuasion type chosen based on the persuasion algorithm
