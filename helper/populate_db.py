@@ -1,7 +1,7 @@
 import csv
 import logging
 import os
-from datetime import datetime, date, time, timedelta
+from datetime import datetime, date, timedelta
 from dateutil import tz
 
 from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogOpenAnswers, DialogClosedAnswers,
@@ -69,6 +69,8 @@ def initialize_questions():
                         question_description='relapse dialog - craving - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - craving - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - craving - reflect on barchart'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value,
                         question_description='relapse dialog - smoke lapse - type cigarettes'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_NUMBER_CIGARETTES.value,
@@ -81,6 +83,8 @@ def initialize_questions():
                         question_description='relapse dialog - smoke lapse - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - smoke lapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - smoke lapse - reflect on barchart'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value,
                         question_description='relapse dialog - smoke relapse - type cigarettes'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_NUMBER_CIGARETTES.value,
@@ -93,6 +97,8 @@ def initialize_questions():
                         question_description='relapse dialog - smoke relapse - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - smoke relapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - smoke relapse - reflect on barchart'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value,
                         question_description='relapse dialog - pa - specify pa'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TYPE.value,
