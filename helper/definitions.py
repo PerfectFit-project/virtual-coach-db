@@ -73,3 +73,4 @@ class DialogQuestionsEnum(Enum):
     PERSUASION_NEED = 29  # Whether people feel like they need to do the activity
     PERSUASION_EFFORT = 30  # How much effort people spent on an activity
     PERSUASION_TYPE = 31  # The persuasion type chosen based on the persuasion algorithm
+    PERSUASION_MESSAGE_INDEX = 32  # The index of the persuasive message for the given persuasion type. -1 if "No persuasion."
