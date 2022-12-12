@@ -68,3 +68,7 @@ class DialogQuestionsEnum(Enum):
     RELAPSE_PA_WHY_FAIL = 24
     RELAPSE_PA_DOING_TODAY = 25
     RELAPSE_PA_HAPPENED_SPECIAL = 26
+    PERSUASION_PROMPTS = 27  # Whether people have prompts/triggers to remind them to do an activity
+    PERSUASION_WANT = 28  # Whether people feel like they want to to do the activity
+    PERSUASION_NEED = 29  # Whether people feel like they need to do the activity
+    
