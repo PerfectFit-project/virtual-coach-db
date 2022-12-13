@@ -271,7 +271,17 @@ def initialize_execution_components_table():
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
                                intervention_component_trigger=ExecutionInterventionComponentsTriggers.WEEKLY_REFLECTION.value),
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value)
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_HRS.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_HRS.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_LAPSE.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_RELAPSE.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_PA.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_PA.value)
     ]
 
     return data
