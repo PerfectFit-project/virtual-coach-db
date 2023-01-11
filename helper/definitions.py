@@ -49,11 +49,6 @@ class ExecutionInterventionComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
 
 
-class VideoLinks(str, Enum):
-    TESTVIDEOLINK = "https://www.youtube.com/watch?v=59JaTljpjCk"
-    TESTVIDEOLINK2 = "testLink"
-
-
 class DialogQuestionsEnum(Enum):
     FUTURE_SELF_SMOKER_WORDS = 1  # Which three words suits you as smoker?
     FUTURE_SELF_SMOKER_WHY = 2  # Why did you pick these words for smoking?
@@ -93,3 +88,8 @@ class DialogQuestionsEnum(Enum):
     PERSUASION_EFFORT = 36  # How much effort people spent on an activity
     PERSUASION_TYPE = 37  # The persuasion type chosen based on the persuasion algorithm
     PERSUASION_MESSAGE_INDEX = 38  # The index of the persuasive message for the given persuasion type. -1 if "No persuasion."
+
+
+class VideoLinks(str, Enum):
+    TESTVIDEOLINK = "https://www.youtube.com/watch?v=59JaTljpjCk"
+    TESTVIDEOLINK2 = "testLink"

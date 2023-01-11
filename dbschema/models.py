@@ -17,29 +17,56 @@ class Users(Base):
     dob = Column(Date)
 
     # Refer to relationships
-    dialog_answers = relationship('DialogAnswers')
+    dialog_closed_answers = relationship('DialogClosedAnswers')
+    dialog_open_answers = relationship('DialogOpenAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
 
 
-class DialogAnswers(Base):
-    __tablename__ = 'dialog_answers'
-    answer_id = Column(Integer, primary_key=True)
+class DialogClosedAnswers(Base):
+    __tablename__ = 'dialog_closed_answers'
+    dialog_closed_answers_id = Column(Integer, primary_key=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    answer = Column(String)
-    question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
+    closed_answers_id = Column(Integer, ForeignKey('closed_answers.closed_answers_id'))
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     # Refer relationship
-    dialog_questions = relationship('DialogQuestions')
+    closed_answers = relationship('ClosedAnswers')
+
+
+class DialogOpenAnswers(Base):
+    __tablename__ = 'dialog_open_answers'
+    dialog_open_answers_id = Column(Integer, primary_key=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
+    answer_value = Column(String)
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
+
+    # Refer relationship
+    dialog_questions = relationship("DialogQuestions", back_populates="dialog_open_answers")
+
+
+class ClosedAnswers(Base):
+    __tablename__ = 'closed_answers'
+    closed_answers_id = Column(Integer, primary_key=True)
+    question_id = Column(Integer, ForeignKey('dialog_questions.question_id'))
+    answer_value = Column(Integer)
+    answer_description = Column(String)
+
+    # Refer relationship
+    dialog_questions = relationship("DialogQuestions", back_populates="closed_answers")
 
 
 class DialogQuestions(Base):
     __tablename__ = 'dialog_questions'
     question_id = Column(Integer, primary_key=True)
     question_description = Column(String)
+
+    # Refer relationships
+    dialog_open_answers = relationship("DialogOpenAnswers", back_populates="dialog_questions")
+    closed_answers = relationship("ClosedAnswers", back_populates="dialog_questions")
 
 
 class FirstAidKit(Base):
@@ -67,6 +94,7 @@ class InterventionActivity(Base):
     intervention_activity_description = Column(String)
     intervention_activity_full_instructions = Column(String)
     user_input_required = Column(Boolean)
+    intervention_activity_benefit = Column(String)
 
 
 class InterventionActivitiesPerformed(Base):
