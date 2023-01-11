@@ -1,7 +1,7 @@
 import csv
 import logging
 import os
-from datetime import datetime, date, time, timedelta
+from datetime import datetime, date, timedelta
 from dateutil import tz
 
 from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogOpenAnswers, DialogClosedAnswers,
@@ -69,6 +69,8 @@ def initialize_questions():
                         question_description='relapse dialog - craving - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - craving - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_CRAVING_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - craving - reflect on barchart'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value,
                         question_description='relapse dialog - smoke lapse - type cigarettes'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_NUMBER_CIGARETTES.value,
@@ -81,6 +83,8 @@ def initialize_questions():
                         question_description='relapse dialog - smoke lapse - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - smoke lapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_LAPSE_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - smoke lapse - reflect on barchart'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value,
                         question_description='relapse dialog - smoke relapse - type cigarettes'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_NUMBER_CIGARETTES.value,
@@ -93,6 +97,12 @@ def initialize_questions():
                         question_description='relapse dialog - smoke relapse - with whom'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - smoke relapse - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_RELAPSE_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - smoke relapse - reflect on barchart'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value,
+                        question_description='relapse dialog - pa - specify pa'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TYPE.value,
+                        question_description='relapse dialog - pa - type'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value,
                         question_description='relapse dialog - pa - together'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value,
@@ -101,6 +111,8 @@ def initialize_questions():
                         question_description='relapse dialog - pa - doing today'),
         DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_HAPPENED_SPECIAL.value,
                         question_description='relapse dialog - pa - happened special'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_PA_REFLECT_BARCHART.value,
+                        question_description='relapse dialog - pa - reflect on barchart'),
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_PROMPTS.value,
                         question_description='persuasion - activity - prompts'),
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_WANT.value,
@@ -173,6 +185,8 @@ def initialize_closed_anwers():
                                                                                 'Met vrienden of famillie',
                                                                                 'Met kenissen', 'Met collega`s',
                                                                                 'Met andere rokers']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = ['je gepland had om te bewegen, maar dit nu niet lukt',
+                                                                            'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value] = ['Ja', 'Nee']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin', 'Moe en geen energie',
                                                                           'Geen tijd', 'Er is iets tussen gekomen',
@@ -257,7 +271,17 @@ def initialize_execution_components_table():
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
                                intervention_component_trigger=ExecutionInterventionComponentsTriggers.WEEKLY_REFLECTION.value),
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value)
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_HRS.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_HRS.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_LAPSE.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_RELAPSE.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_PA.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_PA.value)
     ]
 
     return data
