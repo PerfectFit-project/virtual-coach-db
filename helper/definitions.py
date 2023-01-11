@@ -88,3 +88,8 @@ class DialogQuestionsEnum(Enum):
     PERSUASION_EFFORT = 36  # How much effort people spent on an activity
     PERSUASION_TYPE = 37  # The persuasion type chosen based on the persuasion algorithm
     PERSUASION_MESSAGE_INDEX = 38  # The index of the persuasive message for the given persuasion type. -1 if "No persuasion."
+
+
+class VideoLinks(str, Enum):
+    TESTVIDEOLINK = "https://www.youtube.com/watch?v=59JaTljpjCk"
+    TESTVIDEOLINK2 = "testLink"
