@@ -351,7 +351,7 @@ def create_test_data(user_id: int):
                         recursive=True, week_days='1,2,3,4,5,6,7',
                         preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7))),
 
-        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=1)
+        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input')
     ]
 
     return data
