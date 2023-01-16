@@ -91,5 +91,11 @@ class DialogQuestionsEnum(Enum):
 
 
 class VideoLinks(str, Enum):
-    TESTVIDEOLINK = "https://www.youtube.com/watch?v=59JaTljpjCk"
-    TESTVIDEOLINK2 = "testLink"
+    # TODO: substitute the links with the actual one
+    INTRO_PREPARATION_VIDEO = "preparation link"
+    FIRST_AID_KIT = "first aid kit"
+    MEDICATION_VIDEO = "https://www.youtube.com/watch?v=59JaTljpjCk"
+    TRACKING_BEHAVIORS = "tracking behaviors"
+    BACK_TO_NICEDAY = "back to niceday"
+    INTRO_EXACUTION_VIDEO = "Intro execution video"
+    TESTVIDEOLINK = "testLink"
