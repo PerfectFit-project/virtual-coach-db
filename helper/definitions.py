@@ -95,6 +95,6 @@ class VideoLinks(str, Enum):
     TESTVIDEOLINK2 = "testLink"
 
 
-class PreviousDialog(list, Enum):
-    DIALOG1 = [1, 6]
-    DIALOG2 = [4, 9]
+class PreviousDialog(str, Enum):
+    DIALOG1 = "1 6"
+    DIALOG2 = "4 9"
