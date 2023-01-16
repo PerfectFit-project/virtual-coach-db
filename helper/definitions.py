@@ -93,3 +93,8 @@ class DialogQuestionsEnum(Enum):
 class VideoLinks(str, Enum):
     TESTVIDEOLINK = "https://www.youtube.com/watch?v=59JaTljpjCk"
     TESTVIDEOLINK2 = "testLink"
+
+
+class PreviousDialog(str, Enum):
+    DIALOG1 = [1, 6]
+    DIALOG2 = [4, 9]
