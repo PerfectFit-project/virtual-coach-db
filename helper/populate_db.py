@@ -4,9 +4,9 @@ import os
 from datetime import datetime, date, timedelta
 from dateutil import tz
 
-from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogOpenAnswers, DialogClosedAnswers,
+from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             UserPreferences, InterventionActivitiesPerformed, ClosedAnswers)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
                                 ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
@@ -16,7 +16,7 @@ from helper.definitions import (Phases, PreparationInterventionComponents, Prepa
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv'):
+def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv', testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
     Populate the database with test data. Update data if it already exists.
     """
@@ -31,6 +31,10 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
     # Fill in intervention activities (placeholder activities for now)
     objects_intervention_activities = initialize_activities(activities_file_path)
     [session.merge(obj) for obj in objects_intervention_activities]
+    
+    # Fill in testimonials (to be shown in goal-setting dialog)
+    objects_testimonials = initialize_testimonials(testimonials_file_path)
+    [session.merge(obj) for obj in objects_testimonials]
 
     objects_preparation_components = initialize_preparation_components_table()
     [session.merge(obj) for obj in objects_preparation_components]
@@ -243,6 +247,18 @@ def initialize_activities(activities_file_path):
     return data
 
 
+def initialize_testimonials(testimonials_file_path):
+    with open(testimonials_file_path, newline='') as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        data = [Testimonials(testimonial_id=int(row['id']),
+                             godin_activity_level=int(row['godin_level']),
+                             running_walking_pref=int(row['pref_binary']),
+                             self_efficacy_pref=float(row['self_efficacy']),
+                             testimonial_text=row['testimonial_dutch']) for row in csv_reader]
+
+    return data
+
+
 def initialize_preparation_components_table():
     data = [
         InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value,
@@ -300,7 +316,9 @@ def initialize_phases_table():
 def create_test_data(user_id: int):
     data = [
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id),
+              location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
+              testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
+              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3),
 
         FirstAidKit(users_nicedayuid=user_id, user_activity_title="Water my plants",
                     user_activity_description="I want to water all the plants in my house and garden.",
