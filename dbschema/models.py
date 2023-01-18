@@ -18,7 +18,7 @@ class Users(Base):
     
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
-    testim_running_walking_pref = Column(Integer)  # 0 if people prfer walking and 1 if people prefer running
+    testim_running_walking_pref = Column(Integer)  # 0 if people prefer walking and 1 if people prefer running
     testim_self_efficacy_pref = Column(Float)  # Self-efficacy for preferred activity (i.e., running or walking), ranges from 0 to 100.
     testim_sim_cluster_1 = Column(Float)  # Perceived similarity to people in cluster 1 based on 2 prototypes, ranges from -3 to 3
     testim_sim_cluster_3 = Column(Float)  # Perceived similarity to people in cluster 3 based on 2 prototypes, ranges from -3 to 3
@@ -30,6 +30,15 @@ class Users(Base):
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
+    
+    
+class Testimonials(Base):
+    __tablename__ = "testimonials"
+    testimonial_id = Column(Integer, primary_key=True)
+    godin_activity_level = Column(Integer)
+    running_walking_pref = Column(Integer)
+    self_efficacy_pref = Column(Float)
+    testimonial_text = Column(String)
 
 
 class DialogClosedAnswers(Base):

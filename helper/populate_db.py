@@ -16,7 +16,7 @@ from helper.definitions import (Phases, PreparationInterventionComponents, Prepa
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv'):
+def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv', testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
     Populate the database with test data. Update data if it already exists.
     """
@@ -31,6 +31,10 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
     # Fill in intervention activities (placeholder activities for now)
     objects_intervention_activities = initialize_activities(activities_file_path)
     [session.merge(obj) for obj in objects_intervention_activities]
+    
+    # Fill in testimonials (to be shown in goal-setting dialog)
+    objects_testimonials = initialize_testimonials(testimonials_file_path)
+    [session.merge(obj) for obj in objects_testimonials]
 
     objects_preparation_components = initialize_preparation_components_table()
     [session.merge(obj) for obj in objects_preparation_components]
@@ -239,6 +243,18 @@ def initialize_activities(activities_file_path):
                                      intervention_activity_full_instructions=row['activity_instructions'],
                                      user_input_required=bool(int(row['input_needed'])),
                                      intervention_activity_benefit=row['activity_benefit']) for row in csv_reader]
+
+    return data
+
+
+def initialize_testimonials(testimonials_file_path):
+    with open(testimonials_file_path, newline='') as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        data = [Testimonials(testimonial_id=int(row[id']),
+                             godin_activity_level=int(row['godin_level']),
+                             running_walking_pref=int(row['pref_binary']),
+                             self_efficacy_pref=float(row['self_efficacy']),
+                             testimonial_text=row['testimonial_dutch']) for row in csv_reader]
 
     return data
 
