@@ -4,9 +4,9 @@ import os
 from datetime import datetime, date, timedelta
 from dateutil import tz
 
-from dbschema.models import (Users, UserInterventionState, DialogQuestions, DialogOpenAnswers, DialogClosedAnswers,
+from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             UserPreferences, InterventionActivitiesPerformed, ClosedAnswers)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
                                 ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
