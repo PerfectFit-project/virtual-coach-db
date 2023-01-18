@@ -300,7 +300,9 @@ def initialize_phases_table():
 def create_test_data(user_id: int):
     data = [
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id),
+              location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
+              testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
+              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3),
 
         FirstAidKit(users_nicedayuid=user_id, user_activity_title="Water my plants",
                     user_activity_description="I want to water all the plants in my house and garden.",
