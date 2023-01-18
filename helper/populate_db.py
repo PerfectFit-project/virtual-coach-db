@@ -250,7 +250,7 @@ def initialize_activities(activities_file_path):
 def initialize_testimonials(testimonials_file_path):
     with open(testimonials_file_path, newline='') as csvfile:
         csv_reader = csv.DictReader(csvfile)
-        data = [Testimonials(testimonial_id=int(row[id']),
+        data = [Testimonials(testimonial_id=int(row['id']),
                              godin_activity_level=int(row['godin_level']),
                              running_walking_pref=int(row['pref_binary']),
                              self_efficacy_pref=float(row['self_efficacy']),
