@@ -36,9 +36,11 @@ class Testimonials(Base):
     __tablename__ = "testimonials"
     testimonial_id = Column(Integer, primary_key=True)
     godin_activity_level = Column(Integer)
-    running_walking_pref = Column(Integer)
+    running_walking_pref = Column(Integer)  # Whether the goal is a walking (0) or a running goal (1)
     self_efficacy_pref = Column(Float)
     testimonial_text = Column(String)
+    part_of_cluster1 = Column(Boolean)
+    part_of_cluster3 = Column(Boolean)
 
 
 class DialogClosedAnswers(Base):

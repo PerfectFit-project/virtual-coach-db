@@ -254,6 +254,8 @@ def initialize_testimonials(testimonials_file_path):
                              godin_activity_level=int(row['godin_level']),
                              running_walking_pref=int(row['pref_binary']),
                              self_efficacy_pref=float(row['self_efficacy']),
+                             part_of_cluster1=bool(int(row["part_of_cluster1"])),
+                             part_of_cluster3=bool(int(row["part_of_cluster3"])),
                              testimonial_text=row['testimonial_dutch']) for row in csv_reader]
 
     return data
