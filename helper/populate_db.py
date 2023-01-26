@@ -8,8 +8,8 @@ from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuest
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
                              ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences)
 from helper.helper_functions import get_db_session
-from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
-                                ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
+from helper.definitions import (Phases, InterventionComponents, InterventionComponentsTriggers,
+                                InterventionComponents, InterventionComponentsTriggers,
                                 DialogQuestionsEnum)
 
 
@@ -263,18 +263,18 @@ def initialize_testimonials(testimonials_file_path):
 
 def initialize_preparation_components_table():
     data = [
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PROFILE_CREATION.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.MEDICATION_TALK.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.COLD_TURKEY.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PLAN_QUIT_START_DATE.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.FUTURE_SELF.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.GOAL_SETTING.value)
+        InterventionComponents(intervention_component_name=InterventionComponents.PROFILE_CREATION.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.MEDICATION_TALK.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.COLD_TURKEY.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.PLAN_QUIT_START_DATE.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.FUTURE_SELF.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.FUTURE_SELF.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.GOAL_SETTING.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.GOAL_SETTING.value)
     ]
 
     return data
@@ -282,24 +282,24 @@ def initialize_preparation_components_table():
 
 def initialize_execution_components_table():
     data = [
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.EXECUTION_INTRODUCTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.GENERAL_ACTIVITY.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.WEEKLY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_HRS.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_HRS.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_LAPSE.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_RELAPSE.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_PA.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_PA.value)
+        InterventionComponents(intervention_component_name=InterventionComponents.EXECUTION_INTRODUCTION.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.EXECUTION_INTRODUCTION.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.GENERAL_ACTIVITY.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.GENERAL_ACTIVITY.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.WEEKLY_REFLECTION.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.WEEKLY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.DAILY_REFLECTION.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.DAILY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.RELAPSE_DIALOG.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.RELAPSE_DIALOG.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.RELAPSE_DIALOG_HRS.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.RELAPSE_DIALOG_HRS.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.RELAPSE_DIALOG_LAPSE.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.RELAPSE_DIALOG_RELAPSE.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
+        InterventionComponents(intervention_component_name=InterventionComponents.RELAPSE_DIALOG_PA.value,
+                               intervention_component_trigger=InterventionComponentsTriggers.RELAPSE_DIALOG_PA.value)
     ]
 
     return data
