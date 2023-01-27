@@ -7,7 +7,7 @@ class Phases(str, Enum):
     LAPSE = 'lapse'
 
 
-class InterventionComponents(Enum):
+class Components(Enum):
     PREPARATION_INTRODUCTION = 'preparation_introduction'
     PROFILE_CREATION = 'profile_creation'
     MEDICATION_TALK = 'medication_talk'
@@ -28,7 +28,7 @@ class InterventionComponents(Enum):
     FIRST_AID_KIT = 'get_first_aid_kit'
 
 
-class InterventionComponentsTriggers(str, Enum):
+class ComponentsTriggers(str, Enum):
     PREPARATION_INTRODUCTION = 'EXTERNAL_trigger_preparation_introduction'
     PROFILE_CREATION = 'EXTERNAL_trigger_profile_creation'
     MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk'
