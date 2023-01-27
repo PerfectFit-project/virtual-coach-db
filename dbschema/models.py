@@ -3,7 +3,6 @@ from sqlalchemy import (Column, Date, ForeignKey, Integer, Float,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-
 Base = declarative_base()
 
 
@@ -15,7 +14,9 @@ class Users(Base):
     location = Column(String)
     gender = Column(String)
     dob = Column(Date)
-    
+    start_date = Column(DateTime(timezone=True),
+                        default=func.now())
+
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
     testim_running_walking_pref = Column(Integer)  # 0 if people prefer walking and 1 if people prefer running
@@ -30,8 +31,8 @@ class Users(Base):
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
-    
-    
+
+
 class Testimonials(Base):
     __tablename__ = "testimonials"
     testimonial_id = Column(Integer, primary_key=True)
@@ -126,6 +127,7 @@ class InterventionActivitiesPerformed(Base):
 
     user = relationship("Users", back_populates="intervention_activities_performed")
     intervention_activity = relationship("InterventionActivity")
+
 
 class InterventionPhases(Base):
     __tablename__ = 'intervention_phases'
