@@ -8,11 +8,13 @@ class Phases(str, Enum):
 
 
 class InterventionComponents(Enum):
+    PREPARATION_INTRODUCTION = 'preparation_introduction'
     PROFILE_CREATION = 'profile_creation'
     MEDICATION_TALK = 'medication_talk'
+    TRACK_BEHAVIOR = 'track_behavior'
     COLD_TURKEY = 'cold_turkey'
     PLAN_QUIT_START_DATE = 'plan_quit_start_date'
-    FUTURE_SELF = 'future_self_preparation'
+    FUTURE_SELF = 'future_self'
     GOAL_SETTING = 'goal_setting'
     EXECUTION_INTRODUCTION = 'execution_introduction'
     GENERAL_ACTIVITY = 'general_activity'
@@ -23,14 +25,17 @@ class InterventionComponents(Enum):
     RELAPSE_DIALOG_LAPSE = 'relapse_dialog_lapse'
     RELAPSE_DIALOG_RELAPSE = 'relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
+    FIRST_AID_KIT = 'get_first_aid_kit'
 
 
 class InterventionComponentsTriggers(str, Enum):
+    PREPARATION_INTRODUCTION = 'EXTERNAL_trigger_preparation_introduction'
     PROFILE_CREATION = 'EXTERNAL_trigger_profile_creation'
     MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk'
+    TRACK_BEHAVIOR = 'EXTERNAL_trigger_track_behavior'
     COLD_TURKEY = 'EXTERNAL_trigger_cold_turkey'
     PLAN_QUIT_START_DATE = 'EXTERNAL_trigger_plan_quit_start'
-    FUTURE_SELF = 'EXTERNAL_trigger_mental_contrasting'
+    FUTURE_SELF = 'EXTERNAL_trigger_future_self'
     GOAL_SETTING = 'EXTERNAL_trigger_goal_setting'
     EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction'
     GENERAL_ACTIVITY = 'EXTERNAL_trigger_general_activity'
@@ -41,6 +46,15 @@ class InterventionComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_LAPSE = 'EXTERNAL_relapse_dialog_lapse'
     RELAPSE_DIALOG_RELAPSE = 'EXTERNAL_relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
+    FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
+
+
+class Notifications(str, Enum):
+    TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
+
+
+class NotificationsTriggers(str, Enum):
+    TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
 
 
 class DialogQuestionsEnum(Enum):
