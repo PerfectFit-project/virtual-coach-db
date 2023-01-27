@@ -7,7 +7,7 @@ class Phases(str, Enum):
     LAPSE = 'lapse'
 
 
-class Components(Enum):
+class Components(str, Enum):
     PREPARATION_INTRODUCTION = 'preparation_introduction'
     PROFILE_CREATION = 'profile_creation'
     MEDICATION_TALK = 'medication_talk'
