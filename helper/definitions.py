@@ -101,6 +101,6 @@ class VideoLinks(str, Enum):
     TESTVIDEOLINK = "testLink"
 
 
-class PreviousDialog(str, Enum):
+class DialogExpectedDuration(str, Enum):
     DIALOG1 = "1 6"
     DIALOG2 = "4 9"
