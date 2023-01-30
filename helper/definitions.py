@@ -100,7 +100,6 @@ class VideoLinks(str, Enum):
     INTRO_EXACUTION_VIDEO = "Intro execution video"
     TESTVIDEOLINK = "testLink"
 
-
-class DialogExpectedDuration(str, Enum):
-    DIALOG1 = "1 6"
-    DIALOG2 = "4 9"
+"""Dictionary for the expected time interval of the dialog"""
+DialogExpectedDuration = {"EXTERNAL_trigger_execution_introduction": "1 6",
+                          "EXTERNAL_trigger_general_activity": "4 9"}
