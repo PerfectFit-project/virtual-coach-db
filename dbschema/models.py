@@ -14,8 +14,7 @@ class Users(Base):
     location = Column(String)
     gender = Column(String)
     dob = Column(Date)
-    start_date = Column(DateTime(timezone=True),
-                        default=func.now())
+    start_date = Column(Date, default=func.current_date())
 
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
@@ -149,7 +148,7 @@ class UserInterventionState(Base):
     intervention_phase_id = Column(Integer, ForeignKey('intervention_phases.phase_id'))
     intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
     completed = Column(Boolean)
-    last_time = Column(TIMESTAMP(timezone=True), default=func.now())
+    last_time = Column(TIMESTAMP(timezone=True), default=func.now(), nullable=True)
     last_part = Column(Integer)
     next_planned_date = Column(DateTime(timezone=True), nullable=True)
     task_uuid = Column(String(36), nullable=True)

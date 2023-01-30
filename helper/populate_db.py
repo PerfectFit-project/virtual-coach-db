@@ -10,7 +10,7 @@ from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuest
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
                                 DialogQuestionsEnum)
-
+from virtual_coach_db.helper import Notifications
 
 tz_nl = tz.gettz("Europe/Amsterdam")
 
@@ -40,6 +40,9 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
 
     objects_execution_components = initialize_execution_components_table()
     [session.merge(obj) for obj in objects_execution_components]
+
+    objects_notification_components = initialize_notifications_components_table()
+    [session.merge(obj) for obj in objects_notification_components]
 
     objects_phases = initialize_phases_table()
     [session.merge(obj) for obj in objects_phases]
@@ -299,6 +302,14 @@ def initialize_execution_components_table():
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
         InterventionComponents(intervention_component_name=ComponentsTriggers.RELAPSE_DIALOG_PA.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_PA.value)
+    ]
+
+    return data
+
+
+def initialize_notifications_components_table():
+    data = [
+        InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value
     ]
 
     return data
