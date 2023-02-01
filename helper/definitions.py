@@ -50,11 +50,13 @@ class ComponentsTriggers(str, Enum):
 
 
 class Notifications(str, Enum):
-    TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
+    TRACK_NOTIFICATION = 'track_notification'
+    PA_NOTIFICATION = 'pa_notification'
 
 
 class NotificationsTriggers(str, Enum):
     TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
+    PA_NOTIFICATION = 'EXTERNAL_pa_notification'
 
 
 class DialogQuestionsEnum(Enum):

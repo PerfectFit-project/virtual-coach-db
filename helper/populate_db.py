@@ -6,11 +6,10 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
-                                DialogQuestionsEnum)
-from virtual_coach_db.helper import Notifications
+                                DialogQuestionsEnum, Notifications, NotificationsTriggers)
 
 tz_nl = tz.gettz("Europe/Amsterdam")
 
@@ -265,10 +264,14 @@ def initialize_testimonials(testimonials_file_path):
 
 def initialize_preparation_components_table():
     data = [
+        InterventionComponents(intervention_component_name=Components.PREPARATION_INTRODUCTION.value,
+                               intervention_component_trigger=ComponentsTriggers.PREPARATION_INTRODUCTION.value),
         InterventionComponents(intervention_component_name=Components.PROFILE_CREATION.value,
                                intervention_component_trigger=ComponentsTriggers.PROFILE_CREATION.value),
         InterventionComponents(intervention_component_name=Components.MEDICATION_TALK.value,
                                intervention_component_trigger=ComponentsTriggers.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=Components.TRACK_BEHAVIOR.value,
+                               intervention_component_trigger=ComponentsTriggers.TRACK_BEHAVIOR.value),
         InterventionComponents(intervention_component_name=Components.COLD_TURKEY.value,
                                intervention_component_trigger=ComponentsTriggers.COLD_TURKEY.value),
         InterventionComponents(intervention_component_name=Components.PLAN_QUIT_START_DATE.value,
@@ -284,23 +287,23 @@ def initialize_preparation_components_table():
 
 def initialize_execution_components_table():
     data = [
-        InterventionComponents(intervention_component_name=ComponentsTriggers.EXECUTION_INTRODUCTION.value,
+        InterventionComponents(intervention_component_name=Components.EXECUTION_INTRODUCTION.value,
                                intervention_component_trigger=ComponentsTriggers.EXECUTION_INTRODUCTION.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.GENERAL_ACTIVITY.value,
+        InterventionComponents(intervention_component_name=Components.GENERAL_ACTIVITY.value,
                                intervention_component_trigger=ComponentsTriggers.GENERAL_ACTIVITY.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.WEEKLY_REFLECTION.value,
+        InterventionComponents(intervention_component_name=Components.WEEKLY_REFLECTION.value,
                                intervention_component_trigger=ComponentsTriggers.WEEKLY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.DAILY_REFLECTION.value,
+        InterventionComponents(intervention_component_name=Components.DAILY_REFLECTION.value,
                                intervention_component_trigger=ComponentsTriggers.DAILY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.RELAPSE_DIALOG.value,
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.RELAPSE_DIALOG_HRS.value,
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_HRS.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_HRS.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.RELAPSE_DIALOG_LAPSE.value,
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_LAPSE.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value,
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_RELAPSE.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
-        InterventionComponents(intervention_component_name=ComponentsTriggers.RELAPSE_DIALOG_PA.value,
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_PA.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_PA.value)
     ]
 
@@ -309,7 +312,8 @@ def initialize_execution_components_table():
 
 def initialize_notifications_components_table():
     data = [
-        InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value
+        InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value)
     ]
 
     return data
