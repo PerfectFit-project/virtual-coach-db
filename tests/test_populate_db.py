@@ -10,7 +10,7 @@ def test_populate_db_with_test_data(db_session, test_user_id):
     We enforce that for each Model some test data must be added.
     """
 
-    populate_db_with_test_data(db_session, test_user_id, './utils/activities.csv')
+    populate_db_with_test_data(db_session, test_user_id, './utils/activities.csv', './utils/testimonials_with_user_data.csv')
     for mapper in Base.registry.mappers:
         klass = mapper.class_
         assert db_session.query(klass).count() > 0, \
