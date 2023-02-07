@@ -50,6 +50,7 @@ class StepCounts(Base):
     value = Column(Integer)
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
+    user = relationship("Users", back_populates="step_counts")
 
 class DialogClosedAnswers(Base):
     __tablename__ = 'dialog_closed_answers'
