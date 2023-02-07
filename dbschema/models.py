@@ -30,6 +30,7 @@ class Users(Base):
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
+    step_counts = relationship("StepCounts", back_populates="user")
     
     
 class Testimonials(Base):
@@ -41,6 +42,13 @@ class Testimonials(Base):
     testimonial_text = Column(String)
     part_of_cluster1 = Column(Boolean)
     part_of_cluster3 = Column(Boolean)
+
+class StepCounts(Base):
+    __tablename__ = "step_counts"
+    step_count_id = Column(Integer, primary_key=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    value = Column(Integer)
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
 
 class DialogClosedAnswers(Base):
