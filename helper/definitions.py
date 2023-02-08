@@ -101,5 +101,6 @@ class VideoLinks(str, Enum):
     TESTVIDEOLINK = "testLink"
 
 """Dictionary for the expected time interval of the dialog"""
-DialogExpectedDuration = {"EXTERNAL_trigger_execution_introduction": "1 6",
-                          "EXTERNAL_trigger_general_activity": "4 9"}
+DialogExpectedDuration = { PreparationInterventionComponents.PROFILE_CREATION: "1 6",
+                         PreparationInterventionComponents.MEDICATION_TALK ": "4 9"}
+
