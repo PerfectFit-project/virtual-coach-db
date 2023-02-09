@@ -98,8 +98,6 @@ class FirstAidKit(Base):
 
     # We either provide the ID of one of our own activities, or we store an activity title and description as provided by a user.
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
-    user_activity_title = Column(String(100))
-    user_activity_description = Column(String)
     activity_rating = Column(Integer)
 
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
