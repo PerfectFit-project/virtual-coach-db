@@ -96,7 +96,7 @@ class FirstAidKit(Base):
     first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
 
-    # We either provide the ID of one of our own activities, or we store an activity title and description as provided by a user.
+    # Each activity in first aid kit is one of our intervention activities
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
     activity_rating = Column(Integer)
 
