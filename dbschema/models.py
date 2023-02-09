@@ -23,7 +23,7 @@ class Users(Base):
     testim_sim_cluster_1 = Column(Float)  # Perceived similarity to people in cluster 1 based on 2 prototypes, ranges from -3 to 3
     testim_sim_cluster_3 = Column(Float)  # Perceived similarity to people in cluster 3 based on 2 prototypes, ranges from -3 to 3
 
-    # For goal-setting dialog, quite date and long-term goal pa
+    # For goal-setting dialog, quit date and long-term goal pa
     quit_date = Column(Date)
     long_term_pa_goal = Column(String)
     
