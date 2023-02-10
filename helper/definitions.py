@@ -40,6 +40,9 @@ class ExecutionInterventionComponents(str, Enum):
 class ExecutionInterventionComponentsTriggers(str, Enum):
     EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction'
     GENERAL_ACTIVITY = 'EXTERNAL_trigger_general_activity'
+    RESCHEDULE_ACTIVITY = 'EXTERNAL_trigger_reschedule_activity'
+    CONTINUE_GENERAL_ACTIVITY = 'EXTERNAL_trigger_continue_general_activity'
+    CONTINUE_FUTURE_SELF_ACTIVITY = 'EXTERNAL_trigger_continue_future_self_activity'
     WEEKLY_REFLECTION = 'EXTERNAL_weekly_reflection'
     DAILY_REFLECTION = 'EXTERNAL_daily_reflection'
     RELAPSE_DIALOG = 'EXTERNAL_relapse_dialog'
@@ -100,7 +103,7 @@ class VideoLinks(str, Enum):
     INTRO_EXACUTION_VIDEO = "Intro execution video"
     TESTVIDEOLINK = "testLink"
 
-"""Dictionary for the expected time interval of the dialog"""
-DialogExpectedDuration = { PreparationInterventionComponents.PROFILE_CREATION: "1 6",
-                         PreparationInterventionComponents.MEDICATION_TALK: "4 9"}
 
+"""Dictionary for the expected time interval of the dialog"""
+DialogExpectedDuration = {PreparationInterventionComponents.PROFILE_CREATION: "1 6",
+                          PreparationInterventionComponents.MEDICATION_TALK: "4 9"}
