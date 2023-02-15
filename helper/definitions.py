@@ -106,4 +106,5 @@ class VideoLinks(str, Enum):
 
 """Dictionary for the expected time interval of the dialog"""
 DialogExpectedDuration = {PreparationInterventionComponents.PROFILE_CREATION: "1 6",
-                          PreparationInterventionComponents.MEDICATION_TALK: "4 9"}
+                          PreparationInterventionComponents.MEDICATION_TALK: "4 9",
+                          ExecutionInterventionComponents.GENERAL_ACTIVITY: "5 10"}
