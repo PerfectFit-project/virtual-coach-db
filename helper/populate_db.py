@@ -6,7 +6,8 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
+                             StepCounts)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
                                 ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
@@ -362,7 +363,9 @@ def create_test_data(user_id: int):
                         recursive=True, week_days='1,2,3,4,5,6,7',
                         preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7))),
 
-        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input')
+        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
+
+        StepCounts(users_nicedayuid=user_id, value = 5)
     ]
 
     return data
