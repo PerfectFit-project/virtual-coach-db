@@ -16,6 +16,7 @@ class Users(Base):
     dob = Column(Date)
     start_date = Column(Date, default=func.current_date())
     quit_date = Column(Date, nullable=True)
+    execution_week = Column(Integer, default=0, nullable=True)
 
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
