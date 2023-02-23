@@ -26,6 +26,7 @@ class Components(str, Enum):
     RELAPSE_DIALOG_RELAPSE = 'relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
     FIRST_AID_KIT = 'get_first_aid_kit'
+    CLOSING_DIALOG = 'closing_dialog'
 
 
 class ComponentsTriggers(str, Enum):
@@ -47,16 +48,21 @@ class ComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_RELAPSE = 'EXTERNAL_relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
     FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
+    CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
 
 
 class Notifications(str, Enum):
-    TRACK_NOTIFICATION = 'track_notification'
+    BEFORE_QUIT_NOTIFICATION = 'before_quit_notification'
     PA_NOTIFICATION = 'pa_notification'
+    QUIT_DATE_NOTIFICATION = 'quit_date_notification'
+    TRACK_NOTIFICATION = 'track_notification'
 
 
 class NotificationsTriggers(str, Enum):
-    TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
+    BEFORE_QUIT_NOTIFICATION = 'EXTERNAL_before_quit_notification'
     PA_NOTIFICATION = 'EXTERNAL_pa_notification'
+    QUIT_DATE_NOTIFICATION = 'EXTERNAL_quit_date_notification'
+    TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
 
 
 class DialogQuestionsEnum(Enum):
