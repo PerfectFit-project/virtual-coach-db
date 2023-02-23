@@ -6,7 +6,8 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
+                             StepCounts)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
                                 DialogQuestionsEnum, Notifications, NotificationsTriggers)
@@ -14,7 +15,8 @@ from helper.definitions import (Phases, Components, ComponentsTriggers,
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv', testimonials_file_path='../utils/testimonials_with_user_data.csv'):
+def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv',
+                               testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
     Populate the database with test data. Update data if it already exists.
     """
@@ -25,11 +27,11 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
     # Fill closed answers table
     objects_closed_answers = initialize_closed_anwers()
     [session.merge(obj) for obj in objects_closed_answers]
-    
+
     # Fill in intervention activities (placeholder activities for now)
     objects_intervention_activities = initialize_activities(activities_file_path)
     [session.merge(obj) for obj in objects_intervention_activities]
-    
+
     # Fill in testimonials (to be shown in goal-setting dialog)
     objects_testimonials = initialize_testimonials(testimonials_file_path)
     [session.merge(obj) for obj in objects_testimonials]
@@ -190,8 +192,9 @@ def initialize_closed_anwers():
                                                                                 'Met vrienden of famillie',
                                                                                 'Met kenissen', 'Met collega`s',
                                                                                 'Met andere rokers']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = ['je gepland had om te bewegen, maar dit nu niet lukt',
-                                                                            'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = [
+        'je gepland had om te bewegen, maar dit nu niet lukt',
+        'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value] = ['Ja', 'Nee']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin', 'Moe en geen energie',
                                                                           'Geen tijd', 'Er is iets tussen gekomen',
@@ -224,9 +227,8 @@ def initialize_closed_anwers():
                                                                       "Consensus",
                                                                       "No persuasion"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["-1", "0", "1", "2", "3", "4", "5"]
-    
 
-    data = [ClosedAnswers(closed_answers_id=q*100+i,
+    data = [ClosedAnswers(closed_answers_id=q * 100 + i,
                           question_id=q,
                           answer_value=i,
                           answer_description=a)
@@ -332,25 +334,22 @@ def initialize_phases_table():
 def create_test_data(user_id: int):
     data = [
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
-              testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
-              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3),
+              location='Eanske', nicedayuid=user_id, testim_godin_activity_level=1,
+              testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
+              testim_sim_cluster_1=-2, testim_sim_cluster_3=3),
 
-        FirstAidKit(users_nicedayuid=user_id, user_activity_title="Water my plants",
-                    user_activity_description="I want to water all the plants in my house and garden.",
-                    datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
-        FirstAidKit(users_nicedayuid=user_id, user_activity_title="Go for a walk with my dog",
-                    user_activity_description="A quick walk up to the yellow house at the corner is enough.",
-                    datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=3, datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=4, datetime=datetime.now().astimezone(tz_nl), activity_rating=4),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=5, datetime=datetime.now().astimezone(tz_nl), activity_rating=5),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=6, datetime=datetime.now().astimezone(tz_nl), activity_rating=6),
-        FirstAidKit(users_nicedayuid=user_id, user_activity_title="Eat carrots",
-                    user_activity_description="Eat as many carrots as I can.",
-                    datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=1),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=2),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=3, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=3),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=4, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=4),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=5, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=5),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=6, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=6),
 
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ', question_id=1,
                           datetime=datetime.now().astimezone(tz_nl)),
@@ -365,27 +364,30 @@ def create_test_data(user_id: int):
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed', question_id=3,
                           datetime=datetime.now().astimezone(tz_nl)),
         DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=803, datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401, datetime=datetime.now().astimezone(tz_nl)),
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401,
+                            datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
 
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=5,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3))),
+                        preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=7,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=4))),
+                        preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=4))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=8,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=5))),
+                        preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=5))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=9,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=6))),
+                        preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=6))),
         UserPreferences(users_nicedayuid=user_id, intervention_component_id=10,
                         recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7))),
+                        preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=7))),
 
-        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input')
+        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
+
+        StepCounts(users_nicedayuid=user_id, value=5)
     ]
 
     return data

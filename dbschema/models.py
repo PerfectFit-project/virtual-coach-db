@@ -24,6 +24,9 @@ class Users(Base):
     testim_self_efficacy_pref = Column(Float)  # Self-efficacy for preferred activity (i.e., running or walking), ranges from 0 to 100.
     testim_sim_cluster_1 = Column(Float)  # Perceived similarity to people in cluster 1 based on 2 prototypes, ranges from -3 to 3
     testim_sim_cluster_3 = Column(Float)  # Perceived similarity to people in cluster 3 based on 2 prototypes, ranges from -3 to 3
+
+    # For goal-setting dialog, long-term goal pa
+    long_term_pa_goal = Column(String)
     
     # Refer to relationships
     dialog_closed_answers = relationship('DialogClosedAnswers')
@@ -32,7 +35,8 @@ class Users(Base):
     user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
-
+    step_counts = relationship("StepCounts", back_populates="user")
+    
 
 class Testimonials(Base):
     __tablename__ = "testimonials"
@@ -44,6 +48,14 @@ class Testimonials(Base):
     part_of_cluster1 = Column(Boolean)
     part_of_cluster3 = Column(Boolean)
 
+class StepCounts(Base):
+    __tablename__ = "step_counts"
+    step_count_id = Column(Integer, primary_key=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    value = Column(Integer)
+    datetime = Column(TIMESTAMP(timezone=True), default=func.now())
+
+    user = relationship("Users", back_populates="step_counts")
 
 class DialogClosedAnswers(Base):
     __tablename__ = 'dialog_closed_answers'
@@ -94,10 +106,8 @@ class FirstAidKit(Base):
     first_aid_kit_id = Column(Integer, primary_key=True, autoincrement=True)
     users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
 
-    # We either provide the ID of one of our own activities, or we store an activity title and description as provided by a user.
+    # Each activity in first aid kit is one of our intervention activities
     intervention_activity_id = Column(Integer, ForeignKey('intervention_activity.intervention_activity_id'))
-    user_activity_title = Column(String(100))
-    user_activity_description = Column(String)
     activity_rating = Column(Integer)
 
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
