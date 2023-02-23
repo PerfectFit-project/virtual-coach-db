@@ -116,7 +116,7 @@ class VideoLinks(str, Enum):
     INTRO_EXACUTION_VIDEO = "Intro execution video"
     TESTVIDEOLINK = "testLink"
 
-"""Dictionary for the expected time interval of the dialog"""
-DialogExpectedDuration = { PreparationInterventionComponents.PROFILE_CREATION: "1 6",
-                         PreparationInterventionComponents.MEDICATION_TALK: "4 9"}
 
+"""Dictionary for the expected time interval of the dialog"""
+DialogExpectedDuration = {Components.PROFILE_CREATION: "1 6",
+                          Components.MEDICATION_TALK: "4 9"}
