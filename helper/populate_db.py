@@ -281,7 +281,9 @@ def initialize_preparation_components_table():
         InterventionComponents(intervention_component_name=Components.FUTURE_SELF.value,
                                intervention_component_trigger=ComponentsTriggers.FUTURE_SELF.value),
         InterventionComponents(intervention_component_name=Components.GOAL_SETTING.value,
-                               intervention_component_trigger=ComponentsTriggers.GOAL_SETTING.value)
+                               intervention_component_trigger=ComponentsTriggers.GOAL_SETTING.value),
+        InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT_VIDEO.value,
+                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT_VIDEO.value)
     ]
 
     return data
@@ -306,7 +308,9 @@ def initialize_execution_components_table():
         InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_RELAPSE.value,
                                intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
         InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_PA.value,
-                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_PA.value)
+                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_PA.value),
+        InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT.value,
+                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT.value)
     ]
 
     return data
