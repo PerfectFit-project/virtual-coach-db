@@ -322,6 +322,12 @@ def initialize_execution_components_table():
 
 def initialize_notifications_components_table():
     data = [
+        InterventionComponents(intervention_component_name=Notifications.BEFORE_QUIT_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.BEFORE_QUIT_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.PA_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.PA_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
         InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
                                intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value)
     ]
@@ -344,7 +350,8 @@ def create_test_data(user_id: int):
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=user_id, testim_godin_activity_level=1,
               testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
-              testim_sim_cluster_1=-2, testim_sim_cluster_3=3),
+              testim_sim_cluster_1=-2, testim_sim_cluster_3=3,
+              quit_date=date.today()+timedelta(days=11)),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=1),
