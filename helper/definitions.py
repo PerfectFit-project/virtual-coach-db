@@ -14,7 +14,8 @@ class Components(str, Enum):
     TRACK_BEHAVIOR = 'track_behavior'
     COLD_TURKEY = 'cold_turkey'
     PLAN_QUIT_START_DATE = 'plan_quit_start_date'
-    FUTURE_SELF = 'future_self'
+    FUTURE_SELF_LONG = 'future_self_long'
+    FUTURE_SELF_SHORT = 'future_self_short'
     GOAL_SETTING = 'goal_setting'
     FIRST_AID_KIT_VIDEO = 'first_aid_kit_video'
     EXECUTION_INTRODUCTION = 'execution_introduction'
@@ -37,7 +38,8 @@ class ComponentsTriggers(str, Enum):
     TRACK_BEHAVIOR = 'EXTERNAL_trigger_track_behavior'
     COLD_TURKEY = 'EXTERNAL_trigger_cold_turkey'
     PLAN_QUIT_START_DATE = 'EXTERNAL_trigger_plan_quit_start'
-    FUTURE_SELF = 'EXTERNAL_trigger_future_self'
+    FUTURE_SELF_LONG = 'EXTERNAL_trigger_future_self_long'
+    FUTURE_SELF_SHORT = 'EXTERNAL_trigger_future_self_short'
     GOAL_SETTING = 'EXTERNAL_trigger_goal_setting'
     FIRST_AID_KIT_VIDEO = 'EXTERNAL_first_aid_kit_video'
     EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction'
@@ -110,12 +112,14 @@ class DialogQuestionsEnum(Enum):
 
 class VideoLinks(str, Enum):
     # TODO: substitute the links with the actual one
-    INTRO_PREPARATION_VIDEO = "preparation link"
+    BACK_TO_NICEDAY = "back to niceday"
     FIRST_AID_KIT = "first aid kit"
+    FUTURE_SELF_LONG = 'future self long'
+    FUTURE_SELF_SHORT = 'future self short'
+    INTRO_EXECUTION_VIDEO = "Intro execution video"
+    INTRO_PREPARATION_VIDEO = "preparation link"
     MEDICATION_VIDEO = "https://www.youtube.com/watch?v=59JaTljpjCk"
     TRACKING_BEHAVIORS = "tracking behaviors"
-    BACK_TO_NICEDAY = "back to niceday"
-    INTRO_EXACUTION_VIDEO = "Intro execution video"
     TESTVIDEOLINK = "testLink"
 
 
