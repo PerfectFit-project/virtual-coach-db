@@ -398,7 +398,7 @@ def create_test_data(user_id: int):
         UserStateMachine(users_nicedayuid=user_id,
                          state='Onboarding',
                          dialog_running=False,
-                         current_dialog=1)
+                         intervention_component_id=1)
     ]
 
     return data
