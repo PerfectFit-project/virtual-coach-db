@@ -7,7 +7,7 @@ from dateutil import tz
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
                              ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
-                             StepCounts)
+                             StepCounts, UserStateMachine)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
                                 DialogQuestionsEnum, Notifications, NotificationsTriggers)
@@ -393,7 +393,12 @@ def create_test_data(user_id: int):
 
         InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
 
-        StepCounts(users_nicedayuid=user_id, value=5)
+        StepCounts(users_nicedayuid=user_id, value=5),
+
+        UserStateMachine(users_nicedayuid=user_id,
+                         state='Onboarding',
+                         dialog_running=False,
+                         current_dialog=1)
     ]
 
     return data

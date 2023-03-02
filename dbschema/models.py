@@ -181,3 +181,16 @@ class UserPreferences(Base):
 
     user = relationship("Users", back_populates="user_preferences")
     intervention_component = relationship("InterventionComponents")
+
+
+class UserStateMachine(Base):
+    __tablename__ = 'user_state_machine'
+    state_machine_id = Column(Integer, primary_key=True, autoincrement=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    state = Column(String)
+    dialog_running = Column(Boolean)
+    dialog_start_time = Column(DateTime(timezone=True), default=func.now())
+    current_dialog = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
+
+    user = relationship("Users")
+    intervention_component = relationship("InterventionComponents")
