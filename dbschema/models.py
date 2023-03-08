@@ -26,6 +26,10 @@ class Users(Base):
     # For goal-setting dialog, quit date and long-term goal pa
     quit_date = Column(Date)
     long_term_pa_goal = Column(String)
+
+    # For final evaluation
+    pf_evaluation_grade = Column(Integer)
+    pf_evaluation_comment = Column(String)
     
     # Refer to relationships
     dialog_closed_answers = relationship('DialogClosedAnswers')
