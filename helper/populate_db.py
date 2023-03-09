@@ -322,7 +322,7 @@ def create_test_data(user_id: int):
               location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
               testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
               testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3, week_days='1,2,3,4,5,6,7',
-              preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3))),
+              preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3)), participant_code='E3R4Z'),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
