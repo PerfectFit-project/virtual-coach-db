@@ -6,7 +6,7 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials,
                              StepCounts)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
@@ -321,7 +321,8 @@ def create_test_data(user_id: int):
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
               testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
-              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3),
+              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3, week_days='1,2,3,4,5,6,7',
+              preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3))),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
@@ -346,22 +347,6 @@ def create_test_data(user_id: int):
         DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401, datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
-
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=5,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=7,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=4))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=8,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=5))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=9,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=6))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=10,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7))),
 
         InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
 

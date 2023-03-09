@@ -15,6 +15,7 @@ class Users(Base):
     location = Column(String)
     gender = Column(String)
     dob = Column(Date)
+    participant_code = Column(String(5))
     
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
@@ -30,6 +31,10 @@ class Users(Base):
     # For final evaluation
     pf_evaluation_grade = Column(Integer)
     pf_evaluation_comment = Column(String)
+    
+    # Timing preferences for intervention
+    week_days = Column(String(13))
+    preferred_time = Column(TIMESTAMP(timezone=True))
     
     # Refer to relationships
     dialog_closed_answers = relationship('DialogClosedAnswers')
@@ -171,15 +176,3 @@ class UserInterventionState(Base):
     phase = relationship("InterventionPhases")
     intervention_component = relationship("InterventionComponents")
 
-
-class UserPreferences(Base):
-    __tablename__ = 'user_preferences'
-    user_preferences_id = Column(Integer, primary_key=True, autoincrement=True)
-    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
-    recursive = Column(Boolean)
-    week_days = Column(String(13))
-    preferred_time = Column(TIMESTAMP(timezone=True))
-
-    user = relationship("Users", back_populates="user_preferences")
-    intervention_component = relationship("InterventionComponents")
