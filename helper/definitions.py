@@ -31,6 +31,7 @@ class Components(str, Enum):
     CLOSING_DIALOG = 'closing_dialog'
     RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'
     WATCH_VIDEO = 'watch_video_dialog'
+    DONE_VIDEO = 'done_with_video'
 
 
 class ComponentsTriggers(str, Enum):
@@ -57,6 +58,7 @@ class ComponentsTriggers(str, Enum):
     CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
     RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
+    DONE_VIDEO = 'EXTERNAL_done_with_video'
 
 
 class Notifications(str, Enum):
