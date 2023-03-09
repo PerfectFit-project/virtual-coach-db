@@ -29,6 +29,8 @@ class Components(str, Enum):
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
     FIRST_AID_KIT = 'get_first_aid_kit'
     CLOSING_DIALOG = 'closing_dialog'
+    RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'
+    WATCH_VIDEO = 'watch_video_dialog'
 
 
 class ComponentsTriggers(str, Enum):
@@ -53,6 +55,8 @@ class ComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
     FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
     CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
+    RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
+    WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
 
 
 class Notifications(str, Enum):
@@ -124,5 +128,8 @@ class VideoLinks(str, Enum):
 
 
 """Dictionary for the expected time interval of the dialog"""
-DialogExpectedDuration = {Components.PROFILE_CREATION: "1 6",
-                          Components.MEDICATION_TALK: "4 9"}
+DialogExpectedDuration = {Components.PREPARATION_INTRODUCTION: (1, 6),
+                          Components.PROFILE_CREATION: (2, 3),
+                          Components.MEDICATION_TALK: (4, 9),
+                          Components.TRACK_BEHAVIOR: (5, 7),
+                          Components.FUTURE_SELF_LONG: (5, 10)}

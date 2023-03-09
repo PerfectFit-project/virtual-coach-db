@@ -285,7 +285,11 @@ def initialize_preparation_components_table():
         InterventionComponents(intervention_component_name=Components.GOAL_SETTING.value,
                                intervention_component_trigger=ComponentsTriggers.GOAL_SETTING.value),
         InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT_VIDEO.value,
-                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT_VIDEO.value)
+                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT_VIDEO.value),
+        InterventionComponents(intervention_component_name=Components.RESCHEDULING_PREPARATION.value,
+                               intervention_component_trigger=ComponentsTriggers.RESCHEDULING_PREPARATION.value),
+        InterventionComponents(intervention_component_name=Components.WATCH_VIDEO.value,
+                               intervention_component_trigger=ComponentsTriggers.WATCH_VIDEO.value)
     ]
 
     return data
