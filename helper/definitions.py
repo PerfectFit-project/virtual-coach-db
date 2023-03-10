@@ -35,6 +35,7 @@ class ExecutionInterventionComponents(str, Enum):
     RELAPSE_DIALOG_LAPSE = 'relapse_dialog_lapse'
     RELAPSE_DIALOG_RELAPSE = 'relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
+    CLOSING_DIALOG = 'closing_dialog'
 
 
 class ExecutionInterventionComponentsTriggers(str, Enum):
