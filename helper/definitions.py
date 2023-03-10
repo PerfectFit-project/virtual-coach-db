@@ -117,16 +117,14 @@ class DialogQuestionsEnum(Enum):
 
 
 class VideoLinks(str, Enum):
-    # TODO: substitute the links with the actual one
-    BACK_TO_NICEDAY = "back to niceday"
-    FIRST_AID_KIT = "first aid kit"
+    # TODO: substitute the links with the actual ones
+    FIRST_AID_KIT = "https://video.leidenuniv.nl/media/t/1_p2wvnkdf"
     FUTURE_SELF_LONG = 'future self long'
     FUTURE_SELF_SHORT = 'future self short'
-    INTRO_EXECUTION_VIDEO = "Intro execution video"
-    INTRO_PREPARATION_VIDEO = "preparation link"
-    MEDICATION_VIDEO = "https://www.youtube.com/watch?v=59JaTljpjCk"
+    INTRO_EXECUTION_VIDEO = "https://video.leidenuniv.nl/media/t/1_pupwgup1"
+    INTRO_PREPARATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_hueym3k9"
+    MEDICATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_uu7estu1 "
     TRACKING_BEHAVIORS = "tracking behaviors"
-    TESTVIDEOLINK = "testLink"
 
 
 """Dictionary for the expected time interval of the dialog"""
