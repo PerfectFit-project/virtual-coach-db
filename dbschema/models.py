@@ -40,7 +40,6 @@ class Users(Base):
     dialog_closed_answers = relationship('DialogClosedAnswers')
     dialog_open_answers = relationship('DialogOpenAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
-    user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
     step_counts = relationship("StepCounts", back_populates="user")
