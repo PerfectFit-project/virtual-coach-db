@@ -6,7 +6,8 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
+                             StepCounts)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
                                 ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
@@ -322,21 +323,12 @@ def create_test_data(user_id: int):
               testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
               testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3),
 
-        FirstAidKit(users_nicedayuid=user_id, user_activity_title="Water my plants",
-                    user_activity_description="I want to water all the plants in my house and garden.",
-                    datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
-        FirstAidKit(users_nicedayuid=user_id, user_activity_title="Go for a walk with my dog",
-                    user_activity_description="A quick walk up to the yellow house at the corner is enough.",
-                    datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=3, datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=4, datetime=datetime.now().astimezone(tz_nl), activity_rating=4),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=5, datetime=datetime.now().astimezone(tz_nl), activity_rating=5),
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=6, datetime=datetime.now().astimezone(tz_nl), activity_rating=6),
-        FirstAidKit(users_nicedayuid=user_id, user_activity_title="Eat carrots",
-                    user_activity_description="Eat as many carrots as I can.",
-                    datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
 
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ', question_id=1,
                           datetime=datetime.now().astimezone(tz_nl)),
@@ -371,7 +363,9 @@ def create_test_data(user_id: int):
                         recursive=True, week_days='1,2,3,4,5,6,7',
                         preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7))),
 
-        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input')
+        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
+
+        StepCounts(users_nicedayuid=user_id, value = 5)
     ]
 
     return data
