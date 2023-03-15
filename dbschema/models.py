@@ -35,6 +35,11 @@ class Users(Base):
     # Timing preferences for intervention
     week_days = Column(String(13))
     preferred_time = Column(TIMESTAMP(timezone=True))
+
+    # Variables related to PA
+    pa_steps_daily_goal = Column(Integer)
+    pa_intensity_minutes_weekly_goal = Column(Integer)
+    pa_intervention_group = Column(Integer)  # 1=steps, 2=intensity
     
     # Refer to relationships
     dialog_closed_answers = relationship('DialogClosedAnswers')
