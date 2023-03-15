@@ -59,16 +59,21 @@ class ComponentsTriggers(str, Enum):
 
 class Notifications(str, Enum):
     BEFORE_QUIT_NOTIFICATION = 'before_quit_notification'
-    PA_NOTIFICATION = 'pa_notification'
+    PA_STEP_GOAL_NOTIFICATION = 'pa_step_goal_notification'
     QUIT_DATE_NOTIFICATION = 'quit_date_notification'
     TRACK_NOTIFICATION = 'track_notification'
+    FINISH_DIALOG_NOTIFICATION = 'finish_dialog_notification'
+    INACTIVE_USER_NOTIFICATION = 'inactive_user_notification'
 
 
 class NotificationsTriggers(str, Enum):
     BEFORE_QUIT_NOTIFICATION = 'EXTERNAL_before_quit_notification'
-    PA_NOTIFICATION = 'EXTERNAL_pa_notification'
+    PA_STEP_GOAL_NOTIFICATION = 'EXTERNAL_pa_step_goal_notification'
+    PA_INTENSITY_MINUTES_NOTIFICATION = 'EXTERNAL_pa_intensity_notification'
     QUIT_DATE_NOTIFICATION = 'EXTERNAL_quit_date_notification'
     TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
+    FINISH_DIALOG_NOTIFICATION = 'EXTERNAL_finish_dialog_notification'
+    INACTIVE_USER_NOTIFICATION = 'EXTERNAL_inactive_user_notification'
 
 
 class DialogQuestionsEnum(Enum):
