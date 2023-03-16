@@ -348,9 +348,10 @@ def initialize_phases_table():
 def create_test_data(user_id: int):
     data = [
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id, testim_godin_activity_level=1,
-              testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
-              testim_sim_cluster_1=-2, testim_sim_cluster_3=3,
+              location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
+              testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
+              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3, week_days='1,2,3,4,5,6,7',
+              preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3)), participant_code='E3R4Z',
               quit_date=date.today()+timedelta(days=11)),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl),
@@ -383,13 +384,6 @@ def create_test_data(user_id: int):
                             datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
-
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=13,
-                        recursive=True, week_days='1',
-                        preferred_time=(datetime.now().astimezone(tz_nl))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=21,
-                        recursive=True, week_days='1',
-                        preferred_time=(datetime.now().astimezone(tz_nl))),
 
         InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
 

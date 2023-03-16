@@ -52,6 +52,8 @@ class ComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_RELAPSE = 'EXTERNAL_relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
     FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
+    DELAYED_MSG_LAPSE = 'EXTERNAL_delayed_message_smoke_lapse'
+    DELAYED_MSG_SMOKE = 'EXTERNAL_delayed_message_smoke'
     CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
 
 
@@ -120,7 +122,6 @@ class VideoLinks(str, Enum):
     INTRO_PREPARATION_VIDEO = "preparation link"
     MEDICATION_VIDEO = "https://www.youtube.com/watch?v=59JaTljpjCk"
     TRACKING_BEHAVIORS = "tracking behaviors"
-    TESTVIDEOLINK = "testLink"
 
 
 """Dictionary for the expected time interval of the dialog"""
