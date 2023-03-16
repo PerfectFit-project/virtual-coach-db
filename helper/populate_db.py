@@ -6,7 +6,7 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials,
                              StepCounts, UserStateMachine)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
