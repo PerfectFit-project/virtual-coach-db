@@ -50,6 +50,8 @@ class ExecutionInterventionComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
     DELAYED_MSG_LAPSE = 'EXTERNAL_delayed_message_smoke_lapse'
     DELAYED_MSG_SMOKE = 'EXTERNAL_delayed_message_smoke'
+    CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
+
 
 
 class DialogQuestionsEnum(Enum):

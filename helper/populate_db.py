@@ -300,7 +300,9 @@ def initialize_execution_components_table():
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_RELAPSE.value,
                                intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
         InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_PA.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_PA.value)
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_PA.value),
+        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.CLOSING_DIALOG.value,
+                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.CLOSING_DIALOG.value)
     ]
 
     return data
