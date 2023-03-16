@@ -3,7 +3,6 @@ from sqlalchemy import (Column, Date, ForeignKey, Integer, Float,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-
 Base = declarative_base()
 
 
@@ -15,8 +14,12 @@ class Users(Base):
     location = Column(String)
     gender = Column(String)
     dob = Column(Date)
+    start_date = Column(Date, default=func.current_date())
+    quit_date = Column(Date, nullable=True)
+    execution_week = Column(Integer, default=0, nullable=True)
+
     participant_code = Column(String(5))
-    
+
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
     testim_running_walking_pref = Column(Integer)  # 0 if people prefer walking and 1 if people prefer running
@@ -24,8 +27,7 @@ class Users(Base):
     testim_sim_cluster_1 = Column(Float)  # Perceived similarity to people in cluster 1 based on 2 prototypes, ranges from -3 to 3
     testim_sim_cluster_3 = Column(Float)  # Perceived similarity to people in cluster 3 based on 2 prototypes, ranges from -3 to 3
 
-    # For goal-setting dialog, quit date and long-term goal pa
-    quit_date = Column(Date)
+    # For goal-setting dialog, long-term goal pa
     long_term_pa_goal = Column(String)
 
     # For final evaluation
@@ -44,7 +46,7 @@ class Users(Base):
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
     step_counts = relationship("StepCounts", back_populates="user")
     
-    
+
 class Testimonials(Base):
     __tablename__ = "testimonials"
     testimonial_id = Column(Integer, primary_key=True)
@@ -55,6 +57,7 @@ class Testimonials(Base):
     part_of_cluster1 = Column(Boolean)
     part_of_cluster3 = Column(Boolean)
 
+
 class StepCounts(Base):
     __tablename__ = "step_counts"
     step_count_id = Column(Integer, primary_key=True)
@@ -63,6 +66,7 @@ class StepCounts(Base):
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     user = relationship("Users", back_populates="step_counts")
+
 
 class DialogClosedAnswers(Base):
     __tablename__ = 'dialog_closed_answers'
@@ -146,6 +150,7 @@ class InterventionActivitiesPerformed(Base):
     user = relationship("Users", back_populates="intervention_activities_performed")
     intervention_activity = relationship("InterventionActivity")
 
+
 class InterventionPhases(Base):
     __tablename__ = 'intervention_phases'
     phase_id = Column(Integer, primary_key=True, autoincrement=True)
@@ -166,7 +171,7 @@ class UserInterventionState(Base):
     intervention_phase_id = Column(Integer, ForeignKey('intervention_phases.phase_id'))
     intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
     completed = Column(Boolean)
-    last_time = Column(TIMESTAMP(timezone=True), default=func.now())
+    last_time = Column(TIMESTAMP(timezone=True), default=func.now(), nullable=True)
     last_part = Column(Integer)
     next_planned_date = Column(DateTime(timezone=True), nullable=True)
     task_uuid = Column(String(36), nullable=True)
@@ -175,3 +180,15 @@ class UserInterventionState(Base):
     phase = relationship("InterventionPhases")
     intervention_component = relationship("InterventionComponents")
 
+
+class UserStateMachine(Base):
+    __tablename__ = 'user_state_machine'
+    state_machine_id = Column(Integer, primary_key=True, autoincrement=True)
+    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
+    state = Column(String)
+    dialog_running = Column(Boolean)
+    dialog_start_time = Column(DateTime(timezone=True), default=func.now())
+    intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
+
+    user = relationship("Users")
+    intervention_component = relationship("InterventionComponents")
