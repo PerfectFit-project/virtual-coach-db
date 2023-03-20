@@ -18,6 +18,8 @@ class Users(Base):
     quit_date = Column(Date, nullable=True)
     execution_week = Column(Integer, default=0, nullable=True)
 
+    participant_code = Column(String(5))
+
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
     testim_running_walking_pref = Column(Integer)  # 0 if people prefer walking and 1 if people prefer running
@@ -27,12 +29,19 @@ class Users(Base):
 
     # For goal-setting dialog, long-term goal pa
     long_term_pa_goal = Column(String)
+
+    # For final evaluation
+    pf_evaluation_grade = Column(Integer)
+    pf_evaluation_comment = Column(String)
+    
+    # Timing preferences for intervention
+    week_days = Column(String(13))
+    preferred_time = Column(TIMESTAMP(timezone=True))
     
     # Refer to relationships
     dialog_closed_answers = relationship('DialogClosedAnswers')
     dialog_open_answers = relationship('DialogOpenAnswers')
     user_intervention_state = relationship("UserInterventionState", back_populates="user")
-    user_preferences = relationship("UserPreferences", back_populates="user")
     first_aid_kit = relationship("FirstAidKit", back_populates="user")
     intervention_activities_performed = relationship("InterventionActivitiesPerformed", back_populates="user")
     step_counts = relationship("StepCounts", back_populates="user")
@@ -48,6 +57,7 @@ class Testimonials(Base):
     part_of_cluster1 = Column(Boolean)
     part_of_cluster3 = Column(Boolean)
 
+
 class StepCounts(Base):
     __tablename__ = "step_counts"
     step_count_id = Column(Integer, primary_key=True)
@@ -56,6 +66,7 @@ class StepCounts(Base):
     datetime = Column(TIMESTAMP(timezone=True), default=func.now())
 
     user = relationship("Users", back_populates="step_counts")
+
 
 class DialogClosedAnswers(Base):
     __tablename__ = 'dialog_closed_answers'
@@ -167,19 +178,6 @@ class UserInterventionState(Base):
 
     user = relationship("Users", back_populates="user_intervention_state")
     phase = relationship("InterventionPhases")
-    intervention_component = relationship("InterventionComponents")
-
-
-class UserPreferences(Base):
-    __tablename__ = 'user_preferences'
-    user_preferences_id = Column(Integer, primary_key=True, autoincrement=True)
-    users_nicedayuid = Column(Integer, ForeignKey('users.nicedayuid'))
-    intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
-    recursive = Column(Boolean)
-    week_days = Column(String(13))
-    preferred_time = Column(TIMESTAMP(timezone=True))
-
-    user = relationship("Users")
     intervention_component = relationship("InterventionComponents")
 
 

@@ -55,6 +55,8 @@ class ComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_RELAPSE = 'EXTERNAL_relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
     FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
+    DELAYED_MSG_LAPSE = 'EXTERNAL_delayed_message_smoke_lapse'
+    DELAYED_MSG_SMOKE = 'EXTERNAL_delayed_message_smoke'
     CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
     RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
