@@ -1,90 +1,414 @@
 [
    {
-      "resource_id":1,
+      "resource_id":111,
+      "always_available":true
+   },
+   {
+      "resource_id":21,
       "always_available":false,
       "phases":[
          {
-            "phase":"Onboarding",
-            "always_available":false,
-            "time_unit":"weeks",
-            "available":[
-               1
-            ],
-            "mandatory":[
-               1
-            ]
+            "phase":"Tracking",
+            "always_available":true
          },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":33,
+      "always_available":false,
+      "phases":[
          {
             "phase":"Tracking",
             "always_available":false,
+            "time_unit":"days",
+            "available":[
+               2, 3, 4, 5, 6, 7
+            ]
+         },
+         {
+            "phase":"Buffer",
+            "always_available":false,
             "time_unit":"weeks",
             "available":[
+               3
+            ]
+         },
+         {
+            "phase":"Execution run",
+            "always_available":false,
+            "time_unit":"weeks",
+            "available":[
+               2, 4, 7, 10
+            ]
+         }
+      ]
+   },
+   {
+      "resource_id":35,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Execution run",
+            "always_available":false,
+            "time_unit":"weeks",
+            "available":[
+               4, 5, 6, 7, 8, 9, 10, 11, 12
+            ]
+         }
+      ]
+   },
+   {
+      "resource_id":310,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":2501,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Execution run",
+            "always_available":false,
+            "time_unit":"weeks",
+            "available":[
+               2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+            ],
+            "mandatory":[
                2
-            ],
-            "mandatory":[
-
             ]
          }
       ]
    },
    {
-      "resource_id":2,
+      "resource_id":2502,
       "always_available":false,
       "phases":[
          {
-            "phase":"Onboarding",
-            "always_available":false,
-            "time_unit":"weeks",
-            "available":[
-               3
-            ],
-            "mandatory":[
-
-            ]
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
          },
          {
             "phase":"Buffer",
-            "always_available":false,
-            "time_unit":"weeks",
-            "available":[
-               4
-            ],
-            "mandatory":[
-
-            ]
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
          }
       ]
    },
    {
-      "resource_id":3,
+      "resource_id":2503,
       "always_available":false,
       "phases":[
          {
-            "phase":"Onboarding",
-            "always_available":false,
-            "time_unit":"weeks",
-            "available":[
-               3
-            ],
-            "mandatory":[
-               3
-            ]
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
          },
          {
             "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":2504,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":2505,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":2506,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":37,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Execution run",
             "always_available":false,
             "time_unit":"weeks",
             "available":[
-               4
-            ],
-            "mandatory":[
-
+               1, 2, 3, 4, 5
             ]
          }
       ]
    },
    {
-      "resource_id":4,
+      "resource_id":26,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":27,
       "always_available":true
+   },
+   {
+      "resource_id":28,
+      "always_available":true
+   },
+   {
+      "resource_id":32,
+      "always_available":true
+   },
+   {
+      "resource_id":34,
+      "always_available":true
+   },
+   {
+      "resource_id":24,
+      "always_available":true
+   },
+   {
+      "resource_id":29,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":false,
+            "time_unit":"days",
+            "available":[
+               7, 8, 9
+            ],
+            "mandatory":[
+               7
+            ]
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":210,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         },
+         {
+            "phase":"Relapse",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":23,
+      "always_available":true
+   },
+   {
+      "resource_id":22,
+      "always_available":true,
+      "phases":[
+         {
+            "phase":"Buffer",
+            "always_available":false,
+            "time_unit":"days",
+            "available":[
+               14, 15, 16, 17, 18, 19, 20, 21
+            ],
+            "mandatory":[
+               7
+            ]
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true,
+            "mandatory":[
+               1
+            ]
+         },
+         {
+            "phase":"Relapse",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":211,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":212,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
+   },
+   {
+      "resource_id":39,
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
    }
 ]
