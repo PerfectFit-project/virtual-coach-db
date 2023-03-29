@@ -20,6 +20,7 @@ class Components(str, Enum):
     FIRST_AID_KIT_VIDEO = 'first_aid_kit_video'
     EXECUTION_INTRODUCTION = 'execution_introduction'
     GENERAL_ACTIVITY = 'general_activity'
+    RESCHEDULE_ACTIVITY = 'reschedule_activity'
     WEEKLY_REFLECTION = 'weekly_reflection'
     DAILY_REFLECTION = 'daily_reflection'
     RELAPSE_DIALOG = 'relapse_dialog'
@@ -129,4 +130,5 @@ class VideoLinks(str, Enum):
 
 """Dictionary for the expected time interval of the dialog"""
 DialogExpectedDuration = {Components.PROFILE_CREATION: "1 6",
-                          Components.MEDICATION_TALK: "4 9"}
+                          Components.MEDICATION_TALK: "4 9",
+                          Components.GENERAL_ACTIVITY: "5 10"}
