@@ -6,18 +6,17 @@ from dateutil import tz
 
 from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
                              FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
-                             StepCounts)
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials,
+                             StepCounts, UserStateMachine)
 from helper.helper_functions import get_db_session
-from helper.definitions import (Phases, PreparationInterventionComponents, PreparationInterventionComponentsTriggers,
-                                ExecutionInterventionComponents, ExecutionInterventionComponentsTriggers,
-                                DialogQuestionsEnum)
-
+from helper.definitions import (Phases, Components, ComponentsTriggers,
+                                DialogQuestionsEnum, Notifications, NotificationsTriggers)
 
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv', testimonials_file_path='../utils/testimonials_with_user_data.csv'):
+def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv',
+                               testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
     Populate the database with test data. Update data if it already exists.
     """
@@ -28,11 +27,11 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
     # Fill closed answers table
     objects_closed_answers = initialize_closed_anwers()
     [session.merge(obj) for obj in objects_closed_answers]
-    
+
     # Fill in intervention activities (placeholder activities for now)
     objects_intervention_activities = initialize_activities(activities_file_path)
     [session.merge(obj) for obj in objects_intervention_activities]
-    
+
     # Fill in testimonials (to be shown in goal-setting dialog)
     objects_testimonials = initialize_testimonials(testimonials_file_path)
     [session.merge(obj) for obj in objects_testimonials]
@@ -42,6 +41,9 @@ def populate_db_with_test_data(session, test_user_id, activities_file_path='../u
 
     objects_execution_components = initialize_execution_components_table()
     [session.merge(obj) for obj in objects_execution_components]
+
+    objects_notification_components = initialize_notifications_components_table()
+    [session.merge(obj) for obj in objects_notification_components]
 
     objects_phases = initialize_phases_table()
     [session.merge(obj) for obj in objects_phases]
@@ -190,8 +192,9 @@ def initialize_closed_anwers():
                                                                                 'Met vrienden of famillie',
                                                                                 'Met kenissen', 'Met collega`s',
                                                                                 'Met andere rokers']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = ['je gepland had om te bewegen, maar dit nu niet lukt',
-                                                                            'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = [
+        'je gepland had om te bewegen, maar dit nu niet lukt',
+        'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value] = ['Ja', 'Nee']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin', 'Moe en geen energie',
                                                                           'Geen tijd', 'Er is iets tussen gekomen',
@@ -224,9 +227,8 @@ def initialize_closed_anwers():
                                                                       "Consensus",
                                                                       "No persuasion"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["-1", "0", "1", "2", "3", "4", "5"]
-    
 
-    data = [ClosedAnswers(closed_answers_id=q*100+i,
+    data = [ClosedAnswers(closed_answers_id=q * 100 + i,
                           question_id=q,
                           answer_value=i,
                           answer_description=a)
@@ -264,18 +266,26 @@ def initialize_testimonials(testimonials_file_path):
 
 def initialize_preparation_components_table():
     data = [
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PROFILE_CREATION.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PROFILE_CREATION.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.MEDICATION_TALK.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.MEDICATION_TALK.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.COLD_TURKEY.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.COLD_TURKEY.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.PLAN_QUIT_START_DATE.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.PLAN_QUIT_START_DATE.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.FUTURE_SELF.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.FUTURE_SELF.value),
-        InterventionComponents(intervention_component_name=PreparationInterventionComponents.GOAL_SETTING.value,
-                               intervention_component_trigger=PreparationInterventionComponentsTriggers.GOAL_SETTING.value)
+        InterventionComponents(intervention_component_name=Components.PREPARATION_INTRODUCTION.value,
+                               intervention_component_trigger=ComponentsTriggers.PREPARATION_INTRODUCTION.value),
+        InterventionComponents(intervention_component_name=Components.PROFILE_CREATION.value,
+                               intervention_component_trigger=ComponentsTriggers.PROFILE_CREATION.value),
+        InterventionComponents(intervention_component_name=Components.MEDICATION_TALK.value,
+                               intervention_component_trigger=ComponentsTriggers.MEDICATION_TALK.value),
+        InterventionComponents(intervention_component_name=Components.TRACK_BEHAVIOR.value,
+                               intervention_component_trigger=ComponentsTriggers.TRACK_BEHAVIOR.value),
+        InterventionComponents(intervention_component_name=Components.COLD_TURKEY.value,
+                               intervention_component_trigger=ComponentsTriggers.COLD_TURKEY.value),
+        InterventionComponents(intervention_component_name=Components.PLAN_QUIT_START_DATE.value,
+                               intervention_component_trigger=ComponentsTriggers.PLAN_QUIT_START_DATE.value),
+        InterventionComponents(intervention_component_name=Components.FUTURE_SELF_LONG.value,
+                               intervention_component_trigger=ComponentsTriggers.FUTURE_SELF_LONG.value),
+        InterventionComponents(intervention_component_name=Components.FUTURE_SELF_SHORT.value,
+                               intervention_component_trigger=ComponentsTriggers.FUTURE_SELF_SHORT.value),
+        InterventionComponents(intervention_component_name=Components.GOAL_SETTING.value,
+                               intervention_component_trigger=ComponentsTriggers.GOAL_SETTING.value),
+        InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT_VIDEO.value,
+                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT_VIDEO.value)
     ]
 
     return data
@@ -283,24 +293,43 @@ def initialize_preparation_components_table():
 
 def initialize_execution_components_table():
     data = [
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.EXECUTION_INTRODUCTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.EXECUTION_INTRODUCTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.GENERAL_ACTIVITY.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.GENERAL_ACTIVITY.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.WEEKLY_REFLECTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.WEEKLY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.DAILY_REFLECTION.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.DAILY_REFLECTION.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_HRS.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_HRS.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_LAPSE.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_RELAPSE.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
-        InterventionComponents(intervention_component_name=ExecutionInterventionComponents.RELAPSE_DIALOG_PA.value,
-                               intervention_component_trigger=ExecutionInterventionComponentsTriggers.RELAPSE_DIALOG_PA.value)
+        InterventionComponents(intervention_component_name=Components.EXECUTION_INTRODUCTION.value,
+                               intervention_component_trigger=ComponentsTriggers.EXECUTION_INTRODUCTION.value),
+        InterventionComponents(intervention_component_name=Components.GENERAL_ACTIVITY.value,
+                               intervention_component_trigger=ComponentsTriggers.GENERAL_ACTIVITY.value),
+        InterventionComponents(intervention_component_name=Components.WEEKLY_REFLECTION.value,
+                               intervention_component_trigger=ComponentsTriggers.WEEKLY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=Components.DAILY_REFLECTION.value,
+                               intervention_component_trigger=ComponentsTriggers.DAILY_REFLECTION.value),
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG.value,
+                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG.value),
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_HRS.value,
+                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_HRS.value),
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_LAPSE.value,
+                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_LAPSE.value),
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_RELAPSE.value,
+                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_RELAPSE.value),
+        InterventionComponents(intervention_component_name=Components.RELAPSE_DIALOG_PA.value,
+                               intervention_component_trigger=ComponentsTriggers.RELAPSE_DIALOG_PA.value),
+        InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT.value,
+                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT.value),
+        InterventionComponents(intervention_component_name=Components.CLOSING_DIALOG.value,
+                               intervention_component_trigger=ComponentsTriggers.CLOSING_DIALOG.value)
+    ]
+
+    return data
+
+
+def initialize_notifications_components_table():
+    data = [
+        InterventionComponents(intervention_component_name=Notifications.BEFORE_QUIT_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.BEFORE_QUIT_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.PA_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.PA_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value)
     ]
 
     return data
@@ -321,14 +350,22 @@ def create_test_data(user_id: int):
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
               location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
               testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
-              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3),
+              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3, week_days='1,2,3,4,5,6,7',
+              preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3)), participant_code='E3R4Z',
+              quit_date=date.today()+timedelta(days=11)),
 
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl), activity_rating=1),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl), activity_rating=2),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=3, datetime=datetime.now().astimezone(tz_nl), activity_rating=3),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=4, datetime=datetime.now().astimezone(tz_nl), activity_rating=4),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=5, datetime=datetime.now().astimezone(tz_nl), activity_rating=5),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=6, datetime=datetime.now().astimezone(tz_nl), activity_rating=6),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=1),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=2),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=3, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=3),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=4, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=4),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=5, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=5),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=6, datetime=datetime.now().astimezone(tz_nl),
+                    activity_rating=6),
 
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ', question_id=1,
                           datetime=datetime.now().astimezone(tz_nl)),
@@ -343,29 +380,19 @@ def create_test_data(user_id: int):
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed', question_id=3,
                           datetime=datetime.now().astimezone(tz_nl)),
         DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=803, datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401, datetime=datetime.now().astimezone(tz_nl)),
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401,
+                            datetime=datetime.now().astimezone(tz_nl)),
         UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
                               completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
 
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=5,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=7,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=4))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=8,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=5))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=9,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=6))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=10,
-                        recursive=True, week_days='1,2,3,4,5,6,7',
-                        preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=7))),
-
         InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
 
-        StepCounts(users_nicedayuid=user_id, value = 5)
+        StepCounts(users_nicedayuid=user_id, value=5),
+
+        UserStateMachine(users_nicedayuid=user_id,
+                         state='Onboarding',
+                         dialog_running=False,
+                         intervention_component_id=1)
     ]
 
     return data
