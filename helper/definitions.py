@@ -35,17 +35,17 @@ class Components(str, Enum):
 
 
 class ComponentsTriggers(str, Enum):
-    PREPARATION_INTRODUCTION = 'EXTERNAL_trigger_preparation_introduction'
+    PREPARATION_INTRODUCTION = 'EXTERNAL_trigger_preparation_introduction_video'
     PROFILE_CREATION = 'EXTERNAL_trigger_profile_creation'
-    MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk'
-    TRACK_BEHAVIOR = 'EXTERNAL_trigger_track_behavior'
+    MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk_video'
+    TRACK_BEHAVIOR = 'EXTERNAL_trigger_track_behavior_video'
     COLD_TURKEY = 'EXTERNAL_trigger_cold_turkey'
     PLAN_QUIT_START_DATE = 'EXTERNAL_trigger_plan_quit_start'
-    FUTURE_SELF_LONG = 'EXTERNAL_trigger_future_self_long'
-    FUTURE_SELF_SHORT = 'EXTERNAL_trigger_future_self_short'
+    FUTURE_SELF_LONG = 'EXTERNAL_trigger_future_self_long_video'
+    FUTURE_SELF_SHORT = 'EXTERNAL_trigger_future_self_short_video'
     GOAL_SETTING = 'EXTERNAL_trigger_goal_setting'
     FIRST_AID_KIT_VIDEO = 'EXTERNAL_first_aid_kit_video'
-    EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction'
+    EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction_video'
     GENERAL_ACTIVITY = 'EXTERNAL_trigger_general_activity'
     WEEKLY_REFLECTION = 'EXTERNAL_weekly_reflection'
     DAILY_REFLECTION = 'EXTERNAL_daily_reflection'
