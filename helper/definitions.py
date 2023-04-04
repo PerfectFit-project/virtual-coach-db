@@ -129,7 +129,9 @@ class VideoLinks(str, Enum):
     TRACKING_BEHAVIORS = "tracking behaviors"
 
 
-"""Dictionary for the expected time interval of the dialog"""
+"""Dictionary for the expected time interval of the dialog. For each dialog,
+the first number indicates the minimum expected completion time,
+the second number indicated the maximum expected completion time """
 DialogExpectedDuration = {Components.PREPARATION_INTRODUCTION: (1, 6),
                           Components.PROFILE_CREATION: (2, 3),
                           Components.MEDICATION_TALK: (4, 9),
