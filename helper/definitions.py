@@ -29,20 +29,23 @@ class Components(str, Enum):
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
     FIRST_AID_KIT = 'get_first_aid_kit'
     CLOSING_DIALOG = 'closing_dialog'
+    RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'
+    WATCH_VIDEO = 'watch_video_dialog'
+    DONE_VIDEO = 'done_with_video'
 
 
 class ComponentsTriggers(str, Enum):
-    PREPARATION_INTRODUCTION = 'EXTERNAL_trigger_preparation_introduction'
+    PREPARATION_INTRODUCTION = 'EXTERNAL_trigger_preparation_introduction_video'
     PROFILE_CREATION = 'EXTERNAL_trigger_profile_creation'
-    MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk'
-    TRACK_BEHAVIOR = 'EXTERNAL_trigger_track_behavior'
+    MEDICATION_TALK = 'EXTERNAL_trigger_medication_talk_video'
+    TRACK_BEHAVIOR = 'EXTERNAL_trigger_track_behavior_video'
     COLD_TURKEY = 'EXTERNAL_trigger_cold_turkey'
     PLAN_QUIT_START_DATE = 'EXTERNAL_trigger_plan_quit_start'
-    FUTURE_SELF_LONG = 'EXTERNAL_trigger_future_self_long'
-    FUTURE_SELF_SHORT = 'EXTERNAL_trigger_future_self_short'
+    FUTURE_SELF_LONG = 'EXTERNAL_trigger_future_self_long_video'
+    FUTURE_SELF_SHORT = 'EXTERNAL_trigger_future_self_short_video'
     GOAL_SETTING = 'EXTERNAL_trigger_goal_setting'
     FIRST_AID_KIT_VIDEO = 'EXTERNAL_first_aid_kit_video'
-    EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction'
+    EXECUTION_INTRODUCTION = 'EXTERNAL_trigger_execution_introduction_video'
     GENERAL_ACTIVITY = 'EXTERNAL_trigger_general_activity'
     WEEKLY_REFLECTION = 'EXTERNAL_weekly_reflection'
     DAILY_REFLECTION = 'EXTERNAL_daily_reflection'
@@ -55,6 +58,9 @@ class ComponentsTriggers(str, Enum):
     DELAYED_MSG_LAPSE = 'EXTERNAL_delayed_message_smoke_lapse'
     DELAYED_MSG_SMOKE = 'EXTERNAL_delayed_message_smoke'
     CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
+    RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
+    WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
+    DONE_VIDEO = 'EXTERNAL_done_with_video'
 
 
 class Notifications(str, Enum):
@@ -113,17 +119,21 @@ class DialogQuestionsEnum(Enum):
 
 
 class VideoLinks(str, Enum):
-    # TODO: substitute the links with the actual one
-    BACK_TO_NICEDAY = "back to niceday"
-    FIRST_AID_KIT = "first aid kit"
+    # TODO: substitute the links with the actual ones
+    FIRST_AID_KIT = "https://video.leidenuniv.nl/media/t/1_p2wvnkdf"
     FUTURE_SELF_LONG = 'future self long'
     FUTURE_SELF_SHORT = 'future self short'
-    INTRO_EXECUTION_VIDEO = "Intro execution video"
-    INTRO_PREPARATION_VIDEO = "preparation link"
-    MEDICATION_VIDEO = "https://www.youtube.com/watch?v=59JaTljpjCk"
+    INTRO_EXECUTION_VIDEO = "https://video.leidenuniv.nl/media/t/1_pupwgup1"
+    INTRO_PREPARATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_hueym3k9"
+    MEDICATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_uu7estu1 "
     TRACKING_BEHAVIORS = "tracking behaviors"
 
 
-"""Dictionary for the expected time interval of the dialog"""
-DialogExpectedDuration = {Components.PROFILE_CREATION: "1 6",
-                          Components.MEDICATION_TALK: "4 9"}
+"""Dictionary for the expected time interval of the dialog. For each dialog,
+the first number indicates the minimum expected completion time,
+the second number indicated the maximum expected completion time """
+DialogExpectedDuration = {Components.PREPARATION_INTRODUCTION: (1, 6),
+                          Components.PROFILE_CREATION: (2, 3),
+                          Components.MEDICATION_TALK: (4, 9),
+                          Components.TRACK_BEHAVIOR: (5, 7),
+                          Components.FUTURE_SELF_LONG: (5, 10)}
