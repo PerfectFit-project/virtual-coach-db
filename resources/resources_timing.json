@@ -1,10 +1,12 @@
 [
    {
       "resource_id":111,
+      "category": "self-related",
       "always_available":true
    },
    {
       "resource_id":21,
+      "category": "self-related",
       "always_available":false,
       "phases":[
          {
@@ -27,6 +29,7 @@
    },
    {
       "resource_id":33,
+      "category": "self-related",
       "always_available":false,
       "phases":[
          {
@@ -57,6 +60,7 @@
    },
    {
       "resource_id":35,
+      "category": "self-related",
       "always_available":false,
       "phases":[
          {
@@ -71,6 +75,7 @@
    },
    {
       "resource_id":310,
+      "category": "self-related",
       "always_available":false,
       "phases":[
          {
@@ -93,6 +98,7 @@
    },
    {
       "resource_id":2501,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -110,6 +116,7 @@
    },
    {
       "resource_id":2502,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -132,6 +139,7 @@
    },
    {
       "resource_id":2503,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -154,6 +162,7 @@
    },
    {
       "resource_id":2504,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -176,6 +185,7 @@
    },
    {
       "resource_id":2505,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -198,6 +208,7 @@
    },
    {
       "resource_id":2506,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -220,6 +231,7 @@
    },
    {
       "resource_id":37,
+      "category": "educational",
       "always_available":false,
       "phases":[
          {
@@ -234,6 +246,7 @@
    },
    {
       "resource_id":26,
+      "category": "motivational",
       "always_available":false,
       "phases":[
          {
@@ -252,26 +265,32 @@
    },
    {
       "resource_id":27,
+      "category": "motivational",
       "always_available":true
    },
    {
       "resource_id":28,
+      "category": "motivational",
       "always_available":true
    },
    {
       "resource_id":32,
+      "category": "motivational",
       "always_available":true
    },
    {
       "resource_id":34,
+      "category": "motivational",
       "always_available":true
    },
    {
       "resource_id":24,
+      "category": "motivational",
       "always_available":true
    },
    {
       "resource_id":29,
+      "category": "practical",
       "always_available":false,
       "phases":[
          {
@@ -301,6 +320,7 @@
    },
    {
       "resource_id":210,
+      "category": "practical",
       "always_available":false,
       "phases":[
          {
@@ -323,10 +343,12 @@
    },
    {
       "resource_id":23,
+      "category": "practical",
       "always_available":true
    },
    {
       "resource_id":22,
+      "category": "practical",
       "always_available":true,
       "phases":[
          {
@@ -355,6 +377,7 @@
    },
    {
       "resource_id":211,
+      "category": "reinforcement",
       "always_available":false,
       "phases":[
          {
@@ -373,6 +396,7 @@
    },
    {
       "resource_id":212,
+      "category": "reinforcement",
       "always_available":false,
       "phases":[
          {
@@ -395,6 +419,7 @@
    },
    {
       "resource_id":39,
+      "category": "reinforcement",
       "always_available":false,
       "phases":[
          {
