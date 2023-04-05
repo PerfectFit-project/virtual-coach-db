@@ -132,8 +132,9 @@ class VideoLinks(str, Enum):
 """Dictionary for the expected time interval of the dialog. For each dialog,
 the first number indicates the minimum expected completion time,
 the second number indicated the maximum expected completion time """
-DialogExpectedDuration = {Components.PREPARATION_INTRODUCTION: (1, 6),
-                          Components.PROFILE_CREATION: (2, 3),
+DialogExpectedDuration = {Components.FUTURE_SELF_LONG: (5, 10),
+                          Components.GENERAL_ACTIVITY: (6, 10),
                           Components.MEDICATION_TALK: (4, 9),
-                          Components.TRACK_BEHAVIOR: (5, 7),
-                          Components.FUTURE_SELF_LONG: (5, 10)}
+                          Components.PREPARATION_INTRODUCTION: (1, 6),
+                          Components.PROFILE_CREATION: (2, 3),
+                          Components.TRACK_BEHAVIOR: (5, 7)}
