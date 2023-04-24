@@ -349,7 +349,7 @@
    {
       "resource_id":22,
       "category": "practical",
-      "always_available":true,
+      "always_available":false,
       "phases":[
          {
             "phase":"Buffer",
@@ -357,9 +357,6 @@
             "time_unit":"days",
             "available":[
                14, 15, 16, 17, 18, 19, 20, 21
-            ],
-            "mandatory":[
-               7
             ]
          },
          {
