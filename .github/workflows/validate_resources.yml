@@ -1,0 +1,20 @@
+name: Validate resources
+
+on:
+  # Trigger validation of the timing resources json file
+  push:
+    branches:
+      - main
+  pull_request:
+      types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Validate JSON
+        uses: docker://orrosenblatt/validate-json-action:latest
+        env:
+          INPUT_SCHEMA: ./test/schema.json
+          INPUT_JSONS: ./resources/resources_timing.json
