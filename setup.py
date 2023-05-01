@@ -13,6 +13,7 @@ setup(
         'virtual_coach_db.dbschema': './dbschema'
     },
     include_package_data=True,
+    package_data={'': ['../resources/resources_timing.json']},
     description="Virtual Coach database python package",
     classifiers=[
         "Programming Language :: Python :: 3",
