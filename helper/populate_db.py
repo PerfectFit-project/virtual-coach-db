@@ -134,7 +134,9 @@ def initialize_questions():
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_TYPE.value,
                         question_description='persuasion - activity - chosen persuasion type'),
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value,
-                        question_description='persuasion - activity - persuasive message index')
+                        question_description='persuasion - activity - persuasive message index'),
+        DialogQuestions(question_id=DialogQuestionsEnum.GOAL_SETTING_CHOSEN_SPORT.value,
+                        question_description='goal-setting dialog chosen sport')            
     ]
 
     return data
