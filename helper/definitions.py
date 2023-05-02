@@ -125,8 +125,8 @@ class VideoLinks(str, Enum):
     FUTURE_SELF_SHORT = 'future self short'
     INTRO_EXECUTION_VIDEO = "https://video.leidenuniv.nl/media/t/1_pupwgup1"
     INTRO_PREPARATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_hueym3k9"
-    MEDICATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_uu7estu1 "
-    TRACKING_BEHAVIORS = "tracking behaviors"
+    MEDICATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_uu7estu1"
+    TRACKING_BEHAVIORS = "https://video.leidenuniv.nl/media/t/1_q3ub2axv"
 
 
 """Dictionary for the expected time interval of the dialog. For each dialog,
