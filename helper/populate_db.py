@@ -389,7 +389,8 @@ def create_test_data(user_id: int):
               testim_sim_cluster_1=-2, testim_sim_cluster_3=3, week_days='1,2,3,4,5,6,7',
               preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3)),
               participant_code='E3R4Z',
-              quit_date=date.today() + timedelta(days=11)),
+              quit_date=date.today() + timedelta(days=11),
+              goal_setting_chosen_sport="tennissen"),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=28,
                     datetime=datetime.now().astimezone(tz_nl),
