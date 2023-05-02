@@ -116,7 +116,6 @@ class DialogQuestionsEnum(Enum):
     PERSUASION_EFFORT = 36  # How much effort people spent on an activity
     PERSUASION_TYPE = 37  # The persuasion type chosen based on the persuasion algorithm
     PERSUASION_MESSAGE_INDEX = 38  # The index of the persuasive message for the given persuasion type. -1 if "No persuasion."
-    GOAL_SETTING_CHOSEN_SPORT = 39  # Sport chosen in goal-setting dialog
 
 
 class VideoLinks(str, Enum):
