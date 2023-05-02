@@ -32,6 +32,7 @@ class Components(str, Enum):
     RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'
     WATCH_VIDEO = 'watch_video_dialog'
     DONE_VIDEO = 'done_with_video'
+    CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
 
 
 class ComponentsTriggers(str, Enum):
