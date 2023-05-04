@@ -96,7 +96,5 @@ def create_test_data(user_id: int):
 
 
 if __name__ == "__main__":
-    print("starting")
     user_id = int(sys.argv[1])
-    print(user_id)
     create_user_data(user_id)
