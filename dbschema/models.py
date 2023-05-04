@@ -29,6 +29,8 @@ class Users(Base):
 
     # For goal-setting dialog, long-term goal pa
     long_term_pa_goal = Column(String)
+    # Chosen sport in goal-setting dialog
+    goal_setting_chosen_sport = Column(String)
 
     # For final evaluation
     pf_evaluation_grade = Column(Integer)
