@@ -1,5 +1,5 @@
 from sqlalchemy import (Column, Date, ForeignKey, Integer, Float,
-                        String, Boolean, TIMESTAMP, DateTime, func)
+                        String, Boolean, TIMESTAMP, DateTime, func, CheckConstraint)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -33,7 +33,10 @@ class Users(Base):
     # For final evaluation
     pf_evaluation_grade = Column(Integer)
     pf_evaluation_comment = Column(String)
-    
+
+    # physical activity group
+    pa_group = Column(Integer, CheckConstraint("pa_group==1 OR pa_group==2"), nullable=True, )
+
     # Timing preferences for intervention
     week_days = Column(String(13))
     preferred_time = Column(TIMESTAMP(timezone=True))
