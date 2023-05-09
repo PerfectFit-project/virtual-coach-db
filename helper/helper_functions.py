@@ -1,3 +1,5 @@
+import json
+import importlib_resources
 import sys
 
 from sqlalchemy import MetaData, create_engine
@@ -38,3 +40,13 @@ def get_db_session(db_url=DB_URL_DEFAULT):
     session = session_maker()
 
     return session
+
+
+def get_timing():
+    string_json = importlib_resources.files('virtual_coach_db').joinpath(
+        'resources/resources_timing.json').read_text()
+
+    timing = json.loads(string_json)
+
+    return timing
+

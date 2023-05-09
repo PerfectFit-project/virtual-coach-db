@@ -1,0 +1,59 @@
+{
+    "type": "array",
+    "items": {"$ref": "#/$references/resource"},
+    "$references": {
+        "resource": {
+            "type": "object",
+            "properties": {
+                "resource_id": {"type": "number"},
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "self-related",
+                        "educational",
+                        "practical",
+                        "reinforcement",
+                        "motivational"
+                    ]
+                },
+                "always_available": {"type": "boolean"},
+                "phases": {
+                    "type": "array",
+                    "items": {"$ref": "#/$references/phase"}
+                }
+            },
+            "required": ["resource_id", "category", "always_available"]
+        },
+        "phase": {
+            "type": "object",
+            "properties": {
+                "phase": {
+                    "type": "string",
+                    "enum": [
+                        "Onboarding",
+                        "Tracking",
+                        "Goals setting",
+                        "Buffer",
+                        "Execution run",
+                        "Relapse",
+                        "Closing"
+                    ]
+                },
+                "always_available": {"type": "boolean"},
+                "time_unit": {
+                    "type": "string",
+                    "enum": ["days", "weeks"]
+                },
+                "available": {
+                    "type": "array",
+                    "items": {"type": "number"}
+                },
+                "mandatory": {
+                    "type": "array",
+                    "items": {"type": "number"}
+                }
+            },
+            "required": ["phase", "always_available"]
+        }
+    }
+}
