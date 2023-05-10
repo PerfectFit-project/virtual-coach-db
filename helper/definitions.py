@@ -55,9 +55,9 @@ class ComponentsTriggers(str, Enum):
     RELAPSE_DIALOG_LAPSE = 'EXTERNAL_relapse_dialog_lapse'
     RELAPSE_DIALOG_RELAPSE = 'EXTERNAL_relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'EXTERNAL_relapse_dialog_pa'
-    FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
     DELAYED_MSG_LAPSE = 'EXTERNAL_delayed_message_smoke_lapse'
     DELAYED_MSG_SMOKE = 'EXTERNAL_delayed_message_smoke'
+    FIRST_AID_KIT = 'CENTRAL_get_first_aid_kit'
     CLOSING_DIALOG = 'EXTERNAL_closing_dialog'
     RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
@@ -66,16 +66,21 @@ class ComponentsTriggers(str, Enum):
 
 class Notifications(str, Enum):
     BEFORE_QUIT_NOTIFICATION = 'before_quit_notification'
-    PA_NOTIFICATION = 'pa_notification'
+    PA_STEP_GOAL_NOTIFICATION = 'pa_step_goal_notification'
     QUIT_DATE_NOTIFICATION = 'quit_date_notification'
     TRACK_NOTIFICATION = 'track_notification'
+    FINISH_DIALOG_NOTIFICATION = 'finish_dialog_notification'
+    INACTIVE_USER_NOTIFICATION = 'inactive_user_notification'
 
 
 class NotificationsTriggers(str, Enum):
     BEFORE_QUIT_NOTIFICATION = 'EXTERNAL_before_quit_notification'
-    PA_NOTIFICATION = 'EXTERNAL_pa_notification'
+    PA_STEP_GOAL_NOTIFICATION = 'EXTERNAL_pa_step_goal_notification'
+    PA_INTENSITY_MINUTES_NOTIFICATION = 'EXTERNAL_pa_intensity_notification'
     QUIT_DATE_NOTIFICATION = 'EXTERNAL_quit_date_notification'
     TRACK_NOTIFICATION = 'EXTERNAL_trigger_track_notification'
+    FINISH_DIALOG_NOTIFICATION = 'EXTERNAL_finish_dialog_notification'
+    INACTIVE_USER_NOTIFICATION = 'EXTERNAL_inactive_user_notification'
 
 
 class DialogQuestionsEnum(Enum):

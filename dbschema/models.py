@@ -17,7 +17,6 @@ class Users(Base):
     start_date = Column(Date, default=func.current_date())
     quit_date = Column(Date, nullable=True)
     execution_week = Column(Integer, default=0, nullable=True)
-
     participant_code = Column(String(5))
 
     # For goal-setting dialog testimonial choice
@@ -29,12 +28,18 @@ class Users(Base):
 
     # For goal-setting dialog, long-term goal pa
     long_term_pa_goal = Column(String)
+
     # Chosen sport in goal-setting dialog
     goal_setting_chosen_sport = Column(String)
 
     # For final evaluation
     pf_evaluation_grade = Column(Integer)
     pf_evaluation_comment = Column(String)
+
+    # Variables related to PA
+    pa_steps_daily_goal = Column(Integer)
+    pa_intensity_minutes_weekly_goal = Column(Integer)
+    pa_intervention_group = Column(Integer)  # 1=steps, 2=intensity
     
     # Timing preferences for intervention
     week_days = Column(String(13))
