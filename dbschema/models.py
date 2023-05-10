@@ -39,6 +39,9 @@ class Users(Base):
     # physical activity group
     pa_group = Column(Integer, CheckConstraint("pa_group==1 OR pa_group==2"), nullable=True, )
 
+    # pa intensity minutes goal
+    pa_intensity_minutes_goal = Column(Integer, nullable=True, )
+
     # Timing preferences for intervention
     week_days = Column(String(13))
     preferred_time = Column(TIMESTAMP(timezone=True))
