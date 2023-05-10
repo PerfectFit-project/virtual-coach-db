@@ -40,7 +40,10 @@ class Users(Base):
     pa_group = Column(Integer, CheckConstraint("pa_group==1 OR pa_group==2"), nullable=True, )
 
     # pa intensity minutes goal
-    pa_intensity_minutes_goal = Column(Integer, nullable=True, )
+    pa_intensity_minutes_goal = Column(Integer)
+
+    # weekly steps goal
+    weekly_steps_goal = Column(Integer)
 
     # Timing preferences for intervention
     week_days = Column(String(13))
