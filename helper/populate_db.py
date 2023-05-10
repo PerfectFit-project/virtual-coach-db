@@ -4,9 +4,11 @@ import os
 from datetime import datetime, date, timedelta
 from dateutil import tz
 
-from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users, UserInterventionState,
-                             FirstAidKit, InterventionActivity, InterventionComponents, InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials, UserPreferences,
+from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users,
+                             UserInterventionState,
+                             FirstAidKit, InterventionActivity, InterventionComponents,
+                             InterventionPhases,
+                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials,
                              StepCounts, UserStateMachine)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
@@ -15,7 +17,8 @@ from helper.definitions import (Phases, Components, ComponentsTriggers,
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def populate_db_with_test_data(session, test_user_id, activities_file_path='../utils/activities.csv',
+def populate_db_with_test_data(session, test_user_id,
+                               activities_file_path='../utils/activities.csv',
                                testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
     Populate the database with test data. Update data if it already exists.
@@ -148,14 +151,21 @@ def initialize_closed_anwers():
                                                                                  'Net alcohol of koffie gedronken',
                                                                                  'Net wakker geworden',
                                                                                  'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Stress', 'Verdrietig', 'Boos',
-                                                                               'Verveeld', 'Honger', 'Bang of angstig',
-                                                                               'Blij', 'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WITH_WHOM.value] = ['Met partner', 'Alleen',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Stress',
+                                                                               'Verdrietig', 'Boos',
+                                                                               'Verveeld', 'Honger',
+                                                                               'Bang of angstig',
+                                                                               'Blij',
+                                                                               'Iets anders']
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WITH_WHOM.value] = ['Met partner',
+                                                                                'Alleen',
                                                                                 'Met vrienden of famillie',
-                                                                                'Met kenissen', 'Met collega`s',
+                                                                                'Met kenissen',
+                                                                                'Met collega`s',
                                                                                 'Met andere rokers']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_TYPE_SMOKE.value] = ['Sigaretten',
+                                                                               'e-sigaretten',
+                                                                               'shags',
                                                                                'iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WHAT_DOING.value] = ['Aan het werk',
                                                                                'Thuis bezig met klusjes of huishouden',
@@ -165,15 +175,21 @@ def initialize_closed_anwers():
                                                                                'Net alcohol of koffie gedronken',
                                                                                'Net wakker geworden',
                                                                                'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Schuldig',
+                                                                             'Vervelend',
+                                                                             'Verdrietig',
                                                                              'Je had het gevoel dat het niet zou lukken'
                                                                              ' om te stoppen met roken',
                                                                              'Opgelucht']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WITH_WHOM.value] = ['Met partner', 'Alleen',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WITH_WHOM.value] = ['Met partner',
+                                                                              'Alleen',
                                                                               'Met vrienden of famillie',
-                                                                              'Met kenissen', 'Met collega`s',
+                                                                              'Met kenissen',
+                                                                              'Met collega`s',
                                                                               'Met andere rokers']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value] = ['Sigaretten', 'e-sigaretten', 'shags',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_TYPE_SMOKE.value] = ['Sigaretten',
+                                                                                 'e-sigaretten',
+                                                                                 'shags',
                                                                                  'iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WHAT_DOING.value] = ['Aan het werk',
                                                                                  'Thuis bezig met klusjes of'
@@ -184,21 +200,28 @@ def initialize_closed_anwers():
                                                                                  'Net alcohol of koffie gedronken',
                                                                                  'Net wakker geworden',
                                                                                  'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Schuldig', 'Vervelend', 'Verdrietig',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Schuldig',
+                                                                               'Vervelend',
+                                                                               'Verdrietig',
                                                                                'Je had het gevoel dat het niet zou'
                                                                                ' lukken om te stoppen met roken',
                                                                                'Opgelucht']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WITH_WHOM.value] = ['Met partner', 'Alleen',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WITH_WHOM.value] = ['Met partner',
+                                                                                'Alleen',
                                                                                 'Met vrienden of famillie',
-                                                                                'Met kenissen', 'Met collega`s',
+                                                                                'Met kenissen',
+                                                                                'Met collega`s',
                                                                                 'Met andere rokers']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_SPECIFY_PA.value] = [
         'je gepland had om te bewegen, maar dit nu niet lukt',
         'je merkt dat het bewegen over het algemeen niet zo goed gaat als je zou willen']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_TOGETHER.value] = ['Ja', 'Nee']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin', 'Moe en geen energie',
-                                                                          'Geen tijd', 'Er is iets tussen gekomen',
-                                                                          'Ligt aan het weer', 'Ziek of geblesseerd',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_WHY_FAIL.value] = ['Geen zin',
+                                                                          'Moe en geen energie',
+                                                                          'Geen tijd',
+                                                                          'Er is iets tussen gekomen',
+                                                                          'Ligt aan het weer',
+                                                                          'Ziek of geblesseerd',
                                                                           'Iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_PA_DOING_TODAY.value] = ['Aan het werk',
                                                                              'Thuis bezig met klusjes of huishouden',
@@ -221,12 +244,14 @@ def initialize_closed_anwers():
                                                                       "Niet mee eens, niet mee oneens",
                                                                       "Mee eens",
                                                                       "Helemaal mee eens"]
-    answer_descriptions[DialogQuestionsEnum.PERSUASION_EFFORT.value] = ["0", "1", "2", "3", "4", "5",
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_EFFORT.value] = ["0", "1", "2", "3", "4",
+                                                                        "5",
                                                                         "6", "7", "8", "9", "10"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_TYPE.value] = ["Commitment",
                                                                       "Consensus",
                                                                       "No persuasion"]
-    answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["-1", "0", "1", "2", "3", "4", "5"]
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["-1", "0", "1", "2",
+                                                                               "3", "4", "5"]
 
     data = [ClosedAnswers(closed_answers_id=q * 100 + i,
                           question_id=q,
@@ -238,7 +263,8 @@ def initialize_closed_anwers():
 
 
 def initialize_activities(activities_file_path):
-    with open(activities_file_path, newline='') as csvfile:
+    print(activities_file_path)
+    with open(activities_file_path, encoding='utf-8-sig') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         data = [InterventionActivity(intervention_activity_id=int(row['activity_id']),
                                      intervention_activity_title=row['activity_title'],
@@ -266,8 +292,9 @@ def initialize_testimonials(testimonials_file_path):
 
 def initialize_preparation_components_table():
     data = [
-        InterventionComponents(intervention_component_name=Components.PREPARATION_INTRODUCTION.value,
-                               intervention_component_trigger=ComponentsTriggers.PREPARATION_INTRODUCTION.value),
+        InterventionComponents(
+            intervention_component_name=Components.PREPARATION_INTRODUCTION.value,
+            intervention_component_trigger=ComponentsTriggers.PREPARATION_INTRODUCTION.value),
         InterventionComponents(intervention_component_name=Components.PROFILE_CREATION.value,
                                intervention_component_trigger=ComponentsTriggers.PROFILE_CREATION.value),
         InterventionComponents(intervention_component_name=Components.MEDICATION_TALK.value,
@@ -285,7 +312,14 @@ def initialize_preparation_components_table():
         InterventionComponents(intervention_component_name=Components.GOAL_SETTING.value,
                                intervention_component_trigger=ComponentsTriggers.GOAL_SETTING.value),
         InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT_VIDEO.value,
-                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT_VIDEO.value)
+                               intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT_VIDEO.value),
+        InterventionComponents(
+            intervention_component_name=Components.RESCHEDULING_PREPARATION.value,
+            intervention_component_trigger=ComponentsTriggers.RESCHEDULING_PREPARATION.value),
+        InterventionComponents(intervention_component_name=Components.WATCH_VIDEO.value,
+                               intervention_component_trigger=ComponentsTriggers.WATCH_VIDEO.value),
+        InterventionComponents(intervention_component_name=Components.DONE_VIDEO.value,
+                               intervention_component_trigger=ComponentsTriggers.DONE_VIDEO.value)
     ]
 
     return data
@@ -322,12 +356,14 @@ def initialize_execution_components_table():
 
 def initialize_notifications_components_table():
     data = [
-        InterventionComponents(intervention_component_name=Notifications.BEFORE_QUIT_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.BEFORE_QUIT_NOTIFICATION.value),
+        InterventionComponents(
+            intervention_component_name=Notifications.BEFORE_QUIT_NOTIFICATION.value,
+            intervention_component_trigger=NotificationsTriggers.BEFORE_QUIT_NOTIFICATION.value),
         InterventionComponents(intervention_component_name=Notifications.PA_NOTIFICATION.value,
                                intervention_component_trigger=NotificationsTriggers.PA_NOTIFICATION.value),
-        InterventionComponents(intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
+        InterventionComponents(
+            intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
+            intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
         InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
                                intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value)
     ]
@@ -348,51 +384,62 @@ def initialize_phases_table():
 def create_test_data(user_id: int):
     data = [
         Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id, testim_godin_activity_level = 1,
-              testim_running_walking_pref = 1, testim_self_efficacy_pref = 40.44, 
-              testim_sim_cluster_1 = -2, testim_sim_cluster_3 = 3, week_days='1,2,3,4,5,6,7',
-              pa_steps_daily_goal=8200, pa_intensity_minutes_weekly_goal=70, pa_intervention_group=1,
-              preferred_time=(datetime.now().astimezone(tz_nl)+timedelta(minutes=3)), participant_code='E3R4Z'),
+              location='Eanske', nicedayuid=user_id, testim_godin_activity_level=1,
+              testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
+              testim_sim_cluster_1=-2, testim_sim_cluster_3=3, week_days='1,2,3,4,5,6,7',
+              preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3)),
+              participant_code='E3R4Z',
+              quit_date=date.today() + timedelta(days=11),
+              goal_setting_chosen_sport="tennissen"),
+              pa_steps_daily_goal=8200, pa_intensity_minutes_weekly_goal=70, pa_intervention_group=1),
 
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=1, datetime=datetime.now().astimezone(tz_nl),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=28,
+                    datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=1),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=2, datetime=datetime.now().astimezone(tz_nl),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=32,
+                    datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=2),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=3, datetime=datetime.now().astimezone(tz_nl),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=34,
+                    datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=3),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=4, datetime=datetime.now().astimezone(tz_nl),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=210,
+                    datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=4),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=5, datetime=datetime.now().astimezone(tz_nl),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=22,
+                    datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=5),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=6, datetime=datetime.now().astimezone(tz_nl),
+        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=23,
+                    datetime=datetime.now().astimezone(tz_nl),
                     activity_rating=6),
 
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ', question_id=1,
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ',
+                          question_id=1,
                           datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='onderdeel van mijn leven verslavend niet zo heel erg',
+        DialogOpenAnswers(users_nicedayuid=user_id,
+                          answer_value='onderdeel van mijn leven verslavend niet zo heel erg',
                           question_id=1, datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='stressvol straf lastig ', question_id=3,
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='stressvol straf lastig ',
+                          question_id=3,
                           datetime=datetime.now().astimezone(tz_nl)),
         DialogOpenAnswers(users_nicedayuid=user_id, answer_value='lastig', question_id=3,
                           datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid prettig', question_id=3,
+        DialogOpenAnswers(users_nicedayuid=user_id,
+                          answer_value='moet voor mijn gezondheid prettig', question_id=3,
                           datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed', question_id=3,
+        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed',
+                          question_id=3,
                           datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=803, datetime=datetime.now().astimezone(tz_nl)),
+        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=803,
+                            datetime=datetime.now().astimezone(tz_nl)),
         DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401,
                             datetime=datetime.now().astimezone(tz_nl)),
-        UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1, intervention_component_id=5,
-                              completed=False, last_time=datetime.now().astimezone(tz_nl), last_part=1),
+        UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1,
+                              intervention_component_id=5,
+                              completed=False, last_time=datetime.now().astimezone(tz_nl),
+                              last_part=1),
 
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=13,
-                        recursive=True, week_days='1',
-                        preferred_time=(datetime.now().astimezone(tz_nl))),
-        UserPreferences(users_nicedayuid=user_id, intervention_component_id=21,
-                        recursive=True, week_days='1',
-                        preferred_time=(datetime.now().astimezone(tz_nl))),
-
-        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=2, user_input='test input'),
+        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=28,
+                                        user_input='test input'),
 
         StepCounts(users_nicedayuid=user_id, value=5),
 
