@@ -359,13 +359,17 @@ def initialize_notifications_components_table():
         InterventionComponents(
             intervention_component_name=Notifications.BEFORE_QUIT_NOTIFICATION.value,
             intervention_component_trigger=NotificationsTriggers.BEFORE_QUIT_NOTIFICATION.value),
-        InterventionComponents(intervention_component_name=Notifications.PA_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.PA_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.PA_STEP_GOAL_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.PA_STEP_GOAL_NOTIFICATION.value),
         InterventionComponents(
             intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
             intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
         InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value)
+                               intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.FINISH_DIALOG_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.FINISH_DIALOG_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Notifications.INACTIVE_USER_NOTIFICATION.value,
+                               intervention_component_trigger=NotificationsTriggers.INACTIVE_USER_NOTIFICATION.value)
     ]
 
     return data
