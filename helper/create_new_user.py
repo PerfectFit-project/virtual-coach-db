@@ -34,7 +34,8 @@ def create_test_data(user_id: int):
               testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
               testim_sim_cluster_1=-2, testim_sim_cluster_3=3, week_days='1,2,3,4,5,6,7',
               preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3)),
-              quit_date=date.today() + timedelta(days=11)),
+              quit_date=date.today() + timedelta(days=11), pa_steps_daily_goal=8200,
+              pa_intensity_minutes_weekly_goal=70, pa_intervention_group=1),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=28,
                     datetime=datetime.now().astimezone(tz_nl),
