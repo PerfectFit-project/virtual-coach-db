@@ -390,7 +390,7 @@ def create_test_data(user_id: int):
               preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3)),
               participant_code='E3R4Z',
               quit_date=date.today() + timedelta(days=11),
-              goal_setting_chosen_sport="tennissen"),
+              goal_setting_chosen_sport="tennissen",
               pa_steps_daily_goal=8200, pa_intensity_minutes_weekly_goal=70, pa_intervention_group=1),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=28,
