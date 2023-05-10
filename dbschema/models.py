@@ -19,8 +19,6 @@ class Users(Base):
     execution_week = Column(Integer, default=0, nullable=True)
     participant_code = Column(String(5))
 
-    participant_code = Column(String(5))
-
     # For goal-setting dialog testimonial choice
     testim_godin_activity_level = Column(Integer)  # Goding leisure-time activity level (0, 1, 2)
     testim_running_walking_pref = Column(Integer)  # 0 if people prefer walking and 1 if people prefer running
