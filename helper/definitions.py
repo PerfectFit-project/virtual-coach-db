@@ -33,6 +33,9 @@ class Components(str, Enum):
     WATCH_VIDEO = 'watch_video_dialog'
     DONE_VIDEO = 'done_with_video'
     CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
+    CENTRAL_OPTIONS = "central_options"
+    CENTRAL_OPTIONS_UNCOMPLETED_DIALOG = "central_options_uncompleted_dialog"
+    FALLBACK = "fallback"
 
 
 class ComponentsTriggers(str, Enum):
@@ -62,6 +65,9 @@ class ComponentsTriggers(str, Enum):
     RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
     DONE_VIDEO = 'EXTERNAL_done_with_video'
+    CENTRAL_OPTIONS = "EXTERNAL_no_valid_uncompleted_dialog"
+    CENTRAL_OPTIONS_UNCOMPLETED_DIALOG = "EXTERNAL_central_uncompleted_dialog"
+    FALLBACK = "nlu_fallback"
 
 
 class Notifications(str, Enum):
