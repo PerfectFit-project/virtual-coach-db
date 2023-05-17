@@ -33,6 +33,8 @@ class Components(str, Enum):
     WATCH_VIDEO = 'watch_video_dialog'
     DONE_VIDEO = 'done_with_video'
     CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
+    # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
+    # the options' menu, without the 'verder' option listed
     CENTRAL_OPTIONS = "central_options"
 
 
@@ -64,6 +66,8 @@ class ComponentsTriggers(str, Enum):
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
     DONE_VIDEO = 'EXTERNAL_done_with_video'
     CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
+    # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
+    # the options' menu, without the 'verder' option listed
     CENTRAL_OPTIONS = "EXTERNAL_no_valid_uncompleted_dialog"
 
 
