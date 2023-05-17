@@ -132,7 +132,6 @@ class DialogQuestionsEnum(Enum):
 
 
 class VideoLinks(str, Enum):
-    # TODO: substitute the links with the actual ones
     FIRST_AID_KIT = "https://video.leidenuniv.nl/media/t/1_p2wvnkdf"
     FUTURE_SELF_LONG = "https://video.leidenuniv.nl/media/t/1_phg9aofa"
     FUTURE_SELF_SHORT = "https://video.leidenuniv.nl/media/t/1_7auemsl7"
