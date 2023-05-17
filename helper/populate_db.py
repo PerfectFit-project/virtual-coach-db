@@ -348,7 +348,12 @@ def initialize_execution_components_table():
         InterventionComponents(intervention_component_name=Components.FIRST_AID_KIT.value,
                                intervention_component_trigger=ComponentsTriggers.FIRST_AID_KIT.value),
         InterventionComponents(intervention_component_name=Components.CLOSING_DIALOG.value,
-                               intervention_component_trigger=ComponentsTriggers.CLOSING_DIALOG.value)
+                               intervention_component_trigger=ComponentsTriggers.CLOSING_DIALOG.value),
+
+        InterventionComponents(intervention_component_name=Components.CONTINUE_UNCOMPLETED_DIALOG.value,
+                               intervention_component_trigger=None),
+        InterventionComponents(intervention_component_name=Components.CENTRAL_OPTIONS.value,
+                               intervention_component_trigger=ComponentsTriggers.CENTRAL_OPTIONS.value)
     ]
 
     return data
