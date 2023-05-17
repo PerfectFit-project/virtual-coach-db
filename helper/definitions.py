@@ -33,6 +33,9 @@ class Components(str, Enum):
     WATCH_VIDEO = 'watch_video_dialog'
     DONE_VIDEO = 'done_with_video'
     CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
+    # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
+    # the options' menu, without the 'verder' option listed
+    CENTRAL_OPTIONS = "central_options"
 
 
 class ComponentsTriggers(str, Enum):
@@ -62,6 +65,10 @@ class ComponentsTriggers(str, Enum):
     RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
     DONE_VIDEO = 'EXTERNAL_done_with_video'
+    CONTINUE_UNCOMPLETED_DIALOG = None
+    # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
+    # the options' menu, without the 'verder' option listed
+    CENTRAL_OPTIONS = 'EXTERNAL_no_valid_uncompleted_dialog'
 
 
 class Notifications(str, Enum):
@@ -125,10 +132,9 @@ class DialogQuestionsEnum(Enum):
 
 
 class VideoLinks(str, Enum):
-    # TODO: substitute the links with the actual ones
     FIRST_AID_KIT = "https://video.leidenuniv.nl/media/t/1_p2wvnkdf"
-    FUTURE_SELF_LONG = 'future self long'
-    FUTURE_SELF_SHORT = 'future self short'
+    FUTURE_SELF_LONG = "https://video.leidenuniv.nl/media/t/1_phg9aofa"
+    FUTURE_SELF_SHORT = "https://video.leidenuniv.nl/media/t/1_7auemsl7"
     INTRO_EXECUTION_VIDEO = "https://video.leidenuniv.nl/media/t/1_pupwgup1"
     INTRO_PREPARATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_hueym3k9"
     MEDICATION_VIDEO = "https://video.leidenuniv.nl/media/t/1_uu7estu1"
