@@ -65,10 +65,10 @@ class ComponentsTriggers(str, Enum):
     RESCHEDULING_PREPARATION = 'EXTERNAL_rescheduling_preparation_phase'
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
     DONE_VIDEO = 'EXTERNAL_done_with_video'
-    CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
+    CONTINUE_UNCOMPLETED_DIALOG = None
     # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
     # the options' menu, without the 'verder' option listed
-    CENTRAL_OPTIONS = "EXTERNAL_no_valid_uncompleted_dialog"
+    CENTRAL_OPTIONS = 'EXTERNAL_no_valid_uncompleted_dialog'
 
 
 class Notifications(str, Enum):
