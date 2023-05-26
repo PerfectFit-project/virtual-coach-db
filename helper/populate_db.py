@@ -233,7 +233,9 @@ def initialize_closed_anwers():
                                                                              'Thuis bezig met klusjes of huishouden',
                                                                              'Iets voor jezelf (hobby, met iemand'
                                                                              ' afspreken)',
-                                                                             'Al lichamelijk actief geweest',
+                                                                             'Je aan het eten of drinken wast',
+                                                                             'Je net alcohol of koffie hebt gedronken',
+                                                                             'Je net wakker was',
                                                                              'Iets anders']
     answer_descriptions[DialogQuestionsEnum.PERSUASION_PROMPTS.value] = ["Helemaal mee oneens",
                                                                          "Mee oneens",
