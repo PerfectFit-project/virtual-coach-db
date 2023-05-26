@@ -151,7 +151,7 @@ def initialize_closed_anwers():
                                                                                  'Net alcohol of koffie gedronken',
                                                                                  'Net wakker geworden',
                                                                                  'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Stress',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_HOW_FEEL.value] = ['Stress', 'Moe',
                                                                                'Verdrietig', 'Boos',
                                                                                'Verveeld', 'Honger',
                                                                                'Bang of angstig',
