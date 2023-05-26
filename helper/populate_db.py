@@ -175,12 +175,15 @@ def initialize_closed_anwers():
                                                                                'Net alcohol of koffie gedronken',
                                                                                'Net wakker geworden',
                                                                                'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Schuldig',
-                                                                             'Vervelend',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_HOW_FEEL.value] = ['Stress',
+                                                                             'Moe',
                                                                              'Verdrietig',
-                                                                             'Je had het gevoel dat het niet zou lukken'
-                                                                             ' om te stoppen met roken',
-                                                                             'Opgelucht']
+                                                                             'Boos',
+                                                                             'Verveeld',
+                                                                             'Honger',
+                                                                             'Bang of angstig',
+                                                                             'Blij',
+                                                                             'Iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_LAPSE_WITH_WHOM.value] = ['Met partner',
                                                                               'Alleen',
                                                                               'Met vrienden of famillie',
@@ -200,12 +203,15 @@ def initialize_closed_anwers():
                                                                                  'Net alcohol of koffie gedronken',
                                                                                  'Net wakker geworden',
                                                                                  'Iets anders']
-    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Schuldig',
-                                                                               'Vervelend',
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_HOW_FEEL.value] = ['Stress',
+                                                                               'Moe',
                                                                                'Verdrietig',
-                                                                               'Je had het gevoel dat het niet zou'
-                                                                               ' lukken om te stoppen met roken',
-                                                                               'Opgelucht']
+                                                                               'Boos',
+                                                                               'Verveeld',
+                                                                               'Honger',
+                                                                               'Bang of angstig',
+                                                                               'Blij',
+                                                                               'Iets anders']
     answer_descriptions[DialogQuestionsEnum.RELAPSE_RELAPSE_WITH_WHOM.value] = ['Met partner',
                                                                                 'Alleen',
                                                                                 'Met vrienden of famillie',
@@ -269,9 +275,11 @@ def initialize_activities(activities_file_path):
         data = [InterventionActivity(intervention_activity_id=int(row['activity_id']),
                                      intervention_activity_title=row['activity_title'],
                                      intervention_activity_description=row['activity_description'],
-                                     intervention_activity_full_instructions=row['activity_instructions'],
+                                     intervention_activity_full_instructions=row[
+                                         'activity_instructions'],
                                      user_input_required=bool(int(row['input_needed'])),
-                                     intervention_activity_benefit=row['activity_benefit']) for row in csv_reader]
+                                     intervention_activity_benefit=row['activity_benefit']) for row
+                in csv_reader]
 
     return data
 
@@ -350,8 +358,9 @@ def initialize_execution_components_table():
         InterventionComponents(intervention_component_name=Components.CLOSING_DIALOG.value,
                                intervention_component_trigger=ComponentsTriggers.CLOSING_DIALOG.value),
 
-        InterventionComponents(intervention_component_name=Components.CONTINUE_UNCOMPLETED_DIALOG.value,
-                               intervention_component_trigger=ComponentsTriggers.CONTINUE_UNCOMPLETED_DIALOG.value),
+        InterventionComponents(
+            intervention_component_name=Components.CONTINUE_UNCOMPLETED_DIALOG.value,
+            intervention_component_trigger=ComponentsTriggers.CONTINUE_UNCOMPLETED_DIALOG.value),
         InterventionComponents(intervention_component_name=Components.CENTRAL_OPTIONS.value,
                                intervention_component_trigger=ComponentsTriggers.CENTRAL_OPTIONS.value)
     ]
@@ -364,17 +373,20 @@ def initialize_notifications_components_table():
         InterventionComponents(
             intervention_component_name=Notifications.BEFORE_QUIT_NOTIFICATION.value,
             intervention_component_trigger=NotificationsTriggers.BEFORE_QUIT_NOTIFICATION.value),
-        InterventionComponents(intervention_component_name=Notifications.PA_STEP_GOAL_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.PA_STEP_GOAL_NOTIFICATION.value),
+        InterventionComponents(
+            intervention_component_name=Notifications.PA_STEP_GOAL_NOTIFICATION.value,
+            intervention_component_trigger=NotificationsTriggers.PA_STEP_GOAL_NOTIFICATION.value),
         InterventionComponents(
             intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
             intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
         InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
                                intervention_component_trigger=NotificationsTriggers.TRACK_NOTIFICATION.value),
-        InterventionComponents(intervention_component_name=Notifications.FINISH_DIALOG_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.FINISH_DIALOG_NOTIFICATION.value),
-        InterventionComponents(intervention_component_name=Notifications.INACTIVE_USER_NOTIFICATION.value,
-                               intervention_component_trigger=NotificationsTriggers.INACTIVE_USER_NOTIFICATION.value)
+        InterventionComponents(
+            intervention_component_name=Notifications.FINISH_DIALOG_NOTIFICATION.value,
+            intervention_component_trigger=NotificationsTriggers.FINISH_DIALOG_NOTIFICATION.value),
+        InterventionComponents(
+            intervention_component_name=Notifications.INACTIVE_USER_NOTIFICATION.value,
+            intervention_component_trigger=NotificationsTriggers.INACTIVE_USER_NOTIFICATION.value)
     ]
 
     return data
@@ -400,7 +412,8 @@ def create_test_data(user_id: int):
               participant_code='E3R4Z',
               quit_date=date.today() + timedelta(days=11),
               goal_setting_chosen_sport="tennissen",
-              pa_steps_daily_goal=8200, pa_intensity_minutes_weekly_goal=70, pa_intervention_group=1),
+              pa_steps_daily_goal=8200, pa_intensity_minutes_weekly_goal=70,
+              pa_intervention_group=1),
 
         FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=28,
                     datetime=datetime.now().astimezone(tz_nl),
