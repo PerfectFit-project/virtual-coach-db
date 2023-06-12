@@ -27,6 +27,8 @@ class Components(str, Enum):
     RELAPSE_DIALOG_LAPSE = 'relapse_dialog_lapse'
     RELAPSE_DIALOG_RELAPSE = 'relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
+    DELAYED_MSG_LAPSE = 'delayed_message_smoke_lapse'
+    DELAYED_MSG_SMOKE = 'delayed_message_smoke'
     FIRST_AID_KIT = 'get_first_aid_kit'
     CLOSING_DIALOG = 'closing_dialog'
     RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'

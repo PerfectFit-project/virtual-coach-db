@@ -178,7 +178,7 @@ class UserInterventionState(Base):
     intervention_phase_id = Column(Integer, ForeignKey('intervention_phases.phase_id'))
     intervention_component_id = Column(Integer, ForeignKey('intervention_components.intervention_component_id'))
     completed = Column(Boolean)
-    last_time = Column(TIMESTAMP(timezone=True), default=func.now(), nullable=True)
+    last_time = Column(DateTime(timezone=True), nullable=True)
     last_part = Column(Integer)
     next_planned_date = Column(DateTime(timezone=True), nullable=True)
     task_uuid = Column(String(36), nullable=True)

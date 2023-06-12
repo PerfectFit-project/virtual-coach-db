@@ -388,7 +388,11 @@ def initialize_notifications_components_table():
             intervention_component_trigger=NotificationsTriggers.FINISH_DIALOG_NOTIFICATION.value),
         InterventionComponents(
             intervention_component_name=Notifications.INACTIVE_USER_NOTIFICATION.value,
-            intervention_component_trigger=NotificationsTriggers.INACTIVE_USER_NOTIFICATION.value)
+            intervention_component_trigger=NotificationsTriggers.INACTIVE_USER_NOTIFICATION.value),
+        InterventionComponents(intervention_component_name=Components.DELAYED_MSG_LAPSE.value,
+                               intervention_component_trigger=ComponentsTriggers.DELAYED_MSG_LAPSE.value),
+        InterventionComponents(intervention_component_name=Components.DELAYED_MSG_SMOKE.value,
+                               intervention_component_trigger=ComponentsTriggers.DELAYED_MSG_SMOKE.value),
     ]
 
     return data
