@@ -76,6 +76,7 @@ class ComponentsTriggers(str, Enum):
 class Notifications(str, Enum):
     BEFORE_QUIT_NOTIFICATION = 'before_quit_notification'
     PA_STEP_GOAL_NOTIFICATION = 'pa_step_goal_notification'
+    PA_INTENSITY_MINUTES_NOTIFICATION = 'pa_intensity_notification'
     QUIT_DATE_NOTIFICATION = 'quit_date_notification'
     TRACK_NOTIFICATION = 'track_notification'
     FINISH_DIALOG_NOTIFICATION = 'finish_dialog_notification'

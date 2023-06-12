@@ -379,6 +379,9 @@ def initialize_notifications_components_table():
             intervention_component_name=Notifications.PA_STEP_GOAL_NOTIFICATION.value,
             intervention_component_trigger=NotificationsTriggers.PA_STEP_GOAL_NOTIFICATION.value),
         InterventionComponents(
+            intervention_component_name=Notifications.PA_INTENSITY_MINUTES_NOTIFICATION.value,
+            intervention_component_trigger=NotificationsTriggers.PA_INTENSITY_MINUTES_NOTIFICATION.value),
+        InterventionComponents(
             intervention_component_name=Notifications.QUIT_DATE_NOTIFICATION.value,
             intervention_component_trigger=NotificationsTriggers.QUIT_DATE_NOTIFICATION.value),
         InterventionComponents(intervention_component_name=Notifications.TRACK_NOTIFICATION.value,
