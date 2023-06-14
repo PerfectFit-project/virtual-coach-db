@@ -27,6 +27,8 @@ class Components(str, Enum):
     RELAPSE_DIALOG_LAPSE = 'relapse_dialog_lapse'
     RELAPSE_DIALOG_RELAPSE = 'relapse_dialog_relapse'
     RELAPSE_DIALOG_PA = 'relapse_dialog_pa'
+    DELAYED_MSG_LAPSE = 'delayed_message_smoke_lapse'
+    DELAYED_MSG_SMOKE = 'delayed_message_smoke'
     FIRST_AID_KIT = 'get_first_aid_kit'
     CLOSING_DIALOG = 'closing_dialog'
     RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'
@@ -74,6 +76,7 @@ class ComponentsTriggers(str, Enum):
 class Notifications(str, Enum):
     BEFORE_QUIT_NOTIFICATION = 'before_quit_notification'
     PA_STEP_GOAL_NOTIFICATION = 'pa_step_goal_notification'
+    PA_INTENSITY_MINUTES_NOTIFICATION = 'pa_intensity_notification'
     QUIT_DATE_NOTIFICATION = 'quit_date_notification'
     TRACK_NOTIFICATION = 'track_notification'
     FINISH_DIALOG_NOTIFICATION = 'finish_dialog_notification'
