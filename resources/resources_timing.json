@@ -97,7 +97,7 @@
       ]
    },
    {
-      "resource_id":2501,
+      "resource_id":251,
       "category": "educational",
       "always_available":false,
       "phases":[
@@ -115,7 +115,7 @@
       ]
    },
    {
-      "resource_id":2502,
+      "resource_id":252,
       "category": "educational",
       "always_available":false,
       "phases":[
@@ -138,7 +138,7 @@
       ]
    },
    {
-      "resource_id":2503,
+      "resource_id":253,
       "category": "educational",
       "always_available":false,
       "phases":[
@@ -161,7 +161,7 @@
       ]
    },
    {
-      "resource_id":2504,
+      "resource_id":254,
       "category": "educational",
       "always_available":false,
       "phases":[
@@ -184,7 +184,7 @@
       ]
    },
    {
-      "resource_id":2505,
+      "resource_id":255,
       "category": "educational",
       "always_available":false,
       "phases":[
@@ -207,7 +207,7 @@
       ]
    },
    {
-      "resource_id":2506,
+      "resource_id":256,
       "category": "educational",
       "always_available":false,
       "phases":[
