@@ -96,7 +96,7 @@ When a new version of the niceday_client package is ready and tested, a [new rel
 
 # Sources
 
-## Activities
+## Activities (activities.csv)
 
 Albers, N., Neerincx, M. A., Penfornis, K. M., & Brinkman, W. P. (2022). Users’ needs for a digital smoking cessation application and how to address them: A mixed-methods study. PeerJ, 10, e13824.
 
@@ -267,7 +267,7 @@ https://www.stichtingstopbewust.nl/stoppen-met-roken-gevolgen-uiterlijk/
 Mercken, L., Candel, M., Van Osch, L., & de Vries, H. (2011). No smoke without fire: The impact of future friends on adolescent smoking behaviour. British journal of health psychology, 16(1), 170-188.
 
 
-## Tesimonials
+## Testimonials (testimonials_with_user_data.csv)
 
 Albers, N., Hizli, B., Scheltinga, B. L., Meijer, E., & Brinkman, W. P. (2023). Setting physical activity goals with a virtual coach: vicarious experiences, personalization and acceptance. Journal of Medical Systems, 47(1), 15.
 
