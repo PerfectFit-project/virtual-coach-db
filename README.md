@@ -205,7 +205,7 @@ https://www.kenniscentrumsportenbewegen.nl/producten/beweegrichtlijnen/
 
 https://www.nhs.uk/live-well/exercise/exercise-health-benefits/
 
-runnersmap.nl
+https://runnermaps.nl/
 
 https://sport.nl/sportclub-overzichtspagina
 
