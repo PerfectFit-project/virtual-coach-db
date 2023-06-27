@@ -211,7 +211,7 @@ https://sport.nl/sportclub-overzichtspagina
 
 https://sport.nl/sportwijzer
 
-supportervanallehardlopers.nl/hardloopplanner/start
+https://www.supportervanallehardlopers.nl/hardlooproute-planner/start/
 
 https://www.wandel.nl/
 
