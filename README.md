@@ -199,7 +199,7 @@ Sejati, A., & Djanah, S. N. (2020, February). Literature Review Study: Supportin
 
 https://www.fietsnetwerk.nl/
 
-heart.org
+https://www.heart.org/
 
 https://www.kenniscentrumsportenbewegen.nl/producten/beweegrichtlijnen/
 
