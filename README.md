@@ -117,7 +117,7 @@ https://www.dailysabah.com/life/2020/02/05/what-happens-to-your-body-after-you-q
 
 https://exerciseright.com.au/body-reacts-to-exercise/
 
-Ikstopnu.nl
+https://www.ikstopnu.nl/
 
 https://www.ikstopnu.nl/bibliotheek/ontwenningsverschijnselen/#krijg-je-altijd-ontwenningsverschijnselen 
 
@@ -133,7 +133,7 @@ https://shapescale.com/blog/fitness/exercising/how-your-body-changes-once-you-st
 
 https://www.stichtingstopbewust.nl/stoppen-met-roken-conditie/
 
-trimbos.nl
+https://www.trimbos.nl/
 
 www.voedingscentrum.nl
 
@@ -197,7 +197,7 @@ Sejati, A., & Djanah, S. N. (2020, February). Literature Review Study: Supportin
 
 #### Websites, Videos, Other Online Material
 
-fietsnetwerk.nl
+https://www.fietsnetwerk.nl/
 
 heart.org
 
@@ -213,7 +213,7 @@ https://sport.nl/sportwijzer
 
 supportervanallehardlopers.nl/hardloopplanner/start
 
-wandel.nl
+https://www.wandel.nl/
 
 
 #### Papers
@@ -237,11 +237,11 @@ Shahab, L., Sarkar, B. K., & West, R. (2013). The acute effects of yogic breathi
 
 #### Websites, Videos, Other Online Material
 
-Ikstopnu.nl
+https://www.ikstopnu.nl/
 
 https://positivepsychology.com/journaling-for-mindfulness/ 
 
-Trimbos.nl 
+https://www.trimbos.nl/
 
 
 #### Papers
