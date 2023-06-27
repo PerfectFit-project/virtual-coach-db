@@ -233,7 +233,7 @@ Limsanon, T., & Kalayasiri, R. (2015). Preliminary effects of progressive muscle
 Shahab, L., Sarkar, B. K., & West, R. (2013). The acute effects of yogic breathing exercises on craving and withdrawal symptoms in abstaining smokers. Psychopharmacology, 225, 875-882.
 
 
-### Reinforcement-reward activities
+### Reinforcement-Reward activities
 
 #### Websites, Videos, Other Online Material
 
