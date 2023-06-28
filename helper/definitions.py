@@ -145,8 +145,11 @@ class VideoLinks(str, Enum):
 
 
 """Dictionary for the expected time interval of the dialog. For each dialog,
+in case the duration (in minutes) is fixed, it is represented by a single number ,
+if the duration is expected to be in a range of values,
 the first number indicates the minimum expected completion time,
 the second number indicated the maximum expected completion time """
+
 DialogExpectedDuration = {Components.FUTURE_SELF_LONG: 27,
                           Components.GENERAL_ACTIVITY: (6, 10),
                           Components.MEDICATION_TALK: 6,
