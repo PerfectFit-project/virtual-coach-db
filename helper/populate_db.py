@@ -3,10 +3,8 @@ import logging
 import os
 
 from typing import Any
-from dbschema.models import (DialogClosedAnswers, DialogQuestions,
-                             InterventionActivity, InterventionComponents,
-                             InterventionPhases,
-                             ClosedAnswers, Testimonials)
+from dbschema.models import (DialogQuestions, InterventionActivity, InterventionComponents,
+                             InterventionPhases, ClosedAnswers, Testimonials)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
                                 DialogQuestionsEnum, Notifications, NotificationsTriggers)
