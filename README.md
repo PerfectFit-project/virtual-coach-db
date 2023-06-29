@@ -150,7 +150,7 @@ Bjørngaard, J. H., Nordestgaard, A. T., Taylor, A. E., Treur, J. L., Gabrielsen
 
 Caddick, Z. A., Gregory, K., Arsintescu, L., & Flynn-Evans, E. E. (2018). A review of the environmental parameters necessary for an optimal sleep environment. Building and environment, 132, 11-20.
 
-Chellappa, S. L., Steiner, R., Oelhafen, P., Lang, D., Götz, T., Krebs, J., & Cajochen, C. (2013). Acute exposure to evening blue‐enriched light impacts on human sleep. Journal of sleep research, 22(5), 573-580.
+Chellappa, S. L., Steiner, R., Oelhafen, P., Lang, D., Götz, T., Krebs, J., & Cajochen, C. (2013). Acute exposure to evening blue-enriched light impacts on human sleep. Journal of sleep research, 22(5), 573-580.
 
 Grgic, J., Grgic, I., Pickering, C., Schoenfeld, B. J., Bishop, D. J., & Pedisic, Z. (2020). Wake up and smell the coffee: caffeine supplementation and exercise performance—an umbrella review of 21 published meta-analyses. British journal of sports medicine, 54(11), 681-688.
 
