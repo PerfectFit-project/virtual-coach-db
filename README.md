@@ -178,7 +178,7 @@ https://www.stichtingstopbewust.nl/
 
 #### Papers
 
-Johnson, Adrienne L., Tanya R. Schlam, Timothy B. Baker, and Megan E. Piper. “Understanding What Changes Adults in a Smoking Cessation Study Believe They Need to Make to Quit Smoking: A Qualitative Analysis of Pre- and Post-Quit Perceptions.” Psychology of Addictive Behaviors, June 23, 2022. https://doi.org/10.1037/adb0000856.
+Johnson, Adrienne L., Tanya R. Schlam, Timothy B. Baker, and Megan E. Piper. "Understanding What Changes Adults in a Smoking Cessation Study Believe They Need to Make to Quit Smoking: A Qualitative Analysis of Pre- and Post-Quit Perceptions." Psychology of Addictive Behaviors, June 23, 2022. https://doi.org/10.1037/adb0000856.
 
 Knowles, Ruth Dailey. Positive Self-Talk. AJN, American Journal of Nursing 81(3):p 535, March 1981.
 
