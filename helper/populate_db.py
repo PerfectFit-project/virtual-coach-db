@@ -1,62 +1,78 @@
 import csv
 import logging
 import os
-from datetime import datetime, date, timedelta
-from dateutil import tz
 
-from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users,
-                             UserInterventionState,
-                             FirstAidKit, InterventionActivity, InterventionComponents,
+from typing import Any
+from dbschema.models import (DialogClosedAnswers, DialogQuestions,
+                             InterventionActivity, InterventionComponents,
                              InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials,
-                             StepCounts, UserStateMachine)
+                             ClosedAnswers, Testimonials)
 from helper.helper_functions import get_db_session
 from helper.definitions import (Phases, Components, ComponentsTriggers,
                                 DialogQuestionsEnum, Notifications, NotificationsTriggers)
 
-tz_nl = tz.gettz("Europe/Amsterdam")
 
-
-def populate_db_with_test_data(session, test_user_id,
-                               activities_file_path='../utils/activities.csv',
-                               testimonials_file_path='../utils/testimonials_with_user_data.csv'):
+def populate_db_fixed_data(session,
+                           activities_file_path='../utils/activities.csv',
+                           testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
     Populate the database with test data. Update data if it already exists.
     """
     # Fill question table
-    objects_questions = initialize_questions()
-    [session.merge(obj) for obj in objects_questions]
+    if is_table_empty(DialogQuestions):
+        objects_questions = initialize_questions()
+        [session.merge(obj) for obj in objects_questions]
 
     # Fill closed answers table
-    objects_closed_answers = initialize_closed_anwers()
-    [session.merge(obj) for obj in objects_closed_answers]
+    if is_table_empty(ClosedAnswers):
+        objects_closed_answers = initialize_closed_answers()
+        [session.merge(obj) for obj in objects_closed_answers]
 
-    # Fill in intervention activities (placeholder activities for now)
-    objects_intervention_activities = initialize_activities(activities_file_path)
-    [session.merge(obj) for obj in objects_intervention_activities]
+    # Fill in intervention activities
+    if is_table_empty(InterventionActivity):
+        objects_intervention_activities = initialize_activities(activities_file_path)
+        [session.merge(obj) for obj in objects_intervention_activities]
 
     # Fill in testimonials (to be shown in goal-setting dialog)
-    objects_testimonials = initialize_testimonials(testimonials_file_path)
-    [session.merge(obj) for obj in objects_testimonials]
+    if is_table_empty(Testimonials):
+        objects_testimonials = initialize_testimonials(testimonials_file_path)
+        [session.merge(obj) for obj in objects_testimonials]
 
-    objects_preparation_components = initialize_preparation_components_table()
-    [session.merge(obj) for obj in objects_preparation_components]
+    if is_table_empty(InterventionComponents):
+        objects_preparation_components = initialize_preparation_components_table()
+        [session.merge(obj) for obj in objects_preparation_components]
 
-    objects_execution_components = initialize_execution_components_table()
-    [session.merge(obj) for obj in objects_execution_components]
+        objects_execution_components = initialize_execution_components_table()
+        [session.merge(obj) for obj in objects_execution_components]
 
-    objects_notification_components = initialize_notifications_components_table()
-    [session.merge(obj) for obj in objects_notification_components]
+        objects_notification_components = initialize_notifications_components_table()
+        [session.merge(obj) for obj in objects_notification_components]
 
-    objects_phases = initialize_phases_table()
-    [session.merge(obj) for obj in objects_phases]
-
-    objects = create_test_data(test_user_id)
-    [session.merge(obj) for obj in objects]
+    if is_table_empty(InterventionPhases):
+        objects_phases = initialize_phases_table()
+        [session.merge(obj) for obj in objects_phases]
 
     session.commit()
 
 
+def is_table_empty(table: Any) -> bool:
+    """
+    Check if a table in the DB is empty or if it contains data.
+    Args:
+        table: The class of the specific tale to be checked, as defined in models.py
+
+    Returns: True if the table is empty, False otherwise
+
+    """
+    entries = (session.query(table).count())
+
+    if entries > 0:
+        return False
+
+    return True
+
+
+# dialog_questions table
 def initialize_questions():
     data = [
         DialogQuestions(question_id=DialogQuestionsEnum.FUTURE_SELF_SMOKER_WORDS.value,
@@ -140,7 +156,8 @@ def initialize_questions():
     return data
 
 
-def initialize_closed_anwers():
+# closed_answers table
+def initialize_closed_answers():
     answer_descriptions = {}
     answer_descriptions[DialogQuestionsEnum.RELAPSE_CRAVING_WHAT_DOING.value] = ['Aan het werk',
                                                                                  'Thuis bezig met klusjes of'
@@ -270,6 +287,7 @@ def initialize_closed_anwers():
     return data
 
 
+# intervention_activity table
 def initialize_activities(activities_file_path):
     print(activities_file_path)
     with open(activities_file_path, encoding='utf-8-sig') as csvfile:
@@ -286,6 +304,7 @@ def initialize_activities(activities_file_path):
     return data
 
 
+# testimonials table
 def initialize_testimonials(testimonials_file_path):
     with open(testimonials_file_path, newline='') as csvfile:
         csv_reader = csv.DictReader(csvfile)
@@ -300,6 +319,7 @@ def initialize_testimonials(testimonials_file_path):
     return data
 
 
+# intervention_components table
 def initialize_preparation_components_table():
     data = [
         InterventionComponents(
@@ -335,6 +355,7 @@ def initialize_preparation_components_table():
     return data
 
 
+# intervention_components table
 def initialize_execution_components_table():
     data = [
         InterventionComponents(intervention_component_name=Components.EXECUTION_INTRODUCTION.value,
@@ -370,6 +391,7 @@ def initialize_execution_components_table():
     return data
 
 
+# intervention_components table
 def initialize_notifications_components_table():
     data = [
         InterventionComponents(
@@ -401,6 +423,7 @@ def initialize_notifications_components_table():
     return data
 
 
+# intervention_phases table
 def initialize_phases_table():
     data = [
         InterventionPhases(phase_name=Phases.PREPARATION.value),
@@ -411,89 +434,16 @@ def initialize_phases_table():
     return data
 
 
-def create_test_data(user_id: int):
-    data = [
-        Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id, testim_godin_activity_level=1,
-              testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
-              testim_sim_cluster_1=-2, testim_sim_cluster_3=3, week_days='1,2,3,4,5,6,7',
-              preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3)),
-              participant_code='E3R4Z',
-              quit_date=date.today() + timedelta(days=11),
-              goal_setting_chosen_sport="tennissen",
-              pa_steps_daily_goal=8200, pa_intensity_minutes_weekly_goal=70,
-              pa_intervention_group=1),
-
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=28,
-                    datetime=datetime.now().astimezone(tz_nl),
-                    activity_rating=1),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=32,
-                    datetime=datetime.now().astimezone(tz_nl),
-                    activity_rating=2),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=34,
-                    datetime=datetime.now().astimezone(tz_nl),
-                    activity_rating=3),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=210,
-                    datetime=datetime.now().astimezone(tz_nl),
-                    activity_rating=4),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=22,
-                    datetime=datetime.now().astimezone(tz_nl),
-                    activity_rating=5),
-        FirstAidKit(users_nicedayuid=user_id, intervention_activity_id=23,
-                    datetime=datetime.now().astimezone(tz_nl),
-                    activity_rating=6),
-
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='Fijn plezierig helpt mij ',
-                          question_id=1,
-                          datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id,
-                          answer_value='onderdeel van mijn leven verslavend niet zo heel erg',
-                          question_id=1, datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='stressvol straf lastig ',
-                          question_id=3,
-                          datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='lastig', question_id=3,
-                          datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id,
-                          answer_value='moet voor mijn gezondheid prettig', question_id=3,
-                          datetime=datetime.now().astimezone(tz_nl)),
-        DialogOpenAnswers(users_nicedayuid=user_id, answer_value='moet voor mijn gezondheid goed',
-                          question_id=3,
-                          datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=803,
-                            datetime=datetime.now().astimezone(tz_nl)),
-        DialogClosedAnswers(users_nicedayuid=user_id, closed_answers_id=1401,
-                            datetime=datetime.now().astimezone(tz_nl)),
-        UserInterventionState(users_nicedayuid=user_id, intervention_phase_id=1,
-                              intervention_component_id=5,
-                              completed=False, last_time=datetime.now().astimezone(tz_nl),
-                              last_part=1),
-
-        InterventionActivitiesPerformed(users_nicedayuid=user_id, intervention_activity_id=28,
-                                        user_input='test input'),
-
-        StepCounts(users_nicedayuid=user_id, value=5),
-
-        UserStateMachine(users_nicedayuid=user_id,
-                         state='Onboarding',
-                         dialog_running=False,
-                         intervention_component_id=1)
-    ]
-
-    return data
-
-
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
 
-    # Heroku and docker-compose will provide the db url as environment variable. If this variable
+    # docker-compose will provide the db url as environment variable. If this variable
     # cant be found, the defaults from the helper module will be used.
     try:
         db_url = os.environ['DATABASE_URL']
-        test_user_id = os.environ['TEST_USER_ID']
         session = get_db_session(db_url)
     except KeyError:
         session = get_db_session()
 
-    populate_db_with_test_data(session, test_user_id)
-    logging.info('Successfully populated database with test data')
+    populate_db_fixed_data(session)
+    logging.info('Successfully populated database with fixed data')
