@@ -17,26 +17,26 @@ def populate_db_fixed_data(session,
     Populate the database with test data. Update data if it already exists.
     """
     # Fill question table
-    if is_table_empty(DialogQuestions):
+    if is_table_empty(session, DialogQuestions):
         objects_questions = initialize_questions()
         [session.merge(obj) for obj in objects_questions]
 
     # Fill closed answers table
-    if is_table_empty(ClosedAnswers):
+    if is_table_empty(session, ClosedAnswers):
         objects_closed_answers = initialize_closed_answers()
         [session.merge(obj) for obj in objects_closed_answers]
 
     # Fill in intervention activities
-    if is_table_empty(InterventionActivity):
+    if is_table_empty(session, InterventionActivity):
         objects_intervention_activities = initialize_activities(activities_file_path)
         [session.merge(obj) for obj in objects_intervention_activities]
 
     # Fill in testimonials (to be shown in goal-setting dialog)
-    if is_table_empty(Testimonials):
+    if is_table_empty(session, Testimonials):
         objects_testimonials = initialize_testimonials(testimonials_file_path)
         [session.merge(obj) for obj in objects_testimonials]
 
-    if is_table_empty(InterventionComponents):
+    if is_table_empty(session, InterventionComponents):
         objects_preparation_components = initialize_preparation_components_table()
         [session.merge(obj) for obj in objects_preparation_components]
 
@@ -46,14 +46,14 @@ def populate_db_fixed_data(session,
         objects_notification_components = initialize_notifications_components_table()
         [session.merge(obj) for obj in objects_notification_components]
 
-    if is_table_empty(InterventionPhases):
+    if is_table_empty(session, InterventionPhases):
         objects_phases = initialize_phases_table()
         [session.merge(obj) for obj in objects_phases]
 
     session.commit()
 
 
-def is_table_empty(table: Any) -> bool:
+def is_table_empty(session, table) -> bool:
     """
     Check if a table in the DB is empty or if it contains data.
     Args:
