@@ -74,7 +74,7 @@ class ComponentsTriggers(str, Enum):
     DONE_VIDEO = 'EXTERNAL_done_with_video'
     CONTINUE_UNCOMPLETED_DIALOG = None
     # complete menu
-    CENTRAL_OPTIONS = 'EXTERNAL_central_mode'
+    CENTRAL_OPTIONS = 'EXTERNAL_central_options'
     # menu withouth the 'verder' option
     CENTRAL_OPTIONS_NO_COMPLETE = 'EXTERNAL_no_valid_uncompleted_dialog'
     # menu withouth the 'ehbo' option
