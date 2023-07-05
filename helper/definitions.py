@@ -34,10 +34,15 @@ class Components(str, Enum):
     RESCHEDULING_PREPARATION = 'rescheduling_preparation_phase'
     WATCH_VIDEO = 'watch_video_dialog'
     DONE_VIDEO = 'done_with_video'
-    CONTINUE_UNCOMPLETED_DIALOG = "continue_uncompleted_dialog"
-    # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
-    # the options' menu, without the 'verder' option listed
-    CENTRAL_OPTIONS = "central_options"
+    CONTINUE_UNCOMPLETED_DIALOG = 'continue_uncompleted_dialog'
+    # complete menu
+    CENTRAL_OPTIONS = 'central_options'
+    # menu withouth the 'verder' option
+    CENTRAL_OPTIONS_NO_COMPLETE = 'central_options_no_complete'
+    # menu withouth the 'ehbo' option
+    CENTRAL_OPTIONS_NO_EHBO = 'central_options_no_ehbo'
+    # menu withouth the 'verder' and the 'ehbo 'options
+    CENTRAL_OPTIONS_NO_EHBO_NO_COMPLETE = 'central_options_no_complete_no_ehbo'
 
 
 class ComponentsTriggers(str, Enum):
@@ -68,9 +73,14 @@ class ComponentsTriggers(str, Enum):
     WATCH_VIDEO = 'EXTERNAL_watch_video_dialog'
     DONE_VIDEO = 'EXTERNAL_done_with_video'
     CONTINUE_UNCOMPLETED_DIALOG = None
-    # CENTRAL_OPTIONS is run only when no uncompleted dialogs are available. It triggers
-    # the options' menu, without the 'verder' option listed
-    CENTRAL_OPTIONS = 'EXTERNAL_no_valid_uncompleted_dialog'
+    # complete menu
+    CENTRAL_OPTIONS = 'EXTERNAL_central_mode'
+    # menu withouth the 'verder' option
+    CENTRAL_OPTIONS_NO_COMPLETE = 'EXTERNAL_no_valid_uncompleted_dialog'
+    # menu withouth the 'ehbo' option
+    CENTRAL_OPTIONS_NO_EHBO = 'EXTERNAL_central_options_no_ehbo'
+    # menu withouth the 'verder' and the 'ehbo 'options
+    CENTRAL_OPTIONS_NO_EHBO_NO_COMPLETE = 'EXTERNAL_no_valid_uncompleted_dialog_no_ehbo'
 
 
 class Notifications(str, Enum):
