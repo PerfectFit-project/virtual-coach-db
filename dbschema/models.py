@@ -9,11 +9,6 @@ Base = declarative_base()
 class Users(Base):
     __tablename__ = 'users'
     nicedayuid = Column(Integer, primary_key=True)
-    firstname = Column(String)
-    lastname = Column(String)
-    location = Column(String)
-    gender = Column(String)
-    dob = Column(Date)
     start_date = Column(Date, default=func.current_date())
     quit_date = Column(Date, nullable=True)
     execution_week = Column(Integer, default=0, nullable=True)
