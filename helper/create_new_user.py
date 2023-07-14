@@ -2,12 +2,10 @@ import logging
 import os
 import sys
 
-from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, DialogQuestions, Users,
-                             UserInterventionState,
-                             FirstAidKit, InterventionActivity, InterventionComponents,
-                             InterventionPhases,
-                             ClosedAnswers, InterventionActivitiesPerformed, Testimonials,
-                             StepCounts, UserStateMachine)
+from dbschema.models import (DialogClosedAnswers, DialogOpenAnswers, Users,
+                                              UserInterventionState, FirstAidKit,
+                                              InterventionActivitiesPerformed,
+                                              StepCounts, UserStateMachine)
 from helper.helper_functions import get_db_session
 from datetime import datetime, date, timedelta
 from dateutil import tz
@@ -15,15 +13,12 @@ from dateutil import tz
 tz_nl = tz.gettz("Europe/Amsterdam")
 
 
-def create_user_data(user_id: int):
-
-    db_url = os.environ['DATABASE_URL']
-    session = get_db_session(db_url)
+def create_user_data(db_session, user_id: int):
     test_data = create_test_data(user_id)
 
-    [session.merge(obj) for obj in test_data]
+    [db_session.merge(obj) for obj in test_data]
 
-    session.commit()
+    db_session.commit()
     logging.info("user data added to DB")
 
 
@@ -96,5 +91,15 @@ def create_test_data(user_id: int):
 
 
 if __name__ == "__main__":
-    user_id = int(sys.argv[1])
-    create_user_data(user_id)
+    try:
+        test_user_id = int(sys.argv[1])
+    except IndexError:
+        test_user_id = os.environ['TEST_USER_ID']
+    try:
+        db_url = os.environ['DATABASE_URL']
+        session = get_db_session(db_url)
+    except KeyError:
+        session = get_db_session()
+
+    create_user_data(session, test_user_id)
+    logging.info('Successfully populated database with fixed data')

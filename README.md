@@ -150,7 +150,7 @@ Bjørngaard, J. H., Nordestgaard, A. T., Taylor, A. E., Treur, J. L., Gabrielsen
 
 Caddick, Z. A., Gregory, K., Arsintescu, L., & Flynn-Evans, E. E. (2018). A review of the environmental parameters necessary for an optimal sleep environment. Building and environment, 132, 11-20.
 
-Chellappa, S. L., Steiner, R., Oelhafen, P., Lang, D., Götz, T., Krebs, J., & Cajochen, C. (2013). Acute exposure to evening blue‐enriched light impacts on human sleep. Journal of sleep research, 22(5), 573-580.
+Chellappa, S. L., Steiner, R., Oelhafen, P., Lang, D., Götz, T., Krebs, J., & Cajochen, C. (2013). Acute exposure to evening blue-enriched light impacts on human sleep. Journal of sleep research, 22(5), 573-580.
 
 Grgic, J., Grgic, I., Pickering, C., Schoenfeld, B. J., Bishop, D. J., & Pedisic, Z. (2020). Wake up and smell the coffee: caffeine supplementation and exercise performance—an umbrella review of 21 published meta-analyses. British journal of sports medicine, 54(11), 681-688.
 
@@ -178,7 +178,7 @@ https://www.stichtingstopbewust.nl/
 
 #### Papers
 
-Johnson, Adrienne L., Tanya R. Schlam, Timothy B. Baker, and Megan E. Piper. “Understanding What Changes Adults in a Smoking Cessation Study Believe They Need to Make to Quit Smoking: A Qualitative Analysis of Pre- and Post-Quit Perceptions.” Psychology of Addictive Behaviors, June 23, 2022. https://doi.org/10.1037/adb0000856.
+Johnson, Adrienne L., Tanya R. Schlam, Timothy B. Baker, and Megan E. Piper. "Understanding What Changes Adults in a Smoking Cessation Study Believe They Need to Make to Quit Smoking: A Qualitative Analysis of Pre- and Post-Quit Perceptions." Psychology of Addictive Behaviors, June 23, 2022. https://doi.org/10.1037/adb0000856.
 
 Knowles, Ruth Dailey. Positive Self-Talk. AJN, American Journal of Nursing 81(3):p 535, March 1981.
 
