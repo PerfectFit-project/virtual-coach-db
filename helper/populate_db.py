@@ -14,7 +14,7 @@ def populate_db_fixed_data(session,
                            activities_file_path='../utils/activities.csv',
                            testimonials_file_path='../utils/testimonials_with_user_data.csv'):
     """
-    Populate the database with test data. Update data if it already exists.
+    Populate the database with the fixed needed data, after checking that they do not exist already.
     """
     # Fill question table
     if is_table_empty(session, DialogQuestions):

@@ -24,8 +24,7 @@ def create_user_data(db_session, user_id: int):
 
 def create_test_data(user_id: int):
     data = [
-        Users(dob=date(2000, 1, 2), firstname='Walter', gender='MALE', lastname='Test',
-              location='Eanske', nicedayuid=user_id, testim_godin_activity_level=1,
+        Users(nicedayuid=user_id, testim_godin_activity_level=1,
               testim_running_walking_pref=1, testim_self_efficacy_pref=40.44,
               testim_sim_cluster_1=-2, testim_sim_cluster_3=3, week_days='1,2,3,4,5,6,7',
               preferred_time=(datetime.now().astimezone(tz_nl) + timedelta(minutes=3)),
