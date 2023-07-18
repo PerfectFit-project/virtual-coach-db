@@ -2,7 +2,25 @@
    {
       "resource_id":111,
       "category": "self-related",
-      "always_available":true
+      "always_available":false,
+      "phases":[
+         {
+            "phase":"Tracking",
+            "always_available":true
+         },
+         {
+            "phase":"Goals setting",
+            "always_available":true
+         },
+         {
+            "phase":"Buffer",
+            "always_available":true
+         },
+         {
+            "phase":"Execution run",
+            "always_available":true
+         }
+      ]
    },
    {
       "resource_id":21,
