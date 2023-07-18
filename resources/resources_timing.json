@@ -28,6 +28,10 @@
       "always_available":false,
       "phases":[
          {
+            "phase":"Onboarding",
+            "always_available":true
+         },
+         {
             "phase":"Tracking",
             "always_available":true
          },
@@ -50,6 +54,10 @@
       "category": "self-related",
       "always_available":false,
       "phases":[
+         {
+            "phase":"Onboarding",
+            "always_available":true
+         },
          {
             "phase":"Tracking",
             "always_available":false,
