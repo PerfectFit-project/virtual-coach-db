@@ -277,7 +277,7 @@ def initialize_closed_answers():
                                                                       "No persuasion"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["-1", "0", "1", "2",
                                                                                "3", "4", "5"]
-    answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["HRS", "Lapse", "Relapse"]
+    answer_descriptions[DialogQuestionsEnum.RELAPSE_SMOKE_HRS_LAPSE_RELAPSE.value] = ["HRS", "Lapse", "Relapse"]
 
     data = [ClosedAnswers(closed_answers_id=q * 100 + i,
                           question_id=q,
