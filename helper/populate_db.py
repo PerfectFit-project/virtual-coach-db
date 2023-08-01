@@ -148,7 +148,9 @@ def initialize_questions():
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_TYPE.value,
                         question_description='persuasion - activity - chosen persuasion type'),
         DialogQuestions(question_id=DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value,
-                        question_description='persuasion - activity - persuasive message index')
+                        question_description='persuasion - activity - persuasive message index'),
+        DialogQuestions(question_id=DialogQuestionsEnum.RELAPSE_SMOKE_HRS_LAPSE_RELAPSE.value,
+                        question_description='hrs - lapse - relapse branch in relapse dialog')
     ]
 
     return data
@@ -275,6 +277,7 @@ def initialize_closed_answers():
                                                                       "No persuasion"]
     answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["-1", "0", "1", "2",
                                                                                "3", "4", "5"]
+    answer_descriptions[DialogQuestionsEnum.PERSUASION_MESSAGE_INDEX.value] = ["HRS", "Lapse", "Relapse"]
 
     data = [ClosedAnswers(closed_answers_id=q * 100 + i,
                           question_id=q,
