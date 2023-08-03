@@ -144,6 +144,7 @@ class DialogQuestionsEnum(Enum):
     PERSUASION_EFFORT = 36  # How much effort people spent on an activity
     PERSUASION_TYPE = 37  # The persuasion type chosen based on the persuasion algorithm
     PERSUASION_MESSAGE_INDEX = 38  # The index of the persuasive message for the given persuasion type. -1 if "No persuasion."
+    RELAPSE_SMOKE_HRS_LAPSE_RELAPSE = 39  # HRS, lapse or relapse branch in the relapse dialog
 
 
 class VideoLinks(str, Enum):
