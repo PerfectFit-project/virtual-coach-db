@@ -5,11 +5,12 @@ import os
 
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import NullPool
 
 DB_URL_DEFAULT = 'postgresql://root:root@db:5432/perfectfit'
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool=NullPool)
 meta = MetaData()
 meta.reflect(bind=engine)
 
@@ -33,7 +34,7 @@ def santize_db_url(db_url):
 
 def get_db_session(db_url=DB_URL_DEFAULT):
 
-
+    print('Testing db helper version')
     session = session_maker()
 
     return session
