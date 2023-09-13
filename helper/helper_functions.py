@@ -36,7 +36,7 @@ def santize_db_url(db_url):
 
 def get_db_session(db_url=DB_URL_DEFAULT):
 
-    logging.log('Testing db helper version')
+    logging.info('Testing db helper version')
     session = session_maker()
 
     return session
