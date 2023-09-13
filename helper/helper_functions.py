@@ -1,6 +1,4 @@
 import json
-import logging
-
 import importlib_resources
 import sys
 import os
@@ -11,13 +9,6 @@ from sqlalchemy.pool import NullPool
 
 DB_URL_DEFAULT = 'postgresql://root:root@db:5432/perfectfit'
 DATABASE_URL = os.getenv('DATABASE_URL')
-
-engine = create_engine(DATABASE_URL, pool=NullPool)
-meta = MetaData()
-meta.reflect(bind=engine)
-
-session_maker = sessionmaker(bind=engine)
-
 
 def santize_db_url(db_url):
     """
@@ -34,9 +25,17 @@ def santize_db_url(db_url):
 
     return db_url
 
+
+engine = create_engine(santize_db_url(DATABASE_URL))
+meta = MetaData()
+meta.reflect(bind=engine)
+
+session_maker = sessionmaker(bind=engine)
+
+
 def get_db_session(db_url=DB_URL_DEFAULT):
 
-    logging.info('Testing db helper version')
+
     session = session_maker()
 
     return session
