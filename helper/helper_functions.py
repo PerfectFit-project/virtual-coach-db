@@ -28,7 +28,7 @@ def santize_db_url(db_url):
     return db_url
 
 
-engine = create_engine(santize_db_url(DATABASE_URL), poolcalss=NullPool)
+engine = create_engine(santize_db_url(DATABASE_URL), poolclass=NullPool)
 meta = MetaData()
 meta.reflect(bind=engine)
 
