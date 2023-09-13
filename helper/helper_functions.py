@@ -1,4 +1,6 @@
 import json
+import logging
+
 import importlib_resources
 import sys
 import os
@@ -26,7 +28,7 @@ def santize_db_url(db_url):
     return db_url
 
 
-engine = create_engine(santize_db_url(DATABASE_URL))
+engine = create_engine(santize_db_url(DATABASE_URL), poolcalss=NullPool)
 meta = MetaData()
 meta.reflect(bind=engine)
 
@@ -35,7 +37,7 @@ session_maker = sessionmaker(bind=engine)
 
 def get_db_session(db_url=DB_URL_DEFAULT):
 
-
+    logging.info('NEW VERSION')
     session = session_maker()
 
     return session
