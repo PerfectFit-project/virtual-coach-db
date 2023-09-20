@@ -95,11 +95,7 @@ if __name__ == "__main__":
         test_user_id = int(sys.argv[1])
     except IndexError:
         test_user_id = os.environ['TEST_USER_ID']
-    try:
-        db_url = os.environ['DATABASE_URL']
-        session = get_db_session(db_url)
-    except KeyError:
-        session = get_db_session()
+    session = get_db_session()
 
     create_user_data(session, test_user_id)
     logging.info('Successfully populated database with fixed data')

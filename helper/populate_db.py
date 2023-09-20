@@ -444,7 +444,7 @@ if __name__ == '__main__':
     # cant be found, the defaults from the helper module will be used.
     try:
         db_url = os.environ['DATABASE_URL']
-        session = get_db_session(db_url)
+        session = get_db_session()
     except KeyError:
         session = get_db_session()
 
