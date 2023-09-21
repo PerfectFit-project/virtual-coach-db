@@ -442,11 +442,7 @@ if __name__ == '__main__':
 
     # docker-compose will provide the db url as environment variable. If this variable
     # cant be found, the defaults from the helper module will be used.
-    try:
-        db_url = os.environ['DATABASE_URL']
-        session = get_db_session()
-    except KeyError:
-        session = get_db_session()
+    session = get_db_session()
 
     populate_db_fixed_data(session)
     logging.info('Successfully populated database with fixed data')

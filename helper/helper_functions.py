@@ -29,12 +29,19 @@ def santize_db_url(db_url):
     return db_url
 
 
-# initialize engine and session maker
-engine = create_engine(santize_db_url(DATABASE_URL), poolclass=NullPool)
-meta = MetaData()
-meta.reflect(bind=engine)
+def init_engine():
+    try:
+        # initialize engine and session maker
+        engine = create_engine(santize_db_url(DATABASE_URL), poolclass=NullPool)
+        meta = MetaData()
+        meta.reflect(bind=engine)
 
-session_maker = sessionmaker(bind=engine)
+        return sessionmaker(bind=engine)
+    except:
+        return None
+
+
+session_maker = init_engine()
 
 
 def get_db_session():
