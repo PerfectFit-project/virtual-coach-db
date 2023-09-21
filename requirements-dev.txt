@@ -1,2 +1,2 @@
 pytest
-pytest-alembic==1.11.3
+pytest-alembic

@@ -3,5 +3,5 @@ databases[postgresql]
 python-dateutil
 SQLAlchemy
 pypandoc
-alembic
+alembic==1.11.3
 python-dotenv
