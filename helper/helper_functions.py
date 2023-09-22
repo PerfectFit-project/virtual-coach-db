@@ -1,4 +1,5 @@
 import json
+import logging
 
 import importlib_resources
 import os
@@ -38,6 +39,7 @@ def init_engine():
 
         return sessionmaker(bind=engine)
     except:
+        logging.error('Connection to DB failed. Empty session maker')
         return None
 
 
@@ -45,6 +47,11 @@ session_maker = init_engine()
 
 
 def get_db_session():
+    global session_maker
+
+    if not session_maker:
+        session_maker = init_engine()
+
     session = session_maker()
 
     return session
