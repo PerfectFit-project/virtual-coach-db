@@ -1,7 +1,7 @@
 psycopg2
 databases[postgresql]
 python-dateutil
-SQLAlchemy
+SQLAlchemy==1.4.49
 pypandoc
 alembic==1.11.3
 python-dotenv
