@@ -1,11 +1,18 @@
 import json
+import logging
+
 import importlib_resources
-import sys
+import os
 
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import NullPool
 
-DB_URL_DEFAULT = 'postgresql://root:root@db:5432/perfectfit'
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if not DATABASE_URL:
+    DATABASE_URL = 'postgresql://root:root@db:5432/perfectfit'
+
 
 def santize_db_url(db_url):
     """
@@ -22,21 +29,29 @@ def santize_db_url(db_url):
 
     return db_url
 
-def get_db_session(db_url=DB_URL_DEFAULT):
 
-    sanitized_db_url = santize_db_url(db_url)
-    engine = create_engine(sanitized_db_url)
-    meta = MetaData()
-    meta.reflect(bind=engine)
+def init_engine():
+    try:
+        # initialize engine and session maker
+        engine = create_engine(santize_db_url(DATABASE_URL), poolclass=NullPool)
+        meta = MetaData()
+        meta.reflect(bind=engine)
 
-    # Check that db actually has a Users table
-    # (have the alembic migrations been run to set it up appropriately?)
-    if 'users' not in meta.tables:
-        sys.exit('"users" table not found in db. Has the schema been '
-                 'set up correctly with the alembic migrations? See '
-                 'instructions in README in db/ directory.')
+        return sessionmaker(bind=engine)
+    except:
+        logging.error('Connection to DB failed. Empty session maker')
+        return None
 
-    session_maker = sessionmaker(bind=engine)
+
+session_maker = init_engine()
+
+
+def get_db_session():
+    global session_maker
+
+    if not session_maker:
+        session_maker = init_engine()
+
     session = session_maker()
 
     return session
@@ -49,4 +64,3 @@ def get_timing():
     timing = json.loads(string_json)
 
     return timing
-
